@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { skills, certifications, achievements } from '../data/mock';
 import { Card } from './ui/card';
-import { Award, CheckCircle2, Code, Wrench, Cloud, FileText, Palette, Blocks } from 'lucide-react';
+import { Award, CheckCircle2, Code, Wrench, Cloud, FileText, Palette, Blocks, Cpu } from 'lucide-react';
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,10 +25,10 @@ const Skills = () => {
   }, []);
 
   const skillCategories = [
-    { title: 'Languages', items: skills.languages, icon: Code },
-    { title: 'Documentation Tools', items: skills.tools, icon: FileText },
+    { title: 'AI & Machine Learning', items: skills.ai_and_ml, icon: Cpu },
+    { title: 'Documentation Strategy', items: skills.documentation, icon: FileText },
     { title: 'DevOps & Cloud', items: skills.devops, icon: Cloud },
-    { title: 'Technical Writing', items: skills.documentation, icon: Wrench },
+    { title: 'Languages', items: skills.languages, icon: Code },
     { title: 'Design Tools', items: skills.design, icon: Palette },
     { title: 'Blockchain/Web3', items: skills.blockchain, icon: Blocks },
   ];
