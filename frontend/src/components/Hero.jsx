@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { personalInfo } from '../data/mock';
+import { personalInfo, about } from '../data/mock';
 import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -72,10 +72,7 @@ const Hero = () => {
             {/* Roles */}
             <div className="space-y-2">
               <p className="text-xl md:text-2xl text-amber-500 font-light">
-                Founder, Neurals.in
-              </p>
-              <p className="text-lg md:text-xl text-slate-400 font-light">
-                Technical Writer • AI Engineer • Blockchain Writer
+                {personalInfo.title}
               </p>
             </div>
 
@@ -86,9 +83,7 @@ const Hero = () => {
 
             {/* Description */}
             <p className="text-lg text-slate-400 leading-relaxed max-w-2xl">
-              Seasoned Technical Writer with 10+ years of experience crafting documentation 
-              for industry leaders. Certified DevOps professional and advocate for Blockchain, 
-              Web3, and AI technologies.
+              {about.description}
             </p>
 
             {/* CTA Buttons */}
@@ -98,7 +93,7 @@ const Hero = () => {
                 className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-medium px-8 py-6 text-base"
                 onClick={() => scrollToSection('work')}
               >
-                View Portfolio
+                Build Scalable Doc Systems
               </Button>
               <Button 
                 size="lg" 

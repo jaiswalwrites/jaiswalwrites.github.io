@@ -2,8 +2,8 @@
 
 export const personalInfo = {
   name: "Manish Jaiswal",
-  title: "Founder | Technical Writer | AI Engineer | Blockchain Writer",
-  tagline: "A Writer Who Codes",
+  title: "Senior AI Documentation Consultant | Founding Engineer",
+  tagline: "Bridging AI Engineering & Documentation",
   email: "jaiswalmanish060@gmail.com",
   phone: "+91 8015973380",
   linkedin: "https://www.linkedin.com/in/manish-jaiswal1993/",
@@ -14,11 +14,11 @@ export const personalInfo = {
 };
 
 export const about = {
-  description: "Seasoned Technical Writer, certified DevOps professional, and advocate for Blockchain, Web3, and AI. I thrive on evolving with rapidly changing technologies and crafting documentation that bridges the gap between complex technology and end users.",
+  description: "Senior Technical Writer and Documentation Consultant specializing in the AI era. I bridge the gap between complex AI engineering (LLMs, RAG, agentic workflows) and end-users by building scalable docs-as-code systems. I help organizations tackle modern developer documentation challenges—like rapidly evolving APIs, complex vector search integrations, and maintaining context across multi-agent ecosystems—by creating robust doc workflows that scale.",
   stats: [
-    { label: "Years Experience", value: 10 },
-    { label: "Companies Worked", value: 12 },
-    { label: "Newsletter Subscribers", value: 1000 },
+    { label: "Years in Tech Docs", value: 10 },
+    { label: "AI Ecosystems Documented", value: 15 },
+    { label: "Docs-as-Code Systems Built", value: 8 },
     { label: "Certifications", value: 6 }
   ]
 };
@@ -74,16 +74,16 @@ export const neurals = {
 export const experience = [
   {
     id: 1,
-    company: "Usage.ai (Neurals.in)",
-    role: "AI Engineer & Founder",
+    company: "Neurals.in",
+    role: "Founding Engineer",
     duration: "Feb 2023 - Present",
     location: "Bangalore",
     domain: "AI-driven FinOps Automation",
     description: "Designed and deployed intelligent AI agents leveraging LLMs, reinforcement learning, and RAG pipelines for predictive analytics and real-time cloud cost optimization across AWS, GCP, and Azure.",
     highlights: [
-      "Built AI-powered FinOps platform reducing cloud costs by 30-40% for enterprises",
       "Engineered anomaly detection systems and automated savings plans, reducing compute and SaaS spend by up to 40%",
       "Applied generative AI and prompt engineering for actionable cost insights in dynamic cloud environments",
+      "Architected the documentation workflows and developer experience for the enterprise FinOps platform",
       "Led cross-functional collaborations establishing enterprise-wide cost governance frameworks"
     ]
   },
@@ -260,23 +260,23 @@ export const writingSamples = [
 ];
 
 export const skills = {
-  languages: [
-    "Python", "JavaScript", "Java", "GoLang", "Solidity", "SQL", "HTML/CSS", "XML"
-  ],
-  tools: [
-    "Docusaurus", "Sphinx", "MadCap Flare", "Oxygen XML", "RoboHelp", "WordPress", "Notion"
-  ],
-  devops: [
-    "Docker", "Kubernetes", "Jenkins", "GitHub Actions", "Terraform", "AWS", "GCP", "Azure"
+  ai_and_ml: [
+    "LLMs (GPT-4, Claude)", "RAG Pipelines", "AI Agents", "LangChain", "LlamaIndex", "Vector Databases", "Prompt Engineering"
   ],
   documentation: [
-    "API Documentation", "SDK Documentation", "Technical Writing", "Docs-as-Code", "DITA", "Markdown"
+    "Docs-as-Code Strategy", "Developer Experience (DX)", "API/SDK Documentation", "OpenAPI/Swagger", "Docusaurus", "Information Architecture"
+  ],
+  devops: [
+    "Docker", "Kubernetes", "GitHub Actions", "CI/CD for Docs", "Terraform", "AWS", "GCP"
+  ],
+  languages: [
+    "Python", "JavaScript", "TypeScript", "GoLang", "SQL", "Markdown/MDX", "XML"
   ],
   design: [
-    "Camtasia", "Adobe Illustrator", "Canva", "Visio", "LucidChart", "Figma"
+    "Figma", "Mermaid.js", "Camtasia", "Canva", "Visio"
   ],
   blockchain: [
-    "Ethereum", "Web3", "Smart Contracts", "DeFi", "NFTs", "dApps"
+    "Web3 Infrastructure", "Smart Contracts", "DeFi", "dApps"
   ]
 };
 
@@ -315,8 +315,8 @@ export const certifications = [
 
 export const achievements = [
   {
-    title: "Founded Neurals.in",
-    description: "Built AI-powered FinOps platform achieving 30-40% cloud cost reduction for enterprise customers"
+    title: "Founder of Neurals.in",
+    description: "Built AI-powered FinOps platform achieving 30-40% cloud cost reduction for enterprise customers using specialized AI agents."
   },
   {
     title: "Newsletter Creator",
