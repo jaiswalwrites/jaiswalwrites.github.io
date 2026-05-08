@@ -41,68 +41,68 @@ const Newsletter = () => {
   };
 
   return (
-    <section id="newsletter" ref={sectionRef} className="py-32 bg-slate-900 relative overflow-hidden">
+    <section id="newsletter" ref={sectionRef} className="py-32 relative overflow-hidden bg-black">
       {/* Subtle background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[128px] animate-blob animation-delay-2000" />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">Newsletter</h2>
-          <div className="w-24 h-px bg-gradient-to-r from-amber-500 to-transparent" />
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-4">Newsletter</h2>
+          <div className="w-24 h-px bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto" />
         </div>
 
-        <Card className={`bg-slate-800/30 border-slate-700/30 p-8 md:p-12 transform transition-all duration-1000 hover:border-amber-500/30 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`glass-panel p-8 md:p-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           {/* Stats */}
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
-            <div className="flex items-center gap-4 p-4 bg-slate-900/50 border border-slate-700/30">
-              <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                <Users className="w-6 h-6 text-amber-500" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="flex items-center gap-5 p-6 glass-panel hover:bg-white/5 transition-colors duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
+                <Users className="w-6 h-6 text-cyan-400" />
               </div>
               <div>
-                <div className="text-2xl font-light text-white">{newsletter.subscribers}</div>
-                <div className="text-slate-400 text-sm font-light">Subscribers</div>
+                <div className="text-3xl font-medium tracking-tight text-white mb-1">{newsletter.subscribers}</div>
+                <div className="text-white/60 text-sm font-medium tracking-tight uppercase">Subscribers</div>
               </div>
             </div>
-            <div className="flex items-center gap-4 p-4 bg-slate-900/50 border border-slate-700/30">
-              <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-amber-500" />
+            <div className="flex items-center gap-5 p-6 glass-panel hover:bg-white/5 transition-colors duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-purple-400" />
               </div>
               <div>
-                <div className="text-2xl font-light text-white">{newsletter.frequency}</div>
-                <div className="text-slate-400 text-sm font-light">Publishing</div>
+                <div className="text-3xl font-medium tracking-tight text-white mb-1">{newsletter.frequency}</div>
+                <div className="text-white/60 text-sm font-medium tracking-tight uppercase">Publishing</div>
               </div>
             </div>
-            <div className="flex items-center gap-4 p-4 bg-slate-900/50 border border-slate-700/30">
-              <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                <Mail className="w-6 h-6 text-amber-500" />
+            <div className="flex items-center gap-5 p-6 glass-panel hover:bg-white/5 transition-colors duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-blue-400/10 border border-blue-400/20 flex items-center justify-center">
+                <Mail className="w-6 h-6 text-blue-400" />
               </div>
               <div>
-                <div className="text-2xl font-light text-white">Newsletter</div>
-                <div className="text-slate-400 text-sm font-light">LinkedIn</div>
+                <div className="text-3xl font-medium tracking-tight text-white mb-1">Newsletter</div>
+                <div className="text-white/60 text-sm font-medium tracking-tight uppercase">LinkedIn</div>
               </div>
             </div>
           </div>
 
           {/* Description */}
-          <div className="text-center mb-8">
-            <p className="text-xl text-slate-300 leading-relaxed mb-6 font-light">
+          <div className="text-center mb-12">
+            <p className="text-xl text-white/80 leading-relaxed font-light max-w-3xl mx-auto">
               {newsletter.description}
             </p>
           </div>
 
           {/* Topics */}
-          <div className="mb-8">
-            <h4 className="text-white font-light text-center mb-4">Topics Covered:</h4>
+          <div className="mb-12">
+            <h4 className="text-white font-medium tracking-tight text-center mb-6">Topics Covered:</h4>
             <div className="flex flex-wrap justify-center gap-3">
               {newsletter.topics.map((topic, index) => (
                 <span
                   key={index}
-                  className="px-4 py-2 bg-slate-900/50 border border-amber-500/30 text-amber-500 text-sm font-light hover:bg-slate-900 transition-all duration-300 flex items-center gap-2"
+                  className="px-5 py-2 glass-pill bg-white/5 border-white/10 text-white/80 text-sm font-medium tracking-tight hover:bg-white/10 transition-all duration-300 flex items-center gap-2"
                 >
-                  <CheckCircle className="w-4 h-4" />
+                  <CheckCircle className="w-4 h-4 text-cyan-400" />
                   {topic}
                 </span>
               ))}
@@ -112,27 +112,26 @@ const Newsletter = () => {
           {/* Subscribe Form */}
           <div className="max-w-md mx-auto">
             <form onSubmit={handleSubscribe} className="flex gap-3">
-              <Input
+              <input
                 type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-1 bg-slate-900/50 border-slate-700 focus:border-amber-500 text-white placeholder:text-slate-500 h-12"
+                className="flex-1 bg-white/5 border border-white/10 focus:border-cyan-400 text-white placeholder:text-white/40 h-14 px-6 rounded-full outline-none transition-colors"
               />
-              <Button
+              <button
                 type="submit"
-                size="lg"
-                className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-light px-6 h-12"
+                className="bg-white hover:bg-white/90 text-black font-medium tracking-tight px-8 h-14 rounded-full transition-colors flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.15)]"
               >
                 <Send className="w-5 h-5" />
-              </Button>
+              </button>
             </form>
-            <p className="text-slate-500 text-sm text-center mt-4 font-light">
-              Join 1,000+ tech writers staying ahead of the curve
+            <p className="text-white/50 text-sm text-center mt-6 font-medium tracking-tight">
+              Join 1,000+ tech writers staying ahead of the AI curve
             </p>
           </div>
-        </Card>
+        </div>
       </div>
     </section>
   );

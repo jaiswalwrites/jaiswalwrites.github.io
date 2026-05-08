@@ -33,72 +33,72 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-slate-950 relative overflow-hidden">
+    <section id="contact" className="py-32 relative overflow-hidden bg-black">
       {/* Subtle background */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[128px] animate-blob animation-delay-4000" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">Get In Touch</h2>
-          <div className="w-24 h-px bg-gradient-to-r from-amber-500 to-transparent mb-4" />
-          <p className="text-xl text-slate-400 font-light">
-            Have a project in mind? Let's collaborate and create something amazing.
+        <div className="mb-16 md:text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-4">Get In Touch</h2>
+          <div className="w-24 h-px bg-gradient-to-r from-cyan-400 to-purple-400 mb-4 md:mx-auto" />
+          <p className="text-xl text-white/60 font-light max-w-2xl md:mx-auto">
+            Have a project in mind? Let's collaborate and build something amazing.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-6">
-            <Card className="p-6 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-amber-500" />
+            <div className="p-6 glass-panel hover:bg-white/5 transition-all duration-500 group">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center group-hover:bg-cyan-400/20 transition-colors">
+                  <Mail className="w-6 h-6 text-cyan-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-light mb-1">Email</h3>
-                  <a href={`mailto:${personalInfo.email}`} className="text-slate-400 hover:text-amber-500 transition-colors">
+                  <h3 className="text-white font-medium tracking-tight mb-1">Email</h3>
+                  <a href={`mailto:${personalInfo.email}`} className="text-white/60 hover:text-cyan-400 font-light transition-colors">
                     {personalInfo.email}
                   </a>
                 </div>
               </div>
-            </Card>
+            </div>
 
-            <Card className="p-6 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-amber-500" />
+            <div className="p-6 glass-panel hover:bg-white/5 transition-all duration-500 group">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center group-hover:bg-purple-400/20 transition-colors">
+                  <Phone className="w-6 h-6 text-purple-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-light mb-1">Phone</h3>
-                  <a href={`tel:${personalInfo.phone}`} className="text-slate-400 hover:text-amber-500 transition-colors">
+                  <h3 className="text-white font-medium tracking-tight mb-1">Phone</h3>
+                  <a href={`tel:${personalInfo.phone}`} className="text-white/60 hover:text-purple-400 font-light transition-colors">
                     {personalInfo.phone}
                   </a>
                 </div>
               </div>
-            </Card>
+            </div>
 
-            <Card className="p-6 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-amber-500" />
+            <div className="p-6 glass-panel hover:bg-white/5 transition-all duration-500 group">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-blue-400/10 border border-blue-400/20 flex items-center justify-center group-hover:bg-blue-400/20 transition-colors">
+                  <MapPin className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-light mb-1">Location</h3>
-                  <p className="text-slate-400">Bangalore, India</p>
+                  <h3 className="text-white font-medium tracking-tight mb-1">Location</h3>
+                  <p className="text-white/60 font-light">Bangalore, India</p>
                 </div>
               </div>
-            </Card>
+            </div>
 
             {/* Social Links */}
             <div className="pt-6">
-              <h3 className="text-white font-light mb-4">Connect on Social</h3>
+              <h3 className="text-white font-medium tracking-tight mb-4">Connect on Social</h3>
               <div className="flex gap-4">
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 border border-slate-800 hover:border-amber-500/50 text-slate-400 hover:text-amber-500 transition-all duration-300"
+                  className="w-14 h-14 flex items-center justify-center rounded-2xl border border-white/10 hover:border-cyan-400/50 hover:bg-white/5 text-white/60 hover:text-cyan-400 transition-all duration-300"
                 >
                   <Linkedin className="w-6 h-6" />
                 </a>
@@ -106,7 +106,7 @@ const Contact = () => {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 border border-slate-800 hover:border-amber-500/50 text-slate-400 hover:text-amber-500 transition-all duration-300"
+                  className="w-14 h-14 flex items-center justify-center rounded-2xl border border-white/10 hover:border-purple-400/50 hover:bg-white/5 text-white/60 hover:text-purple-400 transition-all duration-300"
                 >
                   <Github className="w-6 h-6" />
                 </a>
@@ -115,13 +115,13 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="p-8 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500">
+          <div className="p-8 md:p-10 glass-panel">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-white font-light mb-2">
+                <label htmlFor="name" className="block text-white font-medium tracking-tight text-sm mb-2">
                   Name
                 </label>
-                <Input
+                <input
                   id="name"
                   name="name"
                   type="text"
@@ -129,15 +129,15 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder="Your name"
-                  className="bg-slate-900/50 border-slate-700 focus:border-amber-500 text-white placeholder:text-slate-500"
+                  className="w-full bg-white/5 border border-white/10 focus:border-cyan-400 text-white placeholder:text-white/40 h-12 px-5 rounded-xl outline-none transition-colors font-light"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-white font-light mb-2">
+                <label htmlFor="email" className="block text-white font-medium tracking-tight text-sm mb-2">
                   Email
                 </label>
-                <Input
+                <input
                   id="email"
                   name="email"
                   type="email"
@@ -145,15 +145,15 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder="your.email@example.com"
-                  className="bg-slate-900/50 border-slate-700 focus:border-amber-500 text-white placeholder:text-slate-500"
+                  className="w-full bg-white/5 border border-white/10 focus:border-purple-400 text-white placeholder:text-white/40 h-12 px-5 rounded-xl outline-none transition-colors font-light"
                 />
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-white font-light mb-2">
+                <label htmlFor="subject" className="block text-white font-medium tracking-tight text-sm mb-2">
                   Subject
                 </label>
-                <Input
+                <input
                   id="subject"
                   name="subject"
                   type="text"
@@ -161,36 +161,35 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder="What's this about?"
-                  className="bg-slate-900/50 border-slate-700 focus:border-amber-500 text-white placeholder:text-slate-500"
+                  className="w-full bg-white/5 border border-white/10 focus:border-cyan-400 text-white placeholder:text-white/40 h-12 px-5 rounded-xl outline-none transition-colors font-light"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-white font-light mb-2">
+                <label htmlFor="message" className="block text-white font-medium tracking-tight text-sm mb-2">
                   Message
                 </label>
-                <Textarea
+                <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   placeholder="Tell me about your project..."
-                  rows={6}
-                  className="bg-slate-900/50 border-slate-700 focus:border-amber-500 text-white placeholder:text-slate-500 resize-none"
+                  rows={5}
+                  className="w-full bg-white/5 border border-white/10 focus:border-purple-400 text-white placeholder:text-white/40 p-5 rounded-xl outline-none transition-colors resize-none font-light"
                 />
               </div>
 
-              <Button
+              <button
                 type="submit"
-                size="lg"
-                className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-light py-6 group"
+                className="w-full bg-white hover:bg-white/90 text-black font-medium tracking-tight py-4 rounded-xl transition-colors flex items-center justify-center group shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
                 Send Message
-                <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
             </form>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

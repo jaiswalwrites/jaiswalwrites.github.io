@@ -33,77 +33,71 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-slate-950/95 backdrop-blur-sm border-b border-slate-800'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-6 py-5">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a
-            href="#"
-            className="text-2xl font-light text-white hover:text-amber-500 transition-colors duration-300"
-          >
-            {personalInfo.name.split(' ').map(n => n[0]).join('')}
-          </a>
+    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center w-full px-4 transition-all duration-500">
+      <nav className={`transition-all duration-500 ease-out flex items-center justify-between px-6 w-full max-w-5xl mx-auto ${
+        isScrolled ? 'glass-pill py-3' : 'bg-transparent py-4'
+      }`}>
+        {/* Logo */}
+        <a
+          href="#"
+          className="text-2xl font-semibold tracking-tighter text-white hover:text-white/80 transition-colors duration-300"
+        >
+          {personalInfo.name.split(' ').map(n => n[0]).join('')}
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-white/70 hover:text-white transition-colors duration-300 font-medium tracking-tight text-sm relative group"
+            >
+              {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover:w-full transition-all duration-300" />
+            </a>
+          ))}
+          <Button
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="glass-pill border border-white/20 bg-white/10 hover:bg-white/20 text-white font-medium tracking-tight px-6 h-9"
+          >
+            Contact
+          </Button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-white/70 hover:text-white transition-colors"
+        >
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </nav>
+
+      {/* Mobile Navigation Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-20 left-4 right-4 md:hidden glass-panel py-4 px-4 animate-fade-in origin-top">
+          <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-slate-300 hover:text-amber-500 transition-colors duration-300 font-light relative group"
+                className="text-white/80 hover:text-white transition-colors duration-300 font-medium py-2 px-2 rounded-lg hover:bg-white/5"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-500 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <Button
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-light px-6"
+              className="w-full mt-2 glass-pill bg-white/10 hover:bg-white/20 text-white font-medium py-3 border border-white/20"
             >
               Contact
             </Button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-slate-300 hover:text-amber-500 transition-colors"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-slate-800">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-slate-300 hover:text-amber-500 transition-colors duration-300 font-light py-2"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <Button
-                onClick={(e) => handleNavClick(e, '#contact')}
-                className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-light w-full py-3"
-              >
-                Contact
-              </Button>
-            </div>
-          </div>
-        )}
-      </nav>
+      )}
     </header>
   );
 };

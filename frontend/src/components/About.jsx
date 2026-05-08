@@ -48,81 +48,73 @@ const About = () => {
     });
   };
 
-  const formatNumber = (num, label) => {
-    if (label === "Newsletter Subscribers") {
-      return num >= 1000 ? `${(num / 1000).toFixed(1)}K+` : `${num}+`;
-    }
-    return `${num}+`;
-  };
-
   return (
-    <section id="about" ref={sectionRef} className="py-32 bg-slate-950 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-32 relative overflow-hidden bg-black">
       {/* Subtle background */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px] animate-blob animation-delay-2000" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px] animate-blob" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">About Me</h2>
-          <div className="w-24 h-px bg-gradient-to-r from-amber-500 to-transparent" />
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-4">About Me</h2>
+          <div className="w-24 h-px bg-gradient-to-r from-cyan-400 to-purple-400" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start mb-20">
           {/* Description */}
           <div className={`space-y-6 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-            <p className="text-xl text-slate-300 leading-relaxed font-light">
+            <p className="text-xl text-white/90 leading-relaxed font-light">
               {about.description}
             </p>
-            <p className="text-lg text-slate-400 leading-relaxed">
-              With <span className="text-amber-500">10+ years of experience</span>, I've worked with industry 
-              leaders like <span className="text-white">Harness.io</span>, <span className="text-white">McAfee</span>, and emerging blockchain 
-              companies like <span className="text-white">Arcana Network</span> and <span className="text-white">Marlin</span>.
+            <p className="text-lg text-white/60 leading-relaxed font-light">
+              With <span className="text-white font-medium">10+ years of experience</span>, I've engineered documentation architectures for 
+              industry leaders like <span className="text-white font-medium">Harness.io</span>, <span className="text-white font-medium">McAfee</span>, and emerging AI 
+              startups like <span className="text-white font-medium">Neurals.in</span>.
             </p>
-            <p className="text-lg text-slate-400 leading-relaxed">
-              I'm passionate about <span className="text-amber-500">docs-as-code</span>, <span className="text-amber-500">API documentation</span>, 
-              and making complex technologies accessible to developers and end users.
+            <p className="text-lg text-white/60 leading-relaxed font-light">
+              I'm passionate about <span className="text-white font-medium">docs-as-code</span>, <span className="text-white font-medium">AI Agents</span>, 
+              and bridging the gap between sophisticated ML engineering and developer experience.
             </p>
           </div>
 
           {/* Stats Grid */}
           <div className={`grid grid-cols-2 gap-6 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
             {about.stats.map((stat, index) => (
-              <Card 
+              <div 
                 key={index} 
-                className="p-6 bg-slate-800/30 border-slate-700/30 hover:border-amber-500/30 hover:bg-slate-800/50 transition-all duration-500"
+                className="glass-panel p-6 hover:bg-white/5 transition-all duration-500"
               >
                 <div className="text-center">
-                  <div className="text-5xl font-light text-amber-500 mb-2">
-                    {isVisible ? formatNumber(counters[index], stat.label) : '0'}
+                  <div className="text-5xl font-light text-white mb-2 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                    {isVisible ? counters[index] : '0'}+
                   </div>
-                  <div className="text-slate-400 text-sm font-light">
+                  <div className="text-white/60 text-sm font-medium tracking-tight">
                     {stat.label}
                   </div>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Expertise Tags */}
         <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h3 className="text-2xl font-light text-white mb-8">Core Expertise</h3>
+          <h3 className="text-2xl font-semibold tracking-tighter text-white mb-8">Core Expertise</h3>
           <div className="flex flex-wrap gap-3">
             {[
-              'Technical Documentation',
-              'API Documentation',
-              'SDK Documentation',
-              'Docs-as-Code',
-              'DevOps',
-              'Blockchain/Web3',
-              'CI/CD',
-              'Cloud Security',
-              'Video Creation',
-              'Developer Advocacy'
+              'LLM Architecture Docs',
+              'AI Agent Frameworks',
+              'RAG Pipelines',
+              'Docs-as-Code Strategy',
+              'Developer Experience (DX)',
+              'API/SDK Documentation',
+              'Vector Databases',
+              'Cloud Automation',
             ].map((skill, index) => (
               <span
                 key={index}
-                className="px-6 py-2 border border-slate-700 text-slate-300 hover:border-amber-500/50 hover:text-amber-500 transition-all duration-300 cursor-default font-light"
+                className="px-6 py-2 glass-pill text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium tracking-tight text-sm cursor-default"
               >
                 {skill}
               </span>

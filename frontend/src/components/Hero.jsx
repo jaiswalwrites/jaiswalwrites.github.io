@@ -4,93 +4,51 @@ import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 10 - 5,
-        y: (e.clientY / window.innerHeight) * 10 - 5,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-3xl"
-          style={{
-            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-            transition: 'transform 0.5s ease-out'
-          }}
-        />
-        <div 
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-slate-400/5 rounded-full blur-3xl"
-          style={{
-            transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
-            transition: 'transform 0.5s ease-out'
-          }}
-        />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
+      {/* Animated Mesh Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob" />
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-cyan-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-4000" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 w-full">
         <div className="grid md:grid-cols-5 gap-12 items-center">
-          {/* Profile Image - Left Side */}
-          <div className="md:col-span-2 flex justify-center md:justify-end">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-slate-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative w-72 h-96 md:w-80 md:h-[420px] overflow-hidden border-2 border-slate-800 shadow-2xl">
-                <img
-                  src={personalInfo.image}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                />
+          
+          {/* Content - Left Side */}
+          <div className="md:col-span-3 text-center md:text-left space-y-8 order-2 md:order-1">
+            <div className="animate-fade-in">
+              <div className="inline-block px-4 py-1.5 glass-pill mb-6">
+                <p className="text-sm font-medium tracking-tight text-white/80 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  &lt;{personalInfo.tagline}/&gt;
+                </p>
               </div>
-            </div>
-          </div>
-
-          {/* Content - Right Side */}
-          <div className="md:col-span-3 text-center md:text-left space-y-6">
-            {/* Name */}
-            <div>
-              <h1 className="text-5xl md:text-7xl font-light text-white mb-3 tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-tight text-glow">
                 {personalInfo.name}
               </h1>
-              <div className="w-24 h-px bg-gradient-to-r from-amber-500 to-transparent" />
-            </div>
+              
+              <div className="space-y-3 mb-8">
+                <p className="text-xl md:text-3xl text-white/90 font-medium tracking-tight">
+                  {personalInfo.title}
+                </p>
+              </div>
 
-            {/* Roles */}
-            <div className="space-y-2">
-              <p className="text-xl md:text-2xl text-amber-500 font-light">
-                {personalInfo.title}
+              <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl font-light">
+                {about.description}
               </p>
             </div>
 
-            {/* Tagline */}
-            <p className="text-2xl font-mono text-slate-500 font-light">
-              &lt;{personalInfo.tagline}/&gt;
-            </p>
-
-            {/* Description */}
-            <p className="text-lg text-slate-400 leading-relaxed max-w-2xl">
-              {about.description}
-            </p>
-
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4 animate-fade-in-delay-1">
               <Button 
                 size="lg" 
-                className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-medium px-8 py-6 text-base"
+                className="bg-white text-black hover:bg-white/90 font-medium tracking-tight px-8 py-6 rounded-full text-base shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all"
                 onClick={() => scrollToSection('work')}
               >
                 Build Scalable Doc Systems
@@ -98,7 +56,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-slate-700 text-slate-300 hover:bg-slate-800 hover:border-slate-600 font-medium px-8 py-6 text-base"
+                className="glass-pill text-white hover:bg-white/10 border-white/20 font-medium tracking-tight px-8 py-6 text-base"
                 onClick={() => scrollToSection('contact')}
               >
                 Get In Touch
@@ -106,44 +64,41 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex gap-4 justify-center md:justify-start pt-4">
-              <a 
-                href={personalInfo.github} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-3 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-900 text-slate-400 hover:text-amber-500 transition-all duration-300"
-              >
+            <div className="flex gap-4 justify-center md:justify-start pt-8 animate-fade-in-delay-2">
+              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
                 <Github className="w-5 h-5" />
               </a>
-              <a 
-                href={personalInfo.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-3 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-900 text-slate-400 hover:text-amber-500 transition-all duration-300"
-              >
+              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a 
-                href={`mailto:${personalInfo.email}`}
-                className="p-3 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-900 text-slate-400 hover:text-amber-500 transition-all duration-300"
-              >
+              <a href={`mailto:${personalInfo.email}`} className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
                 <Mail className="w-5 h-5" />
               </a>
-              <a 
-                href={personalInfo.resumeUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-3 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-900 text-slate-400 hover:text-amber-500 transition-all duration-300"
-              >
+              <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
                 <FileText className="w-5 h-5" />
               </a>
             </div>
           </div>
+
+          {/* Profile Image - Right Side */}
+          <div className="md:col-span-2 flex justify-center order-1 md:order-2 animate-fade-in-delay-1">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-[2rem] blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-blob"></div>
+              <div className="relative glass-panel p-2 w-72 h-96 md:w-80 md:h-[420px] rounded-[2rem] transform group-hover:-translate-y-2 transition-all duration-500">
+                <img
+                  src={personalInfo.image}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover rounded-[1.5rem] opacity-90 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <ArrowDown className="w-6 h-6 text-slate-600" />
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce animate-fade-in-delay-3">
+          <ArrowDown className="w-6 h-6 text-white/30" />
         </div>
       </div>
     </section>

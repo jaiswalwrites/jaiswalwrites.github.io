@@ -34,36 +34,37 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" ref={sectionRef} className="py-32 bg-slate-950 relative overflow-hidden">
+    <section id="skills" ref={sectionRef} className="py-32 relative overflow-hidden bg-black">
       {/* Subtle background */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[128px] animate-blob" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">Skills & Expertise</h2>
-          <div className="w-24 h-px bg-gradient-to-r from-amber-500 to-transparent" />
+        <div className="mb-16 text-center md:text-left">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-4">Skills & Expertise</h2>
+          <div className="w-24 h-px bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto md:mx-0" />
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <Card
+              <div
                 key={index}
-                className={`p-6 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500 hover:bg-slate-900/50 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`glass-panel p-8 group hover:-translate-y-1 transition-all duration-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
                 {/* Icon */}
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-amber-500" />
+                <div className="mb-6 relative">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                    <Icon className="w-6 h-6 text-white group-hover:text-cyan-400 transition-colors" />
                   </div>
+                  <div className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-light text-white mb-4">
+                <h3 className="text-xl font-medium tracking-tight text-white mb-6">
                   {category.title}
                 </h3>
 
@@ -72,75 +73,72 @@ const Skills = () => {
                   {category.items.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-slate-800/50 border border-slate-700 text-slate-300 text-sm hover:border-amber-500/50 hover:text-amber-500 transition-all duration-300 cursor-default font-light"
+                      className="px-3 py-1.5 glass-pill bg-white/5 border-white/5 text-white/70 text-sm hover:bg-white/10 hover:text-white transition-all duration-300 cursor-default font-medium tracking-tight"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-              </Card>
+              </div>
             );
           })}
         </div>
 
-        {/* Certifications */}
-        <div className={`mb-20 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h3 className="text-3xl font-light text-white mb-8 flex items-center gap-3">
-            <Award className="w-8 h-8 text-amber-500" />
-            Certifications
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert, index) => (
-              <Card
-                key={index}
-                className="p-6 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500 hover:bg-slate-900/50"
-                style={{ transitionDelay: `${index * 0.05}s` }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">
-                    <div className="w-10 h-10 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                      <Award className="w-5 h-5 text-amber-500" />
+        <div className="grid md:grid-cols-2 gap-16">
+          {/* Certifications */}
+          <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h3 className="text-3xl font-semibold tracking-tighter text-white mb-8 flex items-center gap-3">
+              <Award className="w-8 h-8 text-cyan-400" />
+              Certifications
+            </h3>
+            <div className="flex flex-col gap-4">
+              {certifications.map((cert, index) => (
+                <div
+                  key={index}
+                  className="glass-panel p-5 group hover:bg-white/5 transition-all duration-300"
+                  style={{ transitionDelay: `${index * 0.05}s` }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-white font-medium tracking-tight mb-1">
+                        {cert.name}
+                      </h4>
+                      <p className="text-white/50 text-sm tracking-tight">{cert.issuer}</p>
+                    </div>
+                    <div className="text-cyan-400 text-sm font-medium tracking-tight glass-pill px-3 py-1">{cert.year}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Achievements */}
+          <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h3 className="text-3xl font-semibold tracking-tighter text-white mb-8 flex items-center gap-3">
+              <CheckCircle2 className="w-8 h-8 text-purple-400" />
+              Key Achievements
+            </h3>
+            <div className="flex flex-col gap-4">
+              {achievements.map((achievement, index) => (
+                <div
+                  key={index}
+                  className="glass-panel p-6 group hover:bg-white/5 transition-all duration-300"
+                  style={{ transitionDelay: `${index * 0.05}s` }}
+                >
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="text-white font-medium tracking-tight mb-2">
+                        {achievement.title}
+                      </h4>
+                      <p className="text-white/60 text-sm leading-relaxed font-light">
+                        {achievement.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-white font-light mb-1">
-                      {cert.name}
-                    </h4>
-                    <p className="text-slate-400 text-sm">{cert.issuer}</p>
-                    <p className="text-amber-500 text-sm font-light mt-1">{cert.year}</p>
-                  </div>
                 </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Achievements */}
-        <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h3 className="text-3xl font-light text-white mb-8 flex items-center gap-3">
-            <CheckCircle2 className="w-8 h-8 text-amber-500" />
-            Key Achievements
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {achievements.map((achievement, index) => (
-              <Card
-                key={index}
-                className="p-6 bg-slate-900/30 border-slate-800/30 hover:border-amber-500/30 transition-all duration-500 hover:bg-slate-900/50"
-                style={{ transitionDelay: `${index * 0.05}s` }}
-              >
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-amber-500 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="text-white font-light mb-2">
-                      {achievement.title}
-                    </h4>
-                    <p className="text-slate-400 text-sm leading-relaxed">
-                      {achievement.description}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
