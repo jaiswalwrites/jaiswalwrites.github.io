@@ -40,7 +40,7 @@ const Hero = () => {
               </div>
 
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl font-light">
-                {about.description}
+                Helping organizations build scalable, AI-driven documentation ecosystems.
               </p>
             </div>
 

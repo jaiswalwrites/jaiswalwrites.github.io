@@ -36,7 +36,7 @@ const Neurals = () => {
         {/* Section Header */}
         <div className="mb-20">
           <div className="mb-8">
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter text-white mb-6">Neurals.in</h2>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-4">Neurals.in</h2>
             <div className="w-24 h-px bg-gradient-to-r from-cyan-400 to-purple-400 mb-4" />
           </div>
           <p className="text-xl text-cyan-400 font-medium tracking-tight mb-4">{neurals.tagline}</p>
@@ -65,23 +65,7 @@ const Neurals = () => {
           ))}
         </div>
 
-        {/* AI Agents */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-semibold tracking-tighter text-white mb-10">AI Agents Ecosystem</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {neurals.agents.map((agent, index) => (
-              <div
-                key={index}
-                className={`glass-panel p-8 hover:-translate-y-1 hover:bg-white/5 transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                style={{ transitionDelay: `${index * 0.05}s` }}
-              >
-                <h4 className="text-2xl font-medium tracking-tight text-white mb-2">{agent.name}</h4>
-                <p className="text-purple-400 font-medium tracking-tight text-sm mb-4 glass-pill inline-block px-3 py-1 bg-purple-500/10 border-purple-500/20">{agent.role}</p>
-                <p className="text-white/60 text-sm leading-relaxed font-light">{agent.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* CTA */}
         <div className="text-center">
