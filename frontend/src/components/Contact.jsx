@@ -16,13 +16,53 @@ const Contact = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    
+    // Using Web3Forms for sending emails without a backend.
+    const submissionData = {
+      ...formData,
+      // NOTE: Replace this placeholder with your actual Web3Forms access key
+      access_key: "YOUR_WEB3FORMS_ACCESS_KEY_HERE" 
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: result.message || "Please try again later.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Network Error",
+        description: "Failed to send message. Please check your connection.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -183,10 +223,11 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full bg-white hover:bg-white/90 text-black font-medium tracking-tight py-4 rounded-xl transition-colors flex items-center justify-center group shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                disabled={isSubmitting}
+                className={`w-full bg-white hover:bg-white/90 text-black font-medium tracking-tight py-4 rounded-xl transition-colors flex items-center justify-center group shadow-[0_0_20px_rgba(255,255,255,0.1)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                Send Message
-                <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {!isSubmitting && <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
               </button>
             </form>
           </div>
