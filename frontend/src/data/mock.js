@@ -23,72 +23,9 @@ export const about = {
   ]
 };
 
-export const neurals = {
-  name: "Neurals.in",
-  tagline: "AI-Powered FinOps Automation",
-  description: "An enterprise-level FinOps automation platform that reduces cloud costs by 30-40% automatically. 10 specialized AI agents work 24/7 to optimize cloud spend, enforce governance, and keep engineering teams efficient.",
-  logo: "https://customer-assets.emergentagent.com/job_62aa6f42-eb1d-43a7-9fbe-6dc3252347a9/artifacts/4iapj6e6_logo-full-horizontal.svg",
-  highlights: [
-    "30-40% cloud cost reduction",
-    "2-3x ROI in 30 days",
-    "10 AI agents working 24/7",
-    "99.9% compliance rate",
-    "Enterprise-grade security (SOC 2 Type II)",
-    "Multi-cloud support (AWS, Azure, GCP)"
-  ],
-  agents: [
-    {
-      name: "Sheldon",
-      role: "Governance Enforcer",
-      description: "Eliminates compliance violations before they happen with automated policy enforcement"
-    },
-    {
-      name: "Leonard",
-      role: "FinOps Advisor",
-      description: "Reduces cloud spend by 30-40% with data-driven insights and actionable recommendations"
-    },
-    {
-      name: "Penny",
-      role: "Stakeholder Communications",
-      description: "Saves 10+ hours/week on reporting with automated briefings and updates"
-    },
-    {
-      name: "Howard",
-      role: "Automation & Remediation",
-      description: "Auto-remediates 80% of cost anomalies safely with approval gates"
-    },
-    {
-      name: "Raj",
-      role: "Multi-Cloud Explorer",
-      description: "Provides complete visibility across AWS, Azure, and GCP with unified insights"
-    },
-    {
-      name: "Amy",
-      role: "Forecasting & Anomaly Scientist",
-      description: "Predicts spend with 95%+ accuracy and catches anomalies early"
-    }
-  ],
-  website: "https://neurals.in"
-};
-
 export const experience = [
   {
     id: 1,
-    company: "Neurals.in",
-    role: "Founding Engineer",
-    duration: "Feb 2023 - Present",
-    location: "Bangalore",
-    domain: "AI-driven FinOps Automation",
-    description: "Designed and deployed intelligent AI agents leveraging LLMs, reinforcement learning, and RAG pipelines for predictive analytics and real-time cloud cost optimization across AWS, GCP, and Azure.",
-    highlights: [
-      "Engineered anomaly detection systems and automated savings plans, reducing compute and SaaS spend by up to 40%",
-      "Applied generative AI and prompt engineering for actionable cost insights in dynamic cloud environments",
-      "Architected the documentation workflows and developer experience for the enterprise FinOps platform",
-      "Led cross-functional collaborations establishing enterprise-wide cost governance frameworks"
-    ]
-  },
-  {
-    id: 2,
     company: "Safe Security",
     role: "AI Technical Writer",
     duration: "Aug 2023 - Feb 2025",
@@ -103,7 +40,7 @@ export const experience = [
     ]
   },
   {
-    id: 3,
+    id: 2,
     company: "Marlin.org",
     role: "Contract Technical Writer",
     duration: "Dec 2023 - July 2024",
@@ -117,7 +54,7 @@ export const experience = [
     ]
   },
   {
-    id: 4,
+    id: 3,
     company: "1Kosmos",
     role: "Contract Technical Writer",
     duration: "Jan 2023 - Dec 2023",
@@ -131,7 +68,7 @@ export const experience = [
     ]
   },
   {
-    id: 5,
+    id: 4,
     company: "Arcana Network",
     role: "Contract Technical Writer",
     duration: "March 2022 - Jan 2023",
@@ -145,7 +82,7 @@ export const experience = [
     ]
   },
   {
-    id: 6,
+    id: 5,
     company: "Rocket Software",
     role: "Senior Technical Writer",
     duration: "May 2022 - July 2023",
@@ -159,7 +96,7 @@ export const experience = [
     ]
   },
   {
-    id: 7,
+    id: 6,
     company: "Harness.io",
     role: "Senior Technical Writer",
     duration: "March 2021 - July 2023",
@@ -173,7 +110,7 @@ export const experience = [
     ]
   },
   {
-    id: 8,
+    id: 7,
     company: "McAfee",
     role: "Technical Writer",
     duration: "Nov 2018 - April 2021",
@@ -187,7 +124,7 @@ export const experience = [
     ]
   },
   {
-    id: 9,
+    id: 8,
     company: "KanTime",
     role: "Technical Writer",
     duration: "Dec 2015 - Nov 2018",
@@ -347,10 +284,6 @@ export const achievements = [
   {
     title: "AI Docs Framework Creator",
     description: "Designed, built, and open-sourced an interactive Docusaurus v3 developer docs portal, a spec-first OpenAPI documentation pipeline, and a human-in-the-loop AI-assisted documentation workflow engine."
-  },
-  {
-    title: "Founder of Neurals.in",
-    description: "Built AI-powered FinOps platform achieving 30-40% cloud cost reduction for enterprise customers using specialized AI agents."
   },
   {
     title: "Newsletter Creator",

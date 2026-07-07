@@ -69,8 +69,7 @@ const About = () => {
             </p>
             <p className="text-lg text-white/60 leading-relaxed font-light">
               With <span className="text-white font-medium">10+ years of experience</span>, I've engineered documentation architectures for 
-              industry leaders like <span className="text-white font-medium">Harness.io</span>, <span className="text-white font-medium">McAfee</span>, and emerging AI 
-              startups like <span className="text-white font-medium">Neurals.in</span>.
+              industry leaders like <span className="text-white font-medium">Harness.io</span>, <span className="text-white font-medium">McAfee</span>, and <span className="text-white font-medium">Safe Security</span>.
             </p>
             <p className="text-lg text-white/60 leading-relaxed font-light">
               I'm passionate about <span className="text-white font-medium">docs-as-code</span>, <span className="text-white font-medium">AI Agents</span>, 
