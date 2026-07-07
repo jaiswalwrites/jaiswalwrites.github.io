@@ -14,7 +14,7 @@ export const personalInfo = {
 };
 
 export const about = {
-  description: "Senior Technical Writer and Documentation Consultant specializing in the AI era. I bridge the gap between complex AI engineering (LLMs, RAG, agentic workflows) and end-users by building scalable docs-as-code systems. I help organizations tackle modern developer documentation challenges—like rapidly evolving APIs, complex vector search integrations, and maintaining context across multi-agent ecosystems—by creating robust doc workflows that scale.",
+  description: "Senior AI Documentation Engineer and Technical Writer specializing in developer experience (DX). I design and build scalable docs-as-code architectures and automated human-in-the-loop AI-assisted writing workflows. Leveraging hands-on expertise in LLMs, RAG systems, and AI agent platforms, I help developer-focused companies deliver spec-first API/SDK documentation, maintain sync between code changes and docs, and enforce style guides automatically at scale.",
   stats: [
     { label: "Years in Tech Docs", value: 10 },
     { label: "AI Ecosystems Documented", value: 15 },
@@ -205,6 +205,33 @@ export const experience = [
 export const writingSamples = [
   {
     id: 1,
+    title: "NeuralDocs Docusaurus Docs Site Showcase",
+    category: "AI & Tooling",
+    description: "A production-grade developer documentation site built using Docusaurus v3 with custom theme integration, Inter typography, dark-mode toggle, search architecture, and comprehensive content. Showcases information architecture and docs-as-code principles.",
+    link: "https://jaiswalwrites.github.io/docusaurus-portfolio-site/",
+    company: "AI & Docs Project",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop"
+  },
+  {
+    id: 2,
+    title: "Interactive AI-Assisted Docs Workflow",
+    category: "AI & Tooling",
+    description: "A premium dark-mode interactive portal demonstrating a human-in-the-loop writing methodology. Features a copyable technical prompt library, before/after case studies, workflow phase breakdown, and a documentation toolchain (Claude 3.5 Sonnet, Vale style linter, etc.).",
+    link: "https://jaiswalwrites.github.io/ai-doc-workflow/",
+    company: "AI & Docs Project",
+    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&h=600&fit=crop"
+  },
+  {
+    id: 3,
+    title: "TaskFlow OpenAPI & Redoc API Reference",
+    category: "API Docs",
+    description: "A complete OpenAPI 3.0.3 design spec for an enterprise task platform rendered via a custom-styled Redoc interface. Details OAuth authorization, REST endpoint patterns, event webhooks, RFC 7807 error responses, and includes a strict API documentation style guide.",
+    link: "https://jaiswalwrites.github.io/openapi-docs-generator/",
+    company: "API Design & Spec",
+    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop"
+  },
+  {
+    id: 4,
     title: "Harness CI Enterprise Documentation",
     category: "DevOps",
     description: "End-to-end documentation for Harness CI Enterprise, including QuickStart guide for setting up CI pipeline and running tests. Led product documentation from scratch to successful GA.",
@@ -213,40 +240,13 @@ export const writingSamples = [
     image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop"
   },
   {
-    id: 2,
+    id: 5,
     title: "Arcana Wallet Dashboard",
     category: "Blockchain",
     description: "Comprehensive documentation for Arcana Network's storage and privacy solution for Ethereum dApps. Covered Auth SDK, Storage SDK, Private NFTs, and wallet configuration using Docusaurus.",
     link: "https://docs.arcana.network/",
     company: "Arcana Network",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop"
-  },
-  {
-    id: 3,
-    title: "MITRE Dashboard Help",
-    category: "Cloud Security",
-    description: "Created textual and video assistance for MITRE Dashboard feature. Crafted video script, synchronized audio/visuals, and produced complete educational video for threat detection.",
-    link: "#",
-    company: "McAfee",
-    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=600&fit=crop"
-  },
-  {
-    id: 4,
-    title: "GCP On-Demand Scan Guide",
-    category: "Cloud Security",
-    description: "Guide for configuring on-demand scans on Google Cloud Platform for enhanced data security and malware protection. Created both text and video resources.",
-    link: "#",
-    company: "McAfee",
-    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Cloud Connector Log Parsing",
-    category: "Cloud Security",
-    description: "Comprehensive guide helping customers create log parsers independently using Log Parser Wizard. Owned complete Cloud Connector product documentation.",
-    link: "#",
-    company: "McAfee",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
   },
   {
     id: 6,
@@ -256,6 +256,33 @@ export const writingSamples = [
     link: "#",
     company: "Marlin.org",
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop"
+  },
+  {
+    id: 7,
+    title: "MITRE Dashboard Help",
+    category: "Cloud Security",
+    description: "Created textual and video assistance for MITRE Dashboard feature. Crafted video script, synchronized audio/visuals, and produced complete educational video for threat detection.",
+    link: "#",
+    company: "McAfee",
+    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=600&fit=crop"
+  },
+  {
+    id: 8,
+    title: "GCP On-Demand Scan Guide",
+    category: "Cloud Security",
+    description: "Guide for configuring on-demand scans on Google Cloud Platform for enhanced data security and malware protection. Created both text and video resources.",
+    link: "#",
+    company: "McAfee",
+    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop"
+  },
+  {
+    id: 9,
+    title: "Cloud Connector Log Parsing",
+    category: "Cloud Security",
+    description: "Comprehensive guide helping customers create log parsers independently using Log Parser Wizard. Owned complete Cloud Connector product documentation.",
+    link: "#",
+    company: "McAfee",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
   }
 ];
 
@@ -314,6 +341,10 @@ export const certifications = [
 ];
 
 export const achievements = [
+  {
+    title: "AI Docs Framework Creator",
+    description: "Designed, built, and open-sourced an interactive Docusaurus v3 developer docs portal, a spec-first OpenAPI documentation pipeline, and a human-in-the-loop AI-assisted documentation workflow engine."
+  },
   {
     title: "Founder of Neurals.in",
     description: "Built AI-powered FinOps platform achieving 30-40% cloud cost reduction for enterprise customers using specialized AI agents."
