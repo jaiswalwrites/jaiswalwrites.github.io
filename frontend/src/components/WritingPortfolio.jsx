@@ -85,7 +85,7 @@ const WritingPortfolio = () => {
               className={`transform transition-all duration-700 ${visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
-              <div className="group h-full glass-panel hover:bg-white/5 transition-all duration-500 overflow-hidden flex flex-col">
+              <div className={`group h-full glass-panel hover:bg-white/5 transition-all duration-500 overflow-hidden flex flex-col ${sample.featured ? 'border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.05)] hover:border-cyan-400/40' : ''}`}>
                 {/* Image Container */}
                 <div className="relative h-56 overflow-hidden">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
@@ -96,11 +96,16 @@ const WritingPortfolio = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 z-20" />
                   
-                  {/* Category badge */}
-                  <div className="absolute top-4 left-4 z-30">
+                  {/* Category & Featured badges */}
+                  <div className="absolute top-4 left-4 right-4 z-30 flex justify-between items-center">
                     <span className="px-3 py-1.5 glass-pill bg-black/50 border-white/10 text-white font-medium tracking-tight text-xs backdrop-blur-md">
                       {sample.category}
                     </span>
+                    {sample.featured && (
+                      <span className="px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold tracking-tight text-[10px] uppercase backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                        ★ Signature Showcase
+                      </span>
+                    )}
                   </div>
                 </div>
 

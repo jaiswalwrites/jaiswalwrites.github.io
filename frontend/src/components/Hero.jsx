@@ -63,8 +63,51 @@ const Hero = () => {
               </Button>
             </div>
 
+            {/* Signature Showcases */}
+            <div className="pt-6 space-y-3 text-left max-w-xl mx-auto md:mx-0 animate-fade-in-delay-2">
+              <span className="text-[10px] font-bold tracking-widest text-cyan-400 uppercase">★ Active AI & Developer Showcases</span>
+              <div className="grid grid-cols-3 gap-3">
+                <a
+                  href="https://jaiswalwrites.github.io/docusaurus-portfolio-site/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3.5 rounded-2xl glass-panel hover:bg-white/5 transition-all duration-300 border-cyan-500/20 group/item flex flex-col justify-between h-[105px]"
+                >
+                  <span className="text-xl">🦕</span>
+                  <div>
+                    <h4 className="text-xs font-semibold text-white group-hover/item:text-cyan-400 transition-colors">NeuralDocs</h4>
+                    <p className="text-[9px] text-white/50">Docusaurus Portal</p>
+                  </div>
+                </a>
+                <a
+                  href="https://jaiswalwrites.github.io/ai-doc-workflow/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3.5 rounded-2xl glass-panel hover:bg-white/5 transition-all duration-300 border-purple-500/20 group/item flex flex-col justify-between h-[105px]"
+                >
+                  <span className="text-xl">⚡</span>
+                  <div>
+                    <h4 className="text-xs font-semibold text-white group-hover/item:text-purple-400 transition-colors">AI Workflow</h4>
+                    <p className="text-[9px] text-white/50">Interactive Process</p>
+                  </div>
+                </a>
+                <a
+                  href="https://jaiswalwrites.github.io/openapi-docs-generator/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3.5 rounded-2xl glass-panel hover:bg-white/5 transition-all duration-300 border-indigo-500/20 group/item flex flex-col justify-between h-[105px]"
+                >
+                  <span className="text-xl">📄</span>
+                  <div>
+                    <h4 className="text-xs font-semibold text-white group-hover/item:text-indigo-400 transition-colors">OpenAPI Spec</h4>
+                    <p className="text-[9px] text-white/50">Redoc API Ref</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
             {/* Social Links */}
-            <div className="flex gap-4 justify-center md:justify-start pt-8 animate-fade-in-delay-2">
+            <div className="flex gap-4 justify-center md:justify-start pt-4 animate-fade-in-delay-2">
               <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
                 <Github className="w-5 h-5" />
               </a>

@@ -210,7 +210,8 @@ export const writingSamples = [
     description: "A production-grade developer documentation site built using Docusaurus v3 with custom theme integration, Inter typography, dark-mode toggle, search architecture, and comprehensive content. Showcases information architecture and docs-as-code principles.",
     link: "https://jaiswalwrites.github.io/docusaurus-portfolio-site/",
     company: "AI & Docs Project",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop"
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+    featured: true
   },
   {
     id: 2,
@@ -219,7 +220,8 @@ export const writingSamples = [
     description: "A premium dark-mode interactive portal demonstrating a human-in-the-loop writing methodology. Features a copyable technical prompt library, before/after case studies, workflow phase breakdown, and a documentation toolchain (Claude 3.5 Sonnet, Vale style linter, etc.).",
     link: "https://jaiswalwrites.github.io/ai-doc-workflow/",
     company: "AI & Docs Project",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&h=600&fit=crop"
+    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&h=600&fit=crop",
+    featured: true
   },
   {
     id: 3,
@@ -228,7 +230,8 @@ export const writingSamples = [
     description: "A complete OpenAPI 3.0.3 design spec for an enterprise task platform rendered via a custom-styled Redoc interface. Details OAuth authorization, REST endpoint patterns, event webhooks, RFC 7807 error responses, and includes a strict API documentation style guide.",
     link: "https://jaiswalwrites.github.io/openapi-docs-generator/",
     company: "API Design & Spec",
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop"
+    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop",
+    featured: true
   },
   {
     id: 4,

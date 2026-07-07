@@ -21,9 +21,9 @@ function App() {
         <main>
           <Hero />
           <About />
-          <Neurals />
-          <Experience />
           <WritingPortfolio />
+          <Experience />
+          <Neurals />
           <Skills />
           <Newsletter />
           <Contact />
