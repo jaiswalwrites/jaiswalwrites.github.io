@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Experience from "./components/Experience";
 import WritingPortfolio from "./components/WritingPortfolio";
+import Blog from "./components/Blog";
 import Skills from "./components/Skills";
 import Newsletter from "./components/Newsletter";
 import Contact from "./components/Contact";
@@ -21,6 +22,7 @@ function App() {
           <Hero />
           <About />
           <WritingPortfolio />
+          <Blog />
           <Experience />
           <Skills />
           <Newsletter />
