@@ -1,11 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { blogs } from '../data/blogs';
-import { Filter, BookOpen, Clock, X } from 'lucide-react';
+import { Filter, BookOpen, Clock } from 'lucide-react';
 
 const Blog = () => {
   const [filter, setFilter] = useState('All');
   const [visibleItems, setVisibleItems] = useState([]);
-  const [selectedBlog, setSelectedBlog] = useState(null);
   const sectionRef = useRef(null);
   const itemRefs = useRef([]);
 
@@ -37,17 +36,9 @@ const Blog = () => {
     return () => observer.disconnect();
   }, [filteredBlogs, visibleItems]);
 
-  // Disable scroll when modal is open
-  useEffect(() => {
-    if (selectedBlog) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedBlog]);
+  const handleCardClick = (link) => {
+    window.open(link, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section id="blog" ref={sectionRef} className="py-32 relative overflow-hidden bg-black border-t border-white/5">
@@ -96,7 +87,7 @@ const Blog = () => {
             <div
               key={blog.id}
               ref={(el) => (itemRefs.current[index] = el)}
-              onClick={() => setSelectedBlog(blog)}
+              onClick={() => handleCardClick(blog.link)}
               className={`transform cursor-pointer transition-all duration-700 ${
                 visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
@@ -134,7 +125,7 @@ const Blog = () => {
                   </p>
                   <div className="flex items-center gap-2 text-sm font-semibold text-purple-400 group-hover:text-purple-300 transition-colors">
                     <BookOpen className="w-4 h-4" />
-                    <span>Read Article</span>
+                    <span>Read Full Article on NeuralDocs →</span>
                   </div>
                 </div>
               </div>
@@ -142,54 +133,6 @@ const Blog = () => {
           ))}
         </div>
       </div>
-
-      {/* FULL ARTICLE MODAL */}
-      {selectedBlog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto glass-panel border border-white/15 bg-slate-950/95 shadow-2xl rounded-3xl p-8 md:p-12 animate-scale-in">
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedBlog(null)}
-              className="absolute top-6 right-6 p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-all z-20"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Header info */}
-            <div className="mb-6">
-              <span className="px-3.5 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 font-bold tracking-tight text-xs uppercase mb-4 inline-block">
-                {selectedBlog.category}
-              </span>
-              <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight text-white leading-tight mb-4">
-                {selectedBlog.title}
-              </h1>
-              <div className="flex items-center gap-4 text-sm text-white/55">
-                <span>Published: {selectedBlog.date}</span>
-                <span>•</span>
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" /> {selectedBlog.readTime}
-                </span>
-              </div>
-            </div>
-
-            {/* Banner Image */}
-            <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8 border border-white/10">
-              <img
-                src={selectedBlog.image}
-                alt={selectedBlog.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Article Content */}
-            <div 
-              className="prose prose-invert max-w-none text-white/80 font-light leading-relaxed text-base space-y-6"
-              dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
-            />
-          </div>
-        </div>
-      )}
     </section>
   );
 };
