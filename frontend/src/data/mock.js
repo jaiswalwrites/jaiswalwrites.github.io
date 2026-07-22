@@ -13,6 +13,17 @@ export const personalInfo = {
   resumeUrl: "https://customer-assets.emergentagent.com/job_62aa6f42-eb1d-43a7-9fbe-6dc3252347a9/artifacts/r8290els_Manish_Resume_Senior_Tech_Writer.pdf"
 };
 
+export const neurals = {
+  tagline: "Autonomous FinOps & Agentic Optimization Platform",
+  description: "Neurals.in is an AI agent orchestration platform designed to run stateful multi-agent decision loops, monitor data drift, compile dynamic prompts, and audit cloud spend metrics with sub-millisecond precision.",
+  highlights: [
+    "Decentralized P2P node coordination with socket-based discovery and load balancing.",
+    "Continuous drift tracking utilizing the Population Stability Index (PSI) algorithm with Laplace smoothing.",
+    "AST-based autonomous code refactoring and PII redaction security proxy guardrails."
+  ],
+  website: "https://neurals.in"
+};
+
 export const about = {
   description: "Senior AI Documentation Engineer and Technical Writer specializing in developer experience (DX). I design and build scalable docs-as-code architectures and automated human-in-the-loop AI-assisted writing workflows. Leveraging hands-on expertise in LLMs, RAG systems, and AI agent platforms, I help developer-focused companies deliver spec-first API/SDK documentation, maintain sync between code changes and docs, and enforce style guides automatically at scale.",
   stats: [

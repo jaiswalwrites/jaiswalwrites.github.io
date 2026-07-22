@@ -1,6 +1,6 @@
 # Manish Jaiswal - Professional Portfolio
 
-Premium portfolio showcasing 10+ years of experience as a Technical Writer, AI Engineer, Blockchain Writer, and Founder of Neurals.in.
+Premium portfolio showcasing 10+ years of experience as a Technical Writer, AI Engineer, Blockchain Writer, and Founding Engineer of Neurals.in.
 
 ## 🚀 Features
 
@@ -77,7 +77,7 @@ manish-portfolio/
 
 ## 👤 About Manish Jaiswal
 
-Technical Writer with 10+ years of experience | AI Engineer | Blockchain Writer | Founder of Neurals.in
+Technical Writer with 10+ years of experience | AI Engineer | Blockchain Writer | Founding Engineer of Neurals.in
 
 - **Email**: jaiswalmanish060@gmail.com
 - **LinkedIn**: [linkedin.com/in/manish-jaiswal1993](https://www.linkedin.com/in/manish-jaiswal1993/)

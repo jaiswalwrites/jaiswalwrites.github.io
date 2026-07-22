@@ -40,7 +40,7 @@ const Hero = () => {
               </div>
 
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl font-light">
-                Helping organizations build scalable, AI-driven documentation ecosystems.
+                Engineering reliable, observed, and optimized AI pipelines as the Founding Engineer of Neurals.in.
               </p>
             </div>
 
@@ -49,9 +49,9 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="bg-white text-black hover:bg-white/90 font-medium tracking-tight px-8 py-6 rounded-full text-base shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all"
-                onClick={() => scrollToSection('work')}
+                onClick={() => scrollToSection('projects')}
               >
-                Build Scalable Doc Systems
+                Explore AI Repositories
               </Button>
               <Button 
                 size="lg" 
