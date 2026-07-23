@@ -239,12 +239,12 @@ const ProjectCard = ({ project, isVisible, index, onPlaygroundClick }) => {
         </div>
         
         {/* Footer Actions */}
-        <div className="px-8 py-5 border-t border-white/5 mt-auto flex items-center justify-between bg-black/20">
+        <div className="border-t border-white/5 mt-auto grid grid-cols-2 divide-x divide-white/5 bg-black/20">
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-white/70 hover:text-cyan-400 font-medium tracking-tight text-xs group/link transition-colors"
+            className="flex items-center justify-center gap-2 p-4 text-white/70 hover:text-cyan-400 hover:bg-white/5 font-medium tracking-tight text-xs group/link transition-all"
           >
             <Github className="w-3.5 h-3.5" />
             Explore Codebase
@@ -253,9 +253,9 @@ const ProjectCard = ({ project, isVisible, index, onPlaygroundClick }) => {
           
           <button
             onClick={onPlaygroundClick}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-[10px] font-semibold tracking-wider transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:-translate-y-px"
+            className="flex items-center justify-center gap-2 p-4 text-cyan-400 hover:text-cyan-300 hover:bg-white/5 font-medium tracking-tight text-xs transition-all group/btn"
           >
-            <Play className="w-2.5 h-2.5 fill-cyan-400 text-cyan-400" />
+            <Play className="w-3 h-3 fill-cyan-400 group-hover/btn:scale-110 transition-transform" />
             Try Yourself
           </button>
         </div>
