@@ -253,7 +253,7 @@ const ProjectCard = ({ project, isVisible, index, onPlaygroundClick }) => {
           
           <button
             onClick={onPlaygroundClick}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 glass-pill bg-cyan-500/10 hover:bg-cyan-500/20 border-cyan-500/30 text-cyan-300 text-[11px] font-semibold tracking-wide transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:-translate-y-px"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-[10px] font-semibold tracking-wider transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:-translate-y-px"
           >
             <Play className="w-2.5 h-2.5 fill-cyan-400 text-cyan-400" />
             Try Yourself
