@@ -29,7 +29,7 @@ const Skills = () => {
     { title: 'Programming & Scripting', items: skills.programming_scripting, icon: Code },
     { title: 'Cloud & DevOps', items: skills.cloud_devops, icon: Cloud },
     { title: 'FinOps & Data Analytics', items: skills.finops_data, icon: Blocks },
-    { title: 'Developer Advocacy & Docs', items: skills.advocacy_docs, icon: FileText },
+    { title: 'Technical Documentation & Tools', items: skills.tech_docs_tools, icon: FileText },
   ];
 
   return (

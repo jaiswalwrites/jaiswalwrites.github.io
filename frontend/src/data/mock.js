@@ -2,7 +2,7 @@
 
 export const personalInfo = {
   name: "Manish Kumar",
-  title: "Technical Writer & Developer Educator",
+  title: "Senior Technical Writer",
   tagline: "Helping developers adopt cloud-native & AI platforms",
   email: "jaiswalmanish060@gmail.com",
   phone: "+91 8015973380",
@@ -14,7 +14,7 @@ export const personalInfo = {
 };
 
 export const about = {
-  description: "Technical writer and developer educator with 10+ years of experience helping developers successfully adopt cloud-native, AI, cybersecurity, and DevOps platforms. Experienced in creating developer-focused tutorials, API documentation, reference architectures, quickstarts, and AI-ready documentation that improve developer onboarding and product adoption. Passionate about developer experience, AI-assisted documentation, developer communities, and helping engineering teams build trusted technical content. Experienced collaborating across engineering, product, DevEx, marketing, and customer success.",
+  description: "Senior Technical Writer with 10+ years of experience creating developer documentation for cloud-native, DevOps, AI, and SaaS platforms. Experienced in owning documentation end-to-end—from planning and information architecture through release and maintenance—while partnering closely with engineering, product management, and design teams. Strong hands-on expertise with Kubernetes, Docker, CI/CD, APIs, Docs-as-Code, and developer platforms. Passionate about creating deployment guides, installation documentation, API references, tutorials, and infrastructure documentation that help developers become productive quickly. Experienced in Docusaurus, Git-based documentation workflows, and documenting complex distributed systems.",
   stats: [
     { label: "Years in Tech Docs", value: 10 },
     { label: "AI Ecosystems Documented", value: 15 },
@@ -27,31 +27,40 @@ export const experience = [
   {
     id: 1,
     company: "Kloudfuse",
-    role: "Developer Advocate",
+    role: "Lead Technical Writer",
     duration: "March 2025 - April 2026",
     location: "Remote/Bangalore",
     domain: "Observability and monitoring",
-    description: "Owned the developer education strategy for an AI-native observability platform.",
+    description: "Built and owned the end-to-end documentation system for Kloudfuse — a cloud-native observability platform.",
     highlights: [
-      "Produced developer tutorials, quickstarts, architecture documentation, and infrastructure guides that accelerated customer adoption",
-      "Structured documentation for LLM ingestion, improving discoverability through AI assistants and RAG systems",
-      "Worked closely with engineering and product teams to improve developer onboarding and self-service success",
-      "Used customer feedback and documentation analytics to continuously improve the developer experience"
+      "Created deployment documentation for cloud-native observability infrastructure running on Kubernetes.",
+      "Authored installation and configuration guides for customer-managed deployments.",
+      "Worked directly with engineering teams to validate documentation using real product deployments.",
+      "Designed reusable documentation architecture supporting versioned releases.",
+      "Designed the full doc system architecture using Antora and AsciiDoc — modular, versioned, and built for scale across a fast-moving product team.",
+      "Built an end-to-end customer feedback loop for documentation — capturing signal from users, triaging gaps, and closing the loop with content updates tied directly to support and product cycles.",
+      "Authored and maintained API documentation, release notes, and logging/monitoring developer guides — written for SREs, platform engineers, and developers integrating with observability infrastructure.",
+      "Made documentation AI-ready — structured content following emerging AI-consumption standards (semantic chunking, metadata tagging, LLM-friendly formatting) so docs surface accurately in AI assistants, RAG pipelines, and copilot tools.",
+      "Integrated AI into the documentation workflow — used LLM tooling to accelerate content drafting, maintain consistency at scale, and reduce time-to-publish for new feature releases."
     ]
   },
   {
     id: 2,
     company: "Safe Security",
-    role: "Senior Technical Writer",
+    role: "Lead Technical Writer",
     duration: "Aug 2023 - Sep 2024",
     location: "Bangalore",
     domain: "CRQM, CyberSecurity, AI, LLM",
-    description: "Led developer documentation for a cybersecurity AI platform.",
+    description: "Developed API integration guides, authentication workflows, deployment documentation, and onboarding tutorials for enterprise customers.",
     highlights: [
-      "Published over 400 REST API references, onboarding guides, SDK documentation, and integration tutorials",
-      "Built AI-ready documentation used to train an internal AI support assistant, improving developer self-service and technical support resolution",
-      "Partnered with engineering and product teams to improve API usability and developer onboarding through documentation, analytics, and customer feedback",
-      "Used product analytics (Pendo), NPS, and support insights to identify friction points and improve the developer journey"
+      "Revolutionized documentation strategy, resulting in a 40% increase in user engagement and a 30% reduction in support tickets.",
+      "Optimized and maintained 400+ SAFE APIs on Swagger, reducing API-related queries by 50% for both internal teams and external customers.",
+      "Spearheaded the ingestion and training of the in-house AI agent (Safex), enabling it to provide accurate and contextually relevant answers based on ML and product documentation (prompt engineering), improving query resolution accuracy by 60% and reducing response time by 75%.",
+      "Leveraged Pendo for documentation analytics and product announcements, driving data-informed decisions to improve user engagement and product experience using Session Replays and NPS.",
+      "Redesigned user onboarding with a persona-based approach, reducing time-to-value by 50% and increasing product adoption rates by 30%.",
+      "Created product demo videos that increased feature utilization by 55% and reduced onboarding support requests by 40%.",
+      "Implemented an outcome-based and guided example documentation style, improving topic comprehension by 65% and user task completion rates by 50%.",
+      "Collaborated cross-functionally with founders, PMs, developers, UI/UX teams, customer support, and sales engineers to ensure comprehensive and accurate documentation."
     ]
   },
   {
@@ -61,12 +70,14 @@ export const experience = [
     duration: "March 2021 - July 2023",
     location: "Bangalore",
     domain: "DevOps, ML, AI",
-    description: "Led documentation strategy for a cloud-native CI platform.",
+    description: "Owned documentation for the Continuous Integration product, partnering daily with engineering, product management, QA, and design throughout the feature lifecycle.",
     highlights: [
-      "Created developer education content including quickstarts, tutorials, troubleshooting guides, release notes, and infrastructure documentation",
-      "Built CI/CD pipelines, Docker containers, and Kubernetes deployments to validate documentation using real-world developer workflows",
-      "Partnered with engineering throughout feature development to ensure documentation shipped with product releases",
-      "Created technical content that improved developer onboarding and product adoption"
+      "Authored installation guides, deployment documentation, release notes, tutorials, troubleshooting guides, conceptual documentation, and API references for enterprise customers.",
+      "Built production-ready CI/CD pipelines using Harness, Kubernetes, Docker, AWS, GCP, and artifact repositories to validate documentation against real-world deployment scenarios.",
+      "Documented Kubernetes-based container build and deployment workflows, including pipeline configuration, secrets management, image registries, and infrastructure integrations.",
+      "Collaborated directly with engineering during beta-to-GA releases, ensuring documentation shipped alongside every feature release.",
+      "Improved developer onboarding through hands-on tutorials and Quickstarts that reduced customer ramp-up time.",
+      "Maintained documentation using Docs-as-Code workflows with Git, Markdown, pull requests, and continuous publishing."
     ]
   },
   {
@@ -78,8 +89,8 @@ export const experience = [
     domain: "Cloud Security",
     description: "Documented McAfee's Cloud Security Access Broker.",
     highlights: [
-      "Documented McAfee's Cloud Security Access Broker, improving usability and accessibility",
-      "Coordinated with engineers and product managers to align documentation with product releases"
+      "Documented McAfee's Cloud Security Access Broker, improving usability and accessibility.",
+      "Coordinated with engineers and product managers to align documentation with product releases, akin to the McAfee collaborative environment."
     ]
   },
   {
@@ -91,8 +102,7 @@ export const experience = [
     domain: "Healthcare, SaaS",
     description: "Created comprehensive user assistance and product documentation.",
     highlights: [
-      "Created User Guides and Release Notes",
-      "Conducted in-depth functional testing to ensure the accuracy and reliability of documentation for the US Healthcare platform"
+      "Created User Guides and Release Notes, conducting in-depth functional testing to ensure the accuracy and reliability of documentation for the US Healthcare platform."
     ]
   }
 ];
@@ -152,8 +162,8 @@ export const skills = {
   finops_data: [
     "AWS Cost Explorer", "Azure Cost Management", "GCP Billing API", "Savings Plans Analysis", "Custom Dashboards", "Pendo", "Analytics", "Anomaly Detection", "Predictive Budgeting", "Resource Tagging"
   ],
-  advocacy_docs: [
-    "Developer Relations", "Developer Experience (DevEx)", "Technical Education", "Developer Documentation", "Developer Onboarding", "API Documentation", "Community Enablement", "Content Strategy", "AI Documentation", "Developer Advocacy", "LLM Content Optimization", "Technical Storytelling"
+  tech_docs_tools: [
+    "Docs-as-Code: Git, GitHub, GitLab, Docusaurus, MkDocs, Sphinx", "API Tools: Swagger/OpenAPI, Postman", "Traditional Authoring: Oxygen XML, MadCap Flare, Adobe RoboHelp, Confluence, JIRA"
   ]
 };
 
@@ -192,18 +202,6 @@ export const certifications = [
 
 export const achievements = [
   {
-    title: "Newsletter Creator",
-    description: "Technical writing newsletter with 1,000+ LinkedIn subscribers."
-  },
-  {
-    title: "Developer Advocate",
-    description: "Published developer-focused technical articles and regularly mentor technical writers and engineers on Markdown, Docs-as-Code, AI documentation, and developer communication."
-  },
-  {
-    title: "AI Docs Framework Creator",
-    description: "Built AI-ready documentation strategies for enterprise developer products."
-  },
-  {
     title: "Customer Champion",
     description: "Recognized for my efforts in assisting the support team and helping McAfee business and its customers."
   },
@@ -217,7 +215,11 @@ export const achievements = [
   },
   {
     title: "Team Development Lead",
-    description: "Conducted various training and development sessions on emerging tech writing areas, including tooltips, markdown, minimalism, and developer advocacy."
+    description: "Conducted various training and development sessions on emerging tech writing areas, including tooltips, markdown, minimalism, and developer advocacy, aimed at enhancing the team's performance."
+  },
+  {
+    title: "Newsletter Creator",
+    description: "I run a newsletter for Tech Writers, with a subscriber base of over 1K on LinkedIn."
   },
   {
     title: "Rapid Product Launch",
