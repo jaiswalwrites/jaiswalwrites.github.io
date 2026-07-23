@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ExternalLink, ChevronDown, ChevronUp, Cpu, Github, Layers } from 'lucide-react';
+import { ExternalLink, ChevronDown, ChevronUp, Cpu, Github, Layers, Play } from 'lucide-react';
 import { Button } from './ui/button';
+import ProjectPlayground from './ProjectPlayground';
 
 const projectsData = [
   {
@@ -172,7 +173,7 @@ const domainColors = {
   'Content Strategy': '#8b5cf6',
 };
 
-const ProjectCard = ({ project, isVisible, index }) => {
+const ProjectCard = ({ project, isVisible, index, onPlaygroundClick }) => {
   const [expanded, setExpanded] = useState(false);
   const color = domainColors[project.domain] || '#3b82f6';
 
@@ -238,7 +239,7 @@ const ProjectCard = ({ project, isVisible, index }) => {
         </div>
         
         {/* Footer Actions */}
-        <div className="p-8 pt-4 border-t border-white/5 mt-auto">
+        <div className="p-8 pt-4 border-t border-white/5 mt-auto flex items-center justify-between">
           <a
             href={project.github}
             target="_blank"
@@ -249,6 +250,14 @@ const ProjectCard = ({ project, isVisible, index }) => {
             Explore Codebase
             <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
           </a>
+          
+          <button
+            onClick={onPlaygroundClick}
+            className="px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500/40 hover:to-purple-500/40 border border-white/10 rounded text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:-translate-y-0.5"
+          >
+            <Play className="w-3 h-3 fill-cyan-400 text-cyan-400" />
+            Try Yourself
+          </button>
         </div>
       </div>
     </div>
@@ -258,6 +267,7 @@ const ProjectCard = ({ project, isVisible, index }) => {
 const Projects = () => {
   const [filter, setFilter] = useState('All');
   const [isVisible, setIsVisible] = useState(false);
+  const [playgroundProject, setPlaygroundProject] = useState(null);
   const sectionRef = useRef(null);
 
   const domains = ['All', 'AI & Tooling', 'Docs-as-Code', 'Content Strategy', 'Developer Experience'];
@@ -324,10 +334,18 @@ const Projects = () => {
               project={project} 
               isVisible={isVisible} 
               index={index} 
+              onPlaygroundClick={() => setPlaygroundProject(project)}
             />
           ))}
         </div>
       </div>
+      
+      {playgroundProject && (
+        <ProjectPlayground 
+          project={playgroundProject} 
+          onClose={() => setPlaygroundProject(null)} 
+        />
+      )}
     </section>
   );
 };
