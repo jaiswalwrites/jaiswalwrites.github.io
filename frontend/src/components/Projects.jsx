@@ -10,8 +10,7 @@ const projectsData = [
     description: 'An integrated workflow that utilizes LLMs to generate first-draft API documentation and architecture guides with 85% accuracy, reducing doc cycles.',
     domain: 'AI & Tooling',
     tags: ['LLM', 'Prompt Engineering', 'Vale Linter', 'Automation'],
-    architecture: 'Raw Spec → LLM Draft Generation → Semantic Validation → Vale Style Linting → Human Review → Published Docs',
-    github: 'https://github.com/jaiswalwrites/ai-docs-generation'
+    architecture: 'Raw Spec → LLM Draft Generation → Semantic Validation → Vale Style Linting → Human Review → Published Docs'
   },
   {
     id: '02',
@@ -20,8 +19,7 @@ const projectsData = [
     description: 'A developer portal featuring an embedded RAG-powered chatbot that reduces support tickets by providing instant answers from existing documentation.',
     domain: 'Developer Experience',
     tags: ['RAG', 'Docusaurus', 'Vector Search', 'Chatbot'],
-    architecture: 'User Query → Vector DB Search → Context Retrieval → LLM Response → Interactive Chat UI',
-    github: 'https://github.com/jaiswalwrites/dev-portal-rag'
+    architecture: 'User Query → Vector DB Search → Context Retrieval → LLM Response → Interactive Chat UI'
   },
   {
     id: '03',
@@ -30,8 +28,7 @@ const projectsData = [
     description: 'A modular content strategy framework designing documentation pathways based on user personas (Developer, DevOps, Security Admin) for faster onboarding.',
     domain: 'Content Strategy',
     tags: ['Information Architecture', 'User Personas', 'UX Design', 'Content Modeling'],
-    architecture: 'User Journey Mapping → Persona Identification → Modular Topic Design → Contextual Linking → Targeted Delivery',
-    github: 'https://github.com/jaiswalwrites/persona-content-architecture'
+    architecture: 'User Journey Mapping → Persona Identification → Modular Topic Design → Contextual Linking → Targeted Delivery'
   },
   {
     id: '04',
@@ -40,8 +37,7 @@ const projectsData = [
     description: 'A fully automated Docs-as-Code pipeline using GitHub Actions, enabling parallel building, link checking, and deployment of Markdown documentation.',
     domain: 'Docs-as-Code',
     tags: ['GitHub Actions', 'Markdown', 'CI/CD', 'Automated Testing'],
-    architecture: 'Git Commit → PR Trigger → Markdown Linting → Dead Link Check → Build Docs (Docusaurus) → Vercel Deploy',
-    github: 'https://github.com/jaiswalwrites/docs-as-code-pipeline'
+    architecture: 'Git Commit → PR Trigger → Markdown Linting → Dead Link Check → Build Docs (Docusaurus) → Vercel Deploy'
   },
   {
     id: '05',
@@ -50,8 +46,7 @@ const projectsData = [
     description: 'Integration of Pendo and custom feedback widgets to track user engagement, session replays, and NPS to drive data-informed content updates.',
     domain: 'Content Strategy',
     tags: ['Analytics', 'Pendo', 'NPS', 'Feedback Loop'],
-    architecture: 'User Interaction → Event Tracking → Dashboard Aggregation → Insight Generation → Content Refinement',
-    github: 'https://github.com/jaiswalwrites/docs-analytics-framework'
+    architecture: 'User Interaction → Event Tracking → Dashboard Aggregation → Insight Generation → Content Refinement'
   },
   {
     id: '06',
@@ -60,8 +55,97 @@ const projectsData = [
     description: 'A background sync service that tracks documentation updates and automatically updates vector embeddings for AI assistants in real-time.',
     domain: 'AI & Tooling',
     tags: ['Embeddings', 'Sync Engine', 'Vector DB', 'Automation'],
-    architecture: 'Markdown Update → Webhook Trigger → Semantic Chunking → Embedding Generation → Vector DB Update',
-    github: 'https://github.com/jaiswalwrites/semantic-context-sync'
+    architecture: 'Markdown Update → Webhook Trigger → Semantic Chunking → Embedding Generation → Vector DB Update'
+  },
+  {
+    id: '07',
+    title: 'Vale Style Guide Ruleset Engine',
+    emoji: '📝',
+    description: 'Custom YAML rulesets to enforce Microsoft Style Guide, branding guidelines, and inclusive language checks across Markdown via CI/CD.',
+    domain: 'Docs-as-Code',
+    tags: ['Vale Linter', 'YAML', 'Style Guide', 'CI/CD'],
+    architecture: 'Git Push → GitHub Actions Vale Runner → Custom Rule Validation (Tone/Spelling) → PR Status Check'
+  },
+  {
+    id: '08',
+    title: 'Automated Markdown Link Checker',
+    emoji: '🔗',
+    description: 'A scheduled GitHub Actions workflow running markdown-link-check to automatically detect and flag 404s and broken links in production documentation.',
+    domain: 'Docs-as-Code',
+    tags: ['Link Checking', 'Automation', 'GitHub Actions', 'Maintenance'],
+    architecture: 'Nightly Cron Job → Markdown Parsing → HTTP Status Validation → GitHub Issue Auto-Creation'
+  },
+  {
+    id: '09',
+    title: 'OpenAPI to Markdown Pipeline',
+    emoji: '⚡',
+    description: 'Automated pipeline script that parses OpenAPI 3.0 specs (JSON/YAML) into beautifully structured, modular Markdown files suitable for static site generators.',
+    domain: 'AI & Tooling',
+    tags: ['OpenAPI', 'Swagger', 'Python Scripts', 'API Docs'],
+    architecture: 'OpenAPI Spec Commit → Python Parsing Script → Jinja2 Templates → Markdown Generation → Docusaurus Build'
+  },
+  {
+    id: '10',
+    title: 'Playwright Visual Regression for Docs',
+    emoji: '👁️',
+    description: 'Automated UI testing scripts that capture screenshots of documentation pages on staging servers to catch CSS/layout regressions before publishing.',
+    domain: 'Developer Experience',
+    tags: ['Playwright', 'UI Testing', 'Visual Regression', 'Quality Assurance'],
+    architecture: 'Docs Build Staging → Playwright Navigation → Screenshot Capture → Baseline Image Comparison → Delta Report'
+  },
+  {
+    id: '11',
+    title: 'Algolia DocSearch Implementation',
+    emoji: '🔎',
+    description: 'Configuration and integration of Algolia DocSearch crawler to implement highly relevant, typo-tolerant semantic search across a static docs site.',
+    domain: 'Developer Experience',
+    tags: ['Algolia Search', 'Crawler Config', 'SEO', 'Discoverability'],
+    architecture: 'Deployed Docs → Algolia Crawler Parsing → Indexing (H1/H2/H3 tags) → Frontend Search Component Integration'
+  },
+  {
+    id: '12',
+    title: 'LLM Auto-Glossary Extractor',
+    emoji: '📚',
+    description: 'A Python utility that analyzes dense technical articles using LLMs to automatically identify key terminology, generate definitions, and build a linked glossary.',
+    domain: 'AI & Tooling',
+    tags: ['Python', 'LLM', 'Information Extraction', 'Content Strategy'],
+    architecture: 'Raw Article Text → LLM Entity Recognition → Definition Generation → JSON Output → Markdown Glossary Page'
+  },
+  {
+    id: '13',
+    title: 'Doc PR Review AI Bot',
+    emoji: '🤖',
+    description: 'A GitHub App that hooks into PRs and utilizes LLMs to review documentation specifically for tone, passive voice, and clarity before human review.',
+    domain: 'AI & Tooling',
+    tags: ['GitHub Apps', 'AI Review', 'Code Review Automation'],
+    architecture: 'PR Creation → Webhook Event → LLM Diff Analysis → Inline GitHub PR Comments (Suggestions)'
+  },
+  {
+    id: '14',
+    title: 'Automated Release Notes Generator',
+    emoji: '🚀',
+    description: 'A CI/CD pipeline script that aggregates merged PR titles, GitHub tags, and Jira labels to automatically draft structured, formatted release notes.',
+    domain: 'Docs-as-Code',
+    tags: ['Release Management', 'Bash', 'GitHub API', 'Jira API'],
+    architecture: 'Tag Release → Aggregate PRs by Label → Fetch Jira Descriptions → Format into Markdown → Draft GitHub Release'
+  },
+  {
+    id: '15',
+    title: 'Multi-Version Docs Routing Architecture',
+    emoji: '🔀',
+    description: 'Advanced routing configuration for documentation generators to handle v1, v2, and enterprise versioned documentation seamlessly.',
+    domain: 'Content Strategy',
+    tags: ['Versioning', 'Information Architecture', 'Nextra/Docusaurus'],
+    architecture: 'Versioned Directories → Router Config Mapping → Dropdown UI Component → Context-Aware Internal Linking'
+  },
+  {
+    id: '16',
+    title: 'Content Linter Pre-Commit Hook',
+    emoji: '🛡️',
+    description: 'Husky Git hooks that strictly enforce formatting, preventing developers from committing Markdown files with malformed frontmatter or trailing whitespaces.',
+    domain: 'Docs-as-Code',
+    tags: ['Husky', 'Git Hooks', 'Prettier', 'MarkdownLint'],
+    architecture: 'git commit → Husky Pre-commit → Prettier Formatting → MarkdownLint Check → Commit Acceptance/Rejection'
   }
 ];
 
@@ -137,19 +221,7 @@ const ProjectCard = ({ project, isVisible, index }) => {
           )}
         </div>
 
-        {/* Footer Actions */}
-        <div className="p-8 pt-4 border-t border-white/5 mt-auto">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white hover:text-cyan-400 font-medium tracking-tight text-sm group/link transition-colors"
-          >
-            <Github className="w-4 h-4" />
-            Explore Codebase
-            <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-          </a>
-        </div>
+
       </div>
     </div>
   );

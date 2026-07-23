@@ -18,11 +18,11 @@ const Header = () => {
 
   const navLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Work', href: '#work' },
-    { name: 'Insights', href: '#blog' },
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Work', href: '#work' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Insights', href: '#blog' },
     { name: 'Newsletter', href: '#newsletter' },
   ];
 
