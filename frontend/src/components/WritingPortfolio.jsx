@@ -1,8 +1,105 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { writingSamples } from '../data/mock';
 import { Card } from './ui/card';
-import { ExternalLink, Filter } from 'lucide-react';
+import { ExternalLink, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
+
+const PortfolioCard = ({ sample, isVisible, index, itemRef }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div
+      ref={itemRef}
+      className={`transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+      style={{ transitionDelay: `${index * 0.1}s` }}
+    >
+      <div className={`group h-full glass-panel hover:bg-white/5 transition-all duration-500 overflow-hidden flex flex-col ${sample.featured ? 'border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.05)] hover:border-cyan-400/40' : ''}`}>
+        {/* Image Container */}
+        <div className="relative h-56 overflow-hidden shrink-0">
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+          <img
+            src={sample.image}
+            alt={sample.title}
+            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 z-20" />
+          
+          {/* Category & Featured badges */}
+          <div className="absolute top-4 left-4 right-4 z-30 flex justify-between items-center">
+            <span className="px-3 py-1.5 glass-pill bg-black/50 border-white/10 text-white font-medium tracking-tight text-xs backdrop-blur-md">
+              {sample.category}
+            </span>
+            {sample.featured && (
+              <span className="px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold tracking-tight text-[10px] uppercase backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                ★ Signature Showcase
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8 flex flex-col flex-1 relative z-30 -mt-16 bg-gradient-to-b from-transparent via-black/80 to-black">
+          {/* Company */}
+          <p className="text-cyan-400 text-sm font-medium tracking-tight mb-3 drop-shadow-md pt-12">{sample.company}</p>
+          
+          {/* Title */}
+          <h3 className="text-xl font-semibold tracking-tighter text-white mb-4 group-hover:text-purple-400 transition-colors duration-300 drop-shadow-md">
+            {sample.title}
+          </h3>
+          
+          {/* Description */}
+          <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
+            {sample.description}
+          </p>
+
+          {/* Expandable Case Study */}
+          {sample.caseStudy && (
+            <div className="mb-6 mt-auto">
+              <button 
+                onClick={() => setExpanded(!expanded)} 
+                className="flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-widest"
+              >
+                {expanded ? 'Hide Strategy & Details' : 'Read Case Study'}
+                {expanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+              </button>
+
+              {expanded && (
+                <div className="mt-4 space-y-3 text-[12px] leading-relaxed text-white/70 font-light border-l-2 border-cyan-500/30 pl-4 py-1">
+                  <p><strong className="text-white">Architecture:</strong> {sample.caseStudy.architecture}</p>
+                  <p><strong className="text-white">Philosophy:</strong> {sample.caseStudy.philosophy}</p>
+                  <p><strong className="text-white">Personas:</strong> {sample.caseStudy.personas}</p>
+                  <div className="mt-2">
+                    <strong className="text-white">Key Achievements:</strong>
+                    <ul className="list-disc pl-4 mt-1 space-y-1">
+                      {sample.caseStudy.achievements.map((ach, idx) => (
+                        <li key={idx}>{ach}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Link button */}
+          {sample.link !== '#' && (
+            <div className={`pt-6 border-t border-white/10 ${!sample.caseStudy ? 'mt-auto' : ''}`}>
+              <a
+                href={sample.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white hover:text-cyan-400 font-medium tracking-tight text-sm group/link transition-colors"
+              >
+                View Documentation
+                <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const WritingPortfolio = () => {
   const [filter, setFilter] = useState('All');
@@ -79,68 +176,13 @@ const WritingPortfolio = () => {
         {/* Portfolio Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredSamples.map((sample, index) => (
-            <div
+            <PortfolioCard 
               key={sample.id}
-              ref={(el) => (itemRefs.current[index] = el)}
-              className={`transform transition-all duration-700 ${visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              <div className={`group h-full glass-panel hover:bg-white/5 transition-all duration-500 overflow-hidden flex flex-col ${sample.featured ? 'border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.05)] hover:border-cyan-400/40' : ''}`}>
-                {/* Image Container */}
-                <div className="relative h-56 overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                  <img
-                    src={sample.image}
-                    alt={sample.title}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 z-20" />
-                  
-                  {/* Category & Featured badges */}
-                  <div className="absolute top-4 left-4 right-4 z-30 flex justify-between items-center">
-                    <span className="px-3 py-1.5 glass-pill bg-black/50 border-white/10 text-white font-medium tracking-tight text-xs backdrop-blur-md">
-                      {sample.category}
-                    </span>
-                    {sample.featured && (
-                      <span className="px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold tracking-tight text-[10px] uppercase backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.2)]">
-                        ★ Signature Showcase
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 flex flex-col flex-1 relative z-30 -mt-16">
-                  {/* Company */}
-                  <p className="text-cyan-400 text-sm font-medium tracking-tight mb-3 drop-shadow-md">{sample.company}</p>
-                  
-                  {/* Title */}
-                  <h3 className="text-xl font-semibold tracking-tighter text-white mb-4 group-hover:text-purple-400 transition-colors duration-300 drop-shadow-md">
-                    {sample.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-white/60 text-sm leading-relaxed mb-6 font-light flex-1">
-                    {sample.description}
-                  </p>
-
-                  {/* Link button */}
-                  {sample.link !== '#' && (
-                    <div className="pt-6 border-t border-white/10 mt-auto">
-                      <a
-                        href={sample.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-white hover:text-cyan-400 font-medium tracking-tight text-sm group/link transition-colors"
-                      >
-                        View Documentation
-                        <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+              sample={sample}
+              isVisible={visibleItems.includes(index)}
+              index={index}
+              itemRef={(el) => (itemRefs.current[index] = el)}
+            />
           ))}
         </div>
       </div>

@@ -110,42 +110,98 @@ export const experience = [
 export const writingSamples = [
   {
     id: 1,
-    title: "NeuralDocs Docusaurus Docs Site Showcase",
-    category: "AI & Tooling",
-    description: "A production-grade developer documentation site built using Docusaurus v3 with custom theme integration, Inter typography, dark-mode toggle, search architecture, and comprehensive content. Showcases information architecture and docs-as-code principles.",
-    link: "https://jaiswalwrites.github.io/docusaurus-portfolio-site/",
-    company: "AI & Docs Project",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
-    featured: true
+    title: "Kloudfuse Platform Documentation",
+    category: "Observability & AI",
+    description: "End-to-end documentation system for a cloud-native observability platform, covering logging, monitoring, and developer-facing infrastructure docs.",
+    link: "https://docs.kloudfuse.com/platform/latest/",
+    company: "Kloudfuse",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    featured: true,
+    caseStudy: {
+      architecture: "Modular and versioned architecture built for scale using Antora and AsciiDoc, integrating seamlessly with CI/CD for Docs-as-Code publishing.",
+      philosophy: "AI-Ready Documentation Design. Structured content with semantic chunking and metadata tagging to ensure LLM-friendly formatting for RAG pipelines and copilots.",
+      personas: "SREs, Platform Engineers, and DevOps Engineers integrating with complex observability infrastructure.",
+      achievements: [
+        "Built an end-to-end customer feedback loop capturing signals for rapid content updates.",
+        "Created LLM workflows to accelerate drafting and ensure consistency."
+      ]
+    }
   },
   {
     id: 2,
-    title: "Interactive AI-Assisted Docs Workflow",
-    category: "AI & Tooling",
-    description: "A premium dark-mode interactive portal demonstrating a human-in-the-loop writing methodology. Features a copyable technical prompt library, before/after case studies, workflow phase breakdown, and a documentation toolchain (Claude 3.5 Sonnet, Vale style linter, etc.).",
-    link: "https://jaiswalwrites.github.io/ai-doc-workflow/",
-    company: "AI & Docs Project",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&h=600&fit=crop",
-    featured: true
+    title: "Harness CI Enterprise Documentation",
+    category: "DevOps",
+    description: "Comprehensive installation guides, deployment documentation, API references, and conceptual architectures for an enterprise Continuous Integration platform.",
+    link: "https://developer.harness.io/docs/continuous-integration/",
+    company: "Harness.io",
+    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop",
+    featured: true,
+    caseStudy: {
+      architecture: "Git-based Markdown documentation workflow leveraging automated pull requests, continuous publishing, and tight coupling with product code releases.",
+      philosophy: "Developer-First Enablement. Emphasized hands-on Quickstarts and real-world deployment scenarios (Kubernetes, Docker) over dry reference material.",
+      personas: "DevOps Engineers, Software Developers, and Release Managers.",
+      achievements: [
+        "Reduced customer ramp-up time significantly through outcome-based tutorials.",
+        "Shipped documentation alongside every beta-to-GA feature release with zero delays."
+      ]
+    }
   },
   {
     id: 3,
-    title: "TaskFlow OpenAPI & Redoc API Reference",
-    category: "API Docs",
-    description: "A complete OpenAPI 3.0.3 design spec for an enterprise task platform rendered via a custom-styled Redoc interface. Details OAuth authorization, REST endpoint patterns, event webhooks, RFC 7807 error responses, and includes a strict API documentation style guide.",
-    link: "https://jaiswalwrites.github.io/openapi-docs-generator/",
-    company: "API Design & Spec",
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop",
-    featured: true
+    title: "Safe Security API & In-App Portal",
+    category: "CyberSecurity",
+    description: "API integration guides and onboarding tutorials for enterprise CRQM customers. (Note: External docs are legacy; updated docs are fully embedded in the product).",
+    link: "https://docs.safe.security/",
+    company: "Safe Security",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+    featured: true,
+    caseStudy: {
+      architecture: "Swagger/OpenAPI spec generation tightly coupled with product UI. Designed to feed directly into the in-house AI agent (Safex) for contextual answers.",
+      philosophy: "Data-Driven Content Strategy. Utilized Pendo analytics, Session Replays, and NPS to identify friction points and redesign persona-based onboarding.",
+      personas: "CISOs, Security Admins, and API Integrators.",
+      achievements: [
+        "Optimized 400+ REST APIs, reducing API-related support queries by 50%.",
+        "Trained AI support agent via prompt engineering, reducing response time by 75%."
+      ]
+    }
   },
   {
     id: 4,
-    title: "Harness CI Enterprise Documentation",
-    category: "DevOps",
-    description: "End-to-end documentation for Harness CI Enterprise, including QuickStart guide for setting up CI pipeline and running tests. Led product documentation from scratch to successful GA.",
-    link: "https://developer.harness.io/docs/continuous-integration/",
-    company: "Harness.io",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop"
+    title: "McAfee (Skyhigh) Cloud Security Broker",
+    category: "Cloud Security",
+    description: "Documentation for McAfee's Cloud Security Access Broker, focusing on usability, accessibility, and high-stakes enterprise cloud security.",
+    link: "https://success.skyhighsecurity.com/Skyhigh_CASB",
+    company: "McAfee (Skyhigh)",
+    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop",
+    featured: false,
+    caseStudy: {
+      architecture: "Enterprise Content Management System with strict compliance tracking and version control mirroring product releases.",
+      philosophy: "Clarity and Minimalism in Security. Prioritized unambiguous procedural instructions to prevent security misconfigurations.",
+      personas: "Cloud Security Architects and IT Administrators.",
+      achievements: [
+        "Significantly improved the usability and accessibility of core security documentation.",
+        "Streamlined release note delivery, replacing a massive 400-page legacy document."
+      ]
+    }
+  },
+  {
+    id: 5,
+    title: "KanTime Healthcare SaaS Portal",
+    category: "Healthcare SaaS",
+    description: "Comprehensive user assistance and product documentation embedded directly into the user login portal for the US Healthcare platform.",
+    link: "https://kantime.com/",
+    company: "KanTime",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
+    featured: false,
+    caseStudy: {
+      architecture: "In-app contextual help architecture. Documentation acts as an embedded companion directly within the secure user login portal.",
+      philosophy: "Workflow-Driven Assistance. Healthcare professionals need answers without leaving their clinical workflows; docs are designed as tooltips and modal guides.",
+      personas: "Healthcare Administrators, Clinicians, and Billing Specialists.",
+      achievements: [
+        "Conducted in-depth functional testing to ensure zero-error reliability.",
+        "Successfully transitioned off legacy offline guides to embedded digital adoption."
+      ]
+    }
   }
 ];
 
