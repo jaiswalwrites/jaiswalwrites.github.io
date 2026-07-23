@@ -40,7 +40,7 @@ const Hero = () => {
               </div>
 
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl font-light">
-                Engineering reliable, observed, and optimized AI pipelines as the Founding Engineer of Neurals.in.
+                Helping organizations build scalable, AI-driven documentation ecosystems.
               </p>
             </div>
 

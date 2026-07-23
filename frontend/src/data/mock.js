@@ -1,31 +1,20 @@
 // Mock data for Manish Jaiswal's Portfolio
 
 export const personalInfo = {
-  name: "Manish Jaiswal",
-  title: "Senior AI Documentation Consultant | Founding Engineer",
-  tagline: "Bridging AI Engineering & Documentation",
+  name: "Manish Kumar",
+  title: "Technical Writer & Developer Educator",
+  tagline: "Helping developers adopt cloud-native & AI platforms",
   email: "jaiswalmanish060@gmail.com",
   phone: "+91 8015973380",
   linkedin: "https://www.linkedin.com/in/manish-jaiswal1993/",
   github: "https://github.com/jaiswalwrites",
-  website: "https://manishjaiswal.in",
+  website: "https://jaiswalwrites.github.io/",
   image: "https://customer-assets.emergentagent.com/job_62aa6f42-eb1d-43a7-9fbe-6dc3252347a9/artifacts/ao0j8wiu_WhatsApp%20Image%202025-01-26%20at%203.00.01%20PM%20%281%29.jpeg",
   resumeUrl: "https://customer-assets.emergentagent.com/job_62aa6f42-eb1d-43a7-9fbe-6dc3252347a9/artifacts/r8290els_Manish_Resume_Senior_Tech_Writer.pdf"
 };
 
-export const neurals = {
-  tagline: "Autonomous FinOps & Agentic Optimization Platform",
-  description: "Neurals.in is an AI agent orchestration platform designed to run stateful multi-agent decision loops, monitor data drift, compile dynamic prompts, and audit cloud spend metrics with sub-millisecond precision.",
-  highlights: [
-    "Decentralized P2P node coordination with socket-based discovery and load balancing.",
-    "Continuous drift tracking utilizing the Population Stability Index (PSI) algorithm with Laplace smoothing.",
-    "AST-based autonomous code refactoring and PII redaction security proxy guardrails."
-  ],
-  website: "https://neurals.in"
-};
-
 export const about = {
-  description: "Senior AI Documentation Engineer and Technical Writer specializing in developer experience (DX). I design and build scalable docs-as-code architectures and automated human-in-the-loop AI-assisted writing workflows. Leveraging hands-on expertise in LLMs, RAG systems, and AI agent platforms, I help developer-focused companies deliver spec-first API/SDK documentation, maintain sync between code changes and docs, and enforce style guides automatically at scale.",
+  description: "Technical writer and developer educator with 10+ years of experience helping developers successfully adopt cloud-native, AI, cybersecurity, and DevOps platforms. Experienced in creating developer-focused tutorials, API documentation, reference architectures, quickstarts, and AI-ready documentation that improve developer onboarding and product adoption. Passionate about developer experience, AI-assisted documentation, developer communities, and helping engineering teams build trusted technical content. Experienced collaborating across engineering, product, DevEx, marketing, and customer success.",
   stats: [
     { label: "Years in Tech Docs", value: 10 },
     { label: "AI Ecosystems Documented", value: 15 },
@@ -37,115 +26,73 @@ export const about = {
 export const experience = [
   {
     id: 1,
-    company: "Safe Security",
-    role: "AI Technical Writer",
-    duration: "Aug 2023 - Feb 2025",
-    location: "Bangalore",
-    domain: "CRQM, CyberSecurity, AI, LLM",
-    description: "Revolutionized documentation strategy for cybersecurity platform, integrating AI-powered solutions.",
+    company: "Kloudfuse",
+    role: "Developer Advocate",
+    duration: "March 2025 - April 2026",
+    location: "Remote/Bangalore",
+    domain: "Observability and monitoring",
+    description: "Owned the developer education strategy for an AI-native observability platform.",
     highlights: [
-      "Increased user engagement by 40% and reduced support tickets by 30%",
-      "Optimized 400+ APIs on Swagger, reducing API-related queries by 50%",
-      "Spearheaded training of in-house AI agent (Safex), improving query resolution accuracy by 60%",
-      "Proficient in RAG systems, AI workflow tools (Langchain, LlamaIndex), and modern AI technologies"
+      "Produced developer tutorials, quickstarts, architecture documentation, and infrastructure guides that accelerated customer adoption",
+      "Structured documentation for LLM ingestion, improving discoverability through AI assistants and RAG systems",
+      "Worked closely with engineering and product teams to improve developer onboarding and self-service success",
+      "Used customer feedback and documentation analytics to continuously improve the developer experience"
     ]
   },
   {
     id: 2,
-    company: "Marlin.org",
-    role: "Contract Technical Writer",
-    duration: "Dec 2023 - July 2024",
+    company: "Safe Security",
+    role: "Senior Technical Writer",
+    duration: "Aug 2023 - Sep 2024",
     location: "Bangalore",
-    domain: "Decentralized Coprocessors",
-    description: "Created comprehensive documentation for decentralized processor ecosystem.",
+    domain: "CRQM, CyberSecurity, AI, LLM",
+    description: "Led developer documentation for a cybersecurity AI platform.",
     highlights: [
-      "Developed extensive documentation for Marlin ecosystem including nodes, TEE, staking, and cluster selection",
-      "Wrote SDKs to support full product portfolio",
-      "Managed complete document lifecycle from development to deployment"
+      "Published over 400 REST API references, onboarding guides, SDK documentation, and integration tutorials",
+      "Built AI-ready documentation used to train an internal AI support assistant, improving developer self-service and technical support resolution",
+      "Partnered with engineering and product teams to improve API usability and developer onboarding through documentation, analytics, and customer feedback",
+      "Used product analytics (Pendo), NPS, and support insights to identify friction points and improve the developer journey"
     ]
   },
   {
     id: 3,
-    company: "1Kosmos",
-    role: "Contract Technical Writer",
-    duration: "Jan 2023 - Dec 2023",
-    location: "Bangalore",
-    domain: "Decentralized Authentication",
-    description: "Implemented developer-centric documentation and docs-as-code approach.",
-    highlights: [
-      "Created User guides, Quick Start guides, Release Notes, FAQs, and API documentation",
-      "Configured and deployed CI/CD pipelines for documentation",
-      "Managed complete document lifecycle"
-    ]
-  },
-  {
-    id: 4,
-    company: "Arcana Network",
-    role: "Contract Technical Writer",
-    duration: "March 2022 - Jan 2023",
-    location: "Bangalore",
-    domain: "Blockchain, Web3 Infrastructure",
-    description: "Built comprehensive documentation for storage and privacy stack for Ethereum dApps.",
-    highlights: [
-      "Conceptualized and authored all documentation for Arcana using Docusaurus",
-      "Created SDK documentation for Auth SDK, Storage SDK, Private NFTs",
-      "Conducted user research and usability testing"
-    ]
-  },
-  {
-    id: 5,
-    company: "Rocket Software",
-    role: "Senior Technical Writer",
-    duration: "May 2022 - July 2023",
-    location: "Bangalore",
-    domain: "Cloud CMS",
-    description: "Developed comprehensive reference guides for enterprise SaaS products.",
-    highlights: [
-      "Created documentation using Oxygen XML and Ixiasoft",
-      "Managed end-to-end delivery process across product lifecycle",
-      "Collaborated with global teams across multiple locations"
-    ]
-  },
-  {
-    id: 6,
     company: "Harness.io",
     role: "Senior Technical Writer",
     duration: "March 2021 - July 2023",
     location: "Bangalore",
     domain: "DevOps, ML, AI",
-    description: "Led documentation for CI Enterprise product from beta to GA.",
+    description: "Led documentation strategy for a cloud-native CI platform.",
     highlights: [
-      "Developed comprehensive technical content including Release Notes, Quickstart guides, and How-tos",
-      "Built automated CI/CD pipelines using YAML and Visual workflow",
-      "Recognized for bringing CI product to GA within 3 months"
+      "Created developer education content including quickstarts, tutorials, troubleshooting guides, release notes, and infrastructure documentation",
+      "Built CI/CD pipelines, Docker containers, and Kubernetes deployments to validate documentation using real-world developer workflows",
+      "Partnered with engineering throughout feature development to ensure documentation shipped with product releases",
+      "Created technical content that improved developer onboarding and product adoption"
     ]
   },
   {
-    id: 7,
+    id: 4,
     company: "McAfee",
     role: "Technical Writer",
     duration: "Nov 2018 - April 2021",
     location: "Bangalore",
     domain: "Cloud Security",
-    description: "Documented MVISION Cloud (CASB) and expanded documentation team.",
+    description: "Documented McAfee's Cloud Security Access Broker.",
     highlights: [
-      "Created end-to-end documentation for Cloud Security Access Broker",
-      "Expanded team from 1 to 10 members through interviewing and onboarding",
-      "Created product demo videos and usability testing"
+      "Documented McAfee's Cloud Security Access Broker, improving usability and accessibility",
+      "Coordinated with engineers and product managers to align documentation with product releases"
     ]
   },
   {
-    id: 8,
+    id: 5,
     company: "KanTime",
     role: "Technical Writer",
     duration: "Dec 2015 - Nov 2018",
     location: "Bangalore",
     domain: "Healthcare, SaaS",
-    description: "Started career in tech writing, gained deep insights into US Healthcare industry.",
+    description: "Created comprehensive user assistance and product documentation.",
     highlights: [
-      "Created Release Notes, User Guides, and Help videos",
-      "Performed functional testing of product features",
-      "Gained experience in fast-paced startup environment"
+      "Created User Guides and Release Notes",
+      "Conducted in-depth functional testing to ensure the accuracy and reliability of documentation for the US Healthcare platform"
     ]
   }
 ];
@@ -189,72 +136,24 @@ export const writingSamples = [
     link: "https://developer.harness.io/docs/continuous-integration/",
     company: "Harness.io",
     image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Arcana Wallet Dashboard",
-    category: "Blockchain",
-    description: "Comprehensive documentation for Arcana Network's storage and privacy solution for Ethereum dApps. Covered Auth SDK, Storage SDK, Private NFTs, and wallet configuration using Docusaurus.",
-    link: "https://docs.arcana.network/",
-    company: "Arcana Network",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop"
-  },
-  {
-    id: 6,
-    title: "Marlin Decentralized Processors",
-    category: "Blockchain",
-    description: "Created conceptual and user guides for decentralized processors. Developed extensive documentation for running nodes, TEE, staking, and cluster selection.",
-    link: "#",
-    company: "Marlin.org",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop"
-  },
-  {
-    id: 7,
-    title: "MITRE Dashboard Help",
-    category: "Cloud Security",
-    description: "Created textual and video assistance for MITRE Dashboard feature. Crafted video script, synchronized audio/visuals, and produced complete educational video for threat detection.",
-    link: "#",
-    company: "McAfee",
-    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&h=600&fit=crop"
-  },
-  {
-    id: 8,
-    title: "GCP On-Demand Scan Guide",
-    category: "Cloud Security",
-    description: "Guide for configuring on-demand scans on Google Cloud Platform for enhanced data security and malware protection. Created both text and video resources.",
-    link: "#",
-    company: "McAfee",
-    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop"
-  },
-  {
-    id: 9,
-    title: "Cloud Connector Log Parsing",
-    category: "Cloud Security",
-    description: "Comprehensive guide helping customers create log parsers independently using Log Parser Wizard. Owned complete Cloud Connector product documentation.",
-    link: "#",
-    company: "McAfee",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
   }
 ];
 
 export const skills = {
   ai_and_ml: [
-    "LLMs (GPT-4, Claude)", "RAG Pipelines", "AI Agents", "LangChain", "LlamaIndex", "Vector Databases", "Prompt Engineering"
+    "OpenAI GPT", "LangChain", "LlamaIndex", "RAG Systems", "Prompt Engineering", "TensorFlow", "PyTorch", "Scikit-learn", "Hugging Face Transformers", "Reinforcement Learning", "Agentic Systems", "Diffusion Models", "Fine-tuning", "Embeddings"
   ],
-  documentation: [
-    "Docs-as-Code Strategy", "Developer Experience (DX)", "API/SDK Documentation", "OpenAPI/Swagger", "Docusaurus", "Information Architecture"
+  programming_scripting: [
+    "Python", "Java", "GoLang", "SQL", "C", "Solidity", "Shell Scripting", "Curl"
   ],
-  devops: [
-    "Docker", "Kubernetes", "GitHub Actions", "CI/CD for Docs", "Terraform", "AWS", "GCP"
+  cloud_devops: [
+    "AWS", "GCP", "Microsoft Azure", "Kubernetes", "Docker", "Helm", "Linux", "Jenkins", "GitHub Actions", "GitLab CI", "Docker Hub", "Artifactory (JFrog, GCR)"
   ],
-  languages: [
-    "Python", "JavaScript", "TypeScript", "GoLang", "SQL", "Markdown/MDX", "XML"
+  finops_data: [
+    "AWS Cost Explorer", "Azure Cost Management", "GCP Billing API", "Savings Plans Analysis", "Custom Dashboards", "Pendo", "Analytics", "Anomaly Detection", "Predictive Budgeting", "Resource Tagging"
   ],
-  design: [
-    "Figma", "Mermaid.js", "Camtasia", "Canva", "Visio"
-  ],
-  blockchain: [
-    "Web3 Infrastructure", "Smart Contracts", "DeFi", "dApps"
+  advocacy_docs: [
+    "Developer Relations", "Developer Experience (DevEx)", "Technical Education", "Developer Documentation", "Developer Onboarding", "API Documentation", "Community Enablement", "Content Strategy", "AI Documentation", "Developer Advocacy", "LLM Content Optimization", "Technical Storytelling"
   ]
 };
 
@@ -262,12 +161,7 @@ export const certifications = [
   {
     name: "The AI Engineer Course 2025: Complete AI Engineer Bootcamp",
     issuer: "Online Course",
-    year: "2025 (Pursuing)"
-  },
-  {
-    name: "DevOps MasterClass: Terraform Jenkins Kubernetes Ansible",
-    issuer: "Online Course",
-    year: "2023"
+    year: "Pursuing"
   },
   {
     name: "Swagger and the OpenAPI Specification",
@@ -275,9 +169,9 @@ export const certifications = [
     year: "2023"
   },
   {
-    name: "Complete Guide to Ethereum and Solidity Developer",
+    name: "DevOps MasterClass: Terraform Jenkins Kubernetes Ansible",
     issuer: "Online Course",
-    year: "2022"
+    year: "2023"
   },
   {
     name: "Cloud Computing: Core Concepts",
@@ -285,54 +179,49 @@ export const certifications = [
     year: "2021"
   },
   {
-    name: "Java Certification",
-    issuer: "C-DAC, Pune",
+    name: "A Complete Guide to Ethereum and Solidity Developer",
+    issuer: "Online Course",
+    year: "2022"
+  },
+  {
+    name: "Certification in JAVA",
+    issuer: "C-DAC (Advanced Computing and Training School, Pune)",
     year: "2015"
   }
 ];
 
 export const achievements = [
   {
-    title: "AI Docs Framework Creator",
-    description: "Designed, built, and open-sourced an interactive Docusaurus v3 developer docs portal, a spec-first OpenAPI documentation pipeline, and a human-in-the-loop AI-assisted documentation workflow engine."
-  },
-  {
     title: "Newsletter Creator",
-    description: "Runs a newsletter for Tech Writers with 1K+ subscribers on LinkedIn"
+    description: "Technical writing newsletter with 1,000+ LinkedIn subscribers."
   },
   {
-    title: "Rapid Product Launch",
-    description: "Brought CI product to GA within 3 months of joining during beta phase at Harness.io"
+    title: "Developer Advocate",
+    description: "Published developer-focused technical articles and regularly mentor technical writers and engineers on Markdown, Docs-as-Code, AI documentation, and developer communication."
   },
   {
-    title: "Team Builder",
-    description: "Expanded documentation team from 1 to 10 members at McAfee through interviewing and onboarding"
-  },
-  {
-    title: "Innovation Award",
-    description: "Reduced Release Notes volume from 300-400 pages by introducing new user assistance methods"
+    title: "AI Docs Framework Creator",
+    description: "Built AI-ready documentation strategies for enterprise developer products."
   },
   {
     title: "Customer Champion",
-    description: "Recognized for assisting support team and helping McAfee customers"
-  }
-];
-
-export const testimonials = [
-  {
-    name: "Engineering Manager",
-    company: "Harness.io",
-    text: "Manish brought our CI product to GA in record time. His ability to understand complex technical concepts and translate them into clear documentation is exceptional."
+    description: "Recognized for my efforts in assisting the support team and helping McAfee business and its customers."
   },
   {
-    name: "Product Lead",
-    company: "Arcana Network",
-    text: "Working with Manish was a game-changer. He not only documented our product but also improved our developer experience through thoughtful information architecture."
+    title: "Unicorn Growth Contributor",
+    description: "Contributed to the documentation of the product team that took a bootstrapped product and turned it into a unicorn."
   },
   {
-    name: "CTO",
-    company: "1Kosmos",
-    text: "Manish's docs-as-code approach and CI/CD expertise helped us maintain high-quality, up-to-date documentation. He's more than a writer - he's a technical partner."
+    title: "Documentation Optimizer",
+    description: "Significantly reduced the huge volume of Release Notes (300-400 pages) by introducing new methods of user assistance."
+  },
+  {
+    title: "Team Development Lead",
+    description: "Conducted various training and development sessions on emerging tech writing areas, including tooltips, markdown, minimalism, and developer advocacy."
+  },
+  {
+    title: "Rapid Product Launch",
+    description: "Recognized and rewarded for successfully bringing the CI product to GA within three months of joining the company during the beta phase."
   }
 ];
 

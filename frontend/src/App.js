@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Neurals from "./components/Neurals";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import WritingPortfolio from "./components/WritingPortfolio";
@@ -23,7 +22,6 @@ function App() {
         <main>
           <Hero />
           <About />
-          <Neurals />
           <Projects />
           <WritingPortfolio />
           <Blog />

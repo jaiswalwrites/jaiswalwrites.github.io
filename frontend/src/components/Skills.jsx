@@ -26,11 +26,10 @@ const Skills = () => {
 
   const skillCategories = [
     { title: 'AI & Machine Learning', items: skills.ai_and_ml, icon: Cpu },
-    { title: 'Documentation Strategy', items: skills.documentation, icon: FileText },
-    { title: 'DevOps & Cloud', items: skills.devops, icon: Cloud },
-    { title: 'Languages', items: skills.languages, icon: Code },
-    { title: 'Design Tools', items: skills.design, icon: Palette },
-    { title: 'Blockchain/Web3', items: skills.blockchain, icon: Blocks },
+    { title: 'Programming & Scripting', items: skills.programming_scripting, icon: Code },
+    { title: 'Cloud & DevOps', items: skills.cloud_devops, icon: Cloud },
+    { title: 'FinOps & Data Analytics', items: skills.finops_data, icon: Blocks },
+    { title: 'Developer Advocacy & Docs', items: skills.advocacy_docs, icon: FileText },
   ];
 
   return (
