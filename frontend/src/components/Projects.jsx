@@ -294,7 +294,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 relative overflow-hidden bg-black border-t border-white/5">
+    <section id="projects" ref={sectionRef} className="py-24 relative overflow-hidden bg-black border-t border-white/5">
       {/* Background radial highlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-500/5 rounded-full blur-[160px] pointer-events-none" />
 

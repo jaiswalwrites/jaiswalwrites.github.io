@@ -121,7 +121,7 @@ export const writingSamples = [
     link: "https://docs.kloudfuse.com/platform/latest/",
     company: "Kloudfuse",
     logo: "/logos/kloudfuse.png",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&h=600&fit=crop",
     featured: true,
     caseStudy: {
       architecture: "Modular and versioned architecture built for scale using Antora and AsciiDoc, integrating seamlessly with CI/CD for Docs-as-Code publishing.",
@@ -141,7 +141,7 @@ export const writingSamples = [
     link: "https://developer.harness.io/docs/continuous-integration/",
     company: "Harness.io",
     logo: "/logos/harness.png",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop",
     featured: true,
     caseStudy: {
       architecture: "Git-based Markdown documentation workflow leveraging automated pull requests, continuous publishing, and tight coupling with product code releases.",
@@ -161,7 +161,7 @@ export const writingSamples = [
     link: "https://docs.safe.security/",
     company: "Safe Security",
     logo: "/logos/safe.png",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop",
     featured: true,
     caseStudy: {
       architecture: "Swagger/OpenAPI spec generation tightly coupled with product UI. Designed to feed directly into the in-house AI agent (Safex) for contextual answers.",
@@ -181,7 +181,7 @@ export const writingSamples = [
     link: "https://success.skyhighsecurity.com/Skyhigh_CASB",
     company: "McAfee (Skyhigh)",
     logo: "/logos/mcafee.png",
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=800&h=600&fit=crop",
     featured: false,
     caseStudy: {
       architecture: "Enterprise Content Management System with strict compliance tracking and version control mirroring product releases.",
@@ -201,7 +201,7 @@ export const writingSamples = [
     link: "https://kantime.com/",
     company: "KanTime",
     logo: "/logos/kantime.png",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop",
     featured: false,
     caseStudy: {
       architecture: "In-app contextual help architecture. Documentation acts as an embedded companion directly within the secure user login portal.",

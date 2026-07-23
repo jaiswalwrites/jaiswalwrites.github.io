@@ -22,7 +22,7 @@ const PortfolioCard = ({ sample, isVisible, index, itemRef }) => {
             alt={sample.title}
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 z-20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40 opacity-90 z-20" />
           
           {/* Category & Featured badges */}
           <div className="absolute top-4 left-4 right-4 z-30 flex justify-between items-center">
@@ -146,7 +146,7 @@ const WritingPortfolio = () => {
   }, [filteredSamples, visibleItems]);
 
   return (
-    <section id="work" ref={sectionRef} className="py-32 relative overflow-hidden bg-black">
+    <section id="work" ref={sectionRef} className="py-24 relative overflow-hidden bg-black">
       {/* Subtle background */}
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[128px] animate-blob" />
 
