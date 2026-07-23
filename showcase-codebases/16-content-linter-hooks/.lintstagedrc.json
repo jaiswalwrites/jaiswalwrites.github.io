@@ -1,0 +1,6 @@
+{
+  "docs/**/*.md": [
+    "prettier --write",
+    "markdownlint"
+  ]
+}

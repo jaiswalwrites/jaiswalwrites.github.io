@@ -1,0 +1,12 @@
+name: 'LLM Doc Reviewer'
+description: 'Reviews PR diffs for documentation quality'
+inputs:
+  github_token:
+    description: 'GitHub token'
+    required: true
+  openai_key:
+    description: 'OpenAI API Key'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

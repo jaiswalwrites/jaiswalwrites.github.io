@@ -1,0 +1,33 @@
+name: Docs CI Pipeline
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Markdown Lint
+        run: npm run lint:md
+        
+      - name: Check Dead Links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          folder-path: 'docs/'
+          
+      - name: Build Docusaurus
+        run: npm run build

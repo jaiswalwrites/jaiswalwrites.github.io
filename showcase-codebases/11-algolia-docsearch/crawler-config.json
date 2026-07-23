@@ -1,0 +1,20 @@
+{
+  "index_name": "my_docs_site",
+  "start_urls": [
+    "https://docs.mycompany.com/"
+  ],
+  "sitemap_urls": [
+    "https://docs.mycompany.com/sitemap.xml"
+  ],
+  "selectors": {
+    "lvl0": ".menu__link--sublist.menu__link--active",
+    "lvl1": "header h1",
+    "lvl2": "article h2",
+    "lvl3": "article h3",
+    "lvl4": "article h4",
+    "text": "article p, article li"
+  },
+  "custom_settings": {
+    "attributesForFaceting": ["type", "lang"]
+  }
+}

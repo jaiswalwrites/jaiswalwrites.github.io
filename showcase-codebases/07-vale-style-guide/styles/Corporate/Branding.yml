@@ -1,0 +1,8 @@
+extends: substitution
+message: 'Use the correct branding: "%s"'
+level: error
+ignorecase: true
+swap:
+  'kloud fuse': 'Kloudfuse'
+  'safe security': 'Safe Security'
+  'api gateway': 'API Gateway'
