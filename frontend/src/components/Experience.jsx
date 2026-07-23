@@ -63,9 +63,19 @@ const Experience = () => {
                 {/* Header */}
                 <div className="flex flex-col gap-4 mb-6">
                   <div>
-                    <h3 className="text-2xl font-semibold tracking-tighter text-white mb-1">
-                      {job.company}
-                    </h3>
+                    <div className="flex items-center gap-3 mb-1">
+                      {job.logo && (
+                        <img 
+                          src={job.logo} 
+                          alt={`${job.company} logo`} 
+                          className="w-8 h-8 object-contain bg-white rounded p-1"
+                          onError={(e) => { e.target.style.display = 'none' }}
+                        />
+                      )}
+                      <h3 className="text-2xl font-semibold tracking-tighter text-white">
+                        {job.company}
+                      </h3>
+                    </div>
                     <div className="text-cyan-400 font-medium tracking-tight text-lg mb-4">
                       {job.role}
                     </div>

@@ -40,7 +40,17 @@ const PortfolioCard = ({ sample, isVisible, index, itemRef }) => {
         {/* Content */}
         <div className="p-8 flex flex-col flex-1 relative z-30 -mt-16 bg-gradient-to-b from-transparent via-black/80 to-black">
           {/* Company */}
-          <p className="text-cyan-400 text-sm font-medium tracking-tight mb-3 drop-shadow-md pt-12">{sample.company}</p>
+          <div className="flex items-center gap-2 mb-3 pt-12">
+            {sample.logo && (
+              <img 
+                src={sample.logo} 
+                alt={`${sample.company} logo`} 
+                className="w-6 h-6 object-contain bg-white rounded p-0.5"
+                onError={(e) => { e.target.style.display = 'none' }}
+              />
+            )}
+            <p className="text-cyan-400 text-sm font-medium tracking-tight drop-shadow-md">{sample.company}</p>
+          </div>
           
           {/* Title */}
           <h3 className="text-xl font-semibold tracking-tighter text-white mb-4 group-hover:text-purple-400 transition-colors duration-300 drop-shadow-md">

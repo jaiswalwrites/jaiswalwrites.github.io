@@ -27,6 +27,7 @@ export const experience = [
   {
     id: 1,
     company: "Kloudfuse",
+    logo: "https://logo.clearbit.com/kloudfuse.com",
     role: "Lead Technical Writer",
     duration: "March 2025 - April 2026",
     location: "Remote/Bangalore",
@@ -47,6 +48,7 @@ export const experience = [
   {
     id: 2,
     company: "Safe Security",
+    logo: "https://logo.clearbit.com/safe.security",
     role: "Lead Technical Writer",
     duration: "Aug 2023 - Sep 2024",
     location: "Bangalore",
@@ -66,6 +68,7 @@ export const experience = [
   {
     id: 3,
     company: "Harness.io",
+    logo: "https://logo.clearbit.com/harness.io",
     role: "Senior Technical Writer",
     duration: "March 2021 - July 2023",
     location: "Bangalore",
@@ -83,6 +86,7 @@ export const experience = [
   {
     id: 4,
     company: "McAfee",
+    logo: "https://logo.clearbit.com/mcafee.com",
     role: "Technical Writer",
     duration: "Nov 2018 - April 2021",
     location: "Bangalore",
@@ -96,6 +100,7 @@ export const experience = [
   {
     id: 5,
     company: "KanTime",
+    logo: "https://logo.clearbit.com/kantime.com",
     role: "Technical Writer",
     duration: "Dec 2015 - Nov 2018",
     location: "Bangalore",
@@ -115,6 +120,7 @@ export const writingSamples = [
     description: "End-to-end documentation system for a cloud-native observability platform, covering logging, monitoring, and developer-facing infrastructure docs.",
     link: "https://docs.kloudfuse.com/platform/latest/",
     company: "Kloudfuse",
+    logo: "https://logo.clearbit.com/kloudfuse.com",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     featured: true,
     caseStudy: {
@@ -134,6 +140,7 @@ export const writingSamples = [
     description: "Comprehensive installation guides, deployment documentation, API references, and conceptual architectures for an enterprise Continuous Integration platform.",
     link: "https://developer.harness.io/docs/continuous-integration/",
     company: "Harness.io",
+    logo: "https://logo.clearbit.com/harness.io",
     image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop",
     featured: true,
     caseStudy: {
@@ -153,6 +160,7 @@ export const writingSamples = [
     description: "API integration guides and onboarding tutorials for enterprise CRQM customers. (Note: External docs are legacy; updated docs are fully embedded in the product).",
     link: "https://docs.safe.security/",
     company: "Safe Security",
+    logo: "https://logo.clearbit.com/safe.security",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
     featured: true,
     caseStudy: {
@@ -172,6 +180,7 @@ export const writingSamples = [
     description: "Documentation for McAfee's Cloud Security Access Broker, focusing on usability, accessibility, and high-stakes enterprise cloud security.",
     link: "https://success.skyhighsecurity.com/Skyhigh_CASB",
     company: "McAfee (Skyhigh)",
+    logo: "https://logo.clearbit.com/mcafee.com",
     image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop",
     featured: false,
     caseStudy: {
@@ -191,6 +200,7 @@ export const writingSamples = [
     description: "Comprehensive user assistance and product documentation embedded directly into the user login portal for the US Healthcare platform.",
     link: "https://kantime.com/",
     company: "KanTime",
+    logo: "https://logo.clearbit.com/kantime.com",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
     featured: false,
     caseStudy: {
