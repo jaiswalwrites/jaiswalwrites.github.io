@@ -120,8 +120,8 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Profile Image - Circular Avatar (Reduced by 1/3rd) with Illumination Light & Rotating Fast JSON API Text Ring */}
-          <motion.div variants={itemVariants} className="lg:col-span-2 flex justify-center items-center order-1 lg:order-2">
+          {/* Profile Image - Circular Avatar (Shifted Upwards) with Illumination Light & Rotating Fast JSON API Text Ring */}
+          <motion.div variants={itemVariants} className="lg:col-span-2 flex justify-center items-start lg:-mt-12 order-1 lg:order-2">
             <div className="relative group w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 flex items-center justify-center">
               
               {/* High-Impact Neon Illumination Background Glow */}
