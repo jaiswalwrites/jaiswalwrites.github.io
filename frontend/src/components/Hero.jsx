@@ -120,34 +120,34 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Profile Image - Larger Circular Avatar with Illumination Light & Rotating Fast JSON API Text Ring */}
+          {/* Profile Image - Circular Avatar (Reduced by 1/3rd) with Illumination Light & Rotating Fast JSON API Text Ring */}
           <motion.div variants={itemVariants} className="lg:col-span-2 flex justify-center items-center order-1 lg:order-2">
-            <div className="relative group w-80 h-80 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center">
+            <div className="relative group w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 flex items-center justify-center">
               
               {/* High-Impact Neon Illumination Background Glow */}
-              <div className="absolute -inset-6 bg-gradient-to-r from-[#00f0ff] via-purple-500 to-[#ff003c] rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 animate-pulse pointer-events-none" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#00f0ff] via-purple-500 to-[#ff003c] rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 animate-pulse pointer-events-none" />
               
               {/* Rotating Neon Ring Accent */}
-              <div className="absolute -inset-2 rounded-full border border-[#00f0ff]/40 group-hover:border-[#00f0ff] transition-colors pointer-events-none" />
+              <div className="absolute -inset-1 rounded-full border border-[#00f0ff]/40 group-hover:border-[#00f0ff] transition-colors pointer-events-none" />
 
               {/* Fast Rotating SVG JSON API Text Ring */}
-              <div className="absolute -inset-10 pointer-events-none z-20">
+              <div className="absolute -inset-6 pointer-events-none z-20">
                 <svg viewBox="0 0 300 300" className="w-full h-full" style={{ animation: 'spin 10s linear infinite' }}>
                   <path
                     id="jsonTextPath"
-                    d="M 150, 150 m -138, 0 a 138,138 0 1,1 276,0 a 138,138 0 1,1 -276,0"
+                    d="M 150, 150 m -135, 0 a 135,135 0 1,1 270,0 a 135,135 0 1,1 -270,0"
                     fill="none"
                   />
-                  <text className="text-[10px] font-mono fill-[#00f0ff] tracking-widest font-bold drop-shadow-[0_0_10px_rgba(0,240,255,0.9)] uppercase">
+                  <text className="text-[11px] font-mono fill-[#00f0ff] tracking-widest font-bold drop-shadow-[0_0_10px_rgba(0,240,255,0.9)] uppercase">
                     <textPath href="#jsonTextPath" startOffset="0%">
-                      {"{\"architect\":\"Manish Jaiswal\",\"role\":\"Docs Strategist & Writer Who Codes\",\"skills\":[\"Git\",\"Kubernetes\",\"FastAPI\",\"PostgreSQL\"]} ✦ "}
+                      {"{\"architect\":\"Manish Jaiswal\",\"role\":\"Docs Strategist & Writer Who Codes\",\"skills\":[\"Git\",\"K8s\",\"FastAPI\"]} ✦ "}
                     </textPath>
                   </text>
                 </svg>
               </div>
 
-              {/* Inner Larger Circular Avatar Image */}
-              <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[380px] md:h-[380px] rounded-full border-4 border-[#00f0ff]/50 group-hover:border-[#00f0ff] overflow-hidden shadow-[0_0_60px_rgba(0,240,255,0.4)] transition-all duration-500 transform group-hover:scale-[1.03]">
+              {/* Inner Circular Avatar Image (Reduced by 1/3rd) */}
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-4 border-[#00f0ff]/50 group-hover:border-[#00f0ff] overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.4)] transition-all duration-500 transform group-hover:scale-[1.03]">
                 <img
                   src={personalInfo.image}
                   alt={personalInfo.name}
