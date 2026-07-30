@@ -140,48 +140,164 @@ const About = () => {
             </div>
           </div>
 
-          {/* TILE 2: Animated Stats Counter (Spans 5 cols on LG) */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            {about.stats.map((stat, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 120 }}
-                whileHover={{ y: -6, scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="glass-panel p-6 flex flex-col justify-between border-white/10 hover:border-[#00f0ff]/50 transition-all duration-500 group relative overflow-hidden cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(0,240,255,0.25)]"
-              >
-                {/* Animated Radial Ambient Glow on Hover */}
-                <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#00f0ff]/10 rounded-full blur-2xl group-hover:bg-[#00f0ff]/30 group-hover:scale-150 transition-all duration-700 pointer-events-none" />
-                
-                {/* Subtle Neon Line Sweep */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+          {/* TILE 2: Visual Stat Object Cards with Mini Graphs, Pipelines & Credentials (Spans 5 cols on LG) */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            {/* STAT 1: 10+ Years Experience (Visual Bar Sparkline) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1, type: "spring", stiffness: 120 }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              className="glass-panel p-5 flex flex-col justify-between border-white/10 hover:border-[#00f0ff]/50 transition-all duration-500 group relative overflow-hidden bg-[#070709] cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(0,240,255,0.25)]"
+            >
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#00f0ff]/10 rounded-full blur-xl group-hover:bg-[#00f0ff]/25 transition-all duration-500 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
 
-                <div className="flex items-center justify-between mb-4 z-10">
-                  <span className="text-xs font-mono text-white/40 group-hover:text-[#00f0ff] transition-colors">0{index + 1}</span>
-                  <motion.div
-                    whileHover={{ rotate: 180, scale: 1.2 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <Zap className="w-4 h-4 text-[#00f0ff] opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]" />
-                  </motion.div>
-                </div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono text-[#00f0ff] font-bold tracking-widest uppercase bg-[#00f0ff]/10 px-2 py-0.5 rounded border border-[#00f0ff]/20">Exp Sparkline</span>
+                <Zap className="w-4 h-4 text-[#00f0ff]" />
+              </div>
 
-                <div className="z-10">
-                  <motion.div 
-                    className="text-4xl md:text-5xl font-black text-white mb-2 bg-gradient-to-r from-[#00f0ff] via-purple-300 to-purple-400 bg-clip-text text-transparent drop-shadow-sm"
-                    animate={isVisible ? { scale: [1, 1.08, 1] } : {}}
-                    transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
-                  >
-                    {isVisible ? counters[index] : '0'}+
-                  </motion.div>
-                  <div className="text-white/60 text-xs md:text-sm font-medium tracking-tight group-hover:text-white/90 transition-colors">
-                    {stat.label}
+              {/* Visual Object: Bar Sparkline */}
+              <div className="my-3 flex items-end justify-between gap-1.5 h-10 px-1 bg-white/5 rounded-lg p-2 border border-white/5">
+                {[30, 45, 60, 78, 92, 100].map((height, i) => (
+                  <div key={i} className="flex-1 bg-white/10 rounded-t overflow-hidden h-full flex items-end">
+                    <div 
+                      className="w-full bg-gradient-to-t from-[#00f0ff]/50 to-[#00f0ff] rounded-t transition-all duration-1000"
+                      style={{ height: isVisible ? `${height}%` : '0%', transitionDelay: `${i * 100}ms` }}
+                    />
                   </div>
+                ))}
+              </div>
+
+              <div>
+                <div className="text-3xl font-black text-white bg-gradient-to-r from-[#00f0ff] to-cyan-300 bg-clip-text text-transparent">
+                  {isVisible ? counters[0] : '0'}+
                 </div>
-              </motion.div>
-            ))}
+                <div className="text-white/60 text-xs font-medium tracking-tight group-hover:text-white transition-colors">
+                  Years in Tech Docs
+                </div>
+              </div>
+            </motion.div>
+
+            {/* STAT 2: 15+ AI Ecosystems (Visual Neural Network Nodes) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 120 }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              className="glass-panel p-5 flex flex-col justify-between border-white/10 hover:border-purple-500/50 transition-all duration-500 group relative overflow-hidden bg-[#070709] cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]"
+            >
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/25 transition-all duration-500 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono text-purple-400 font-bold tracking-widest uppercase bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">RAG Net</span>
+                <Cpu className="w-4 h-4 text-purple-400" />
+              </div>
+
+              {/* Visual Object: Mini Neural Network Graph */}
+              <div className="my-3 relative h-10 bg-white/5 rounded-lg border border-white/5 flex items-center justify-around px-3 overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-0.5 bg-gradient-to-r from-purple-500/20 via-purple-500 to-purple-500/20 animate-pulse" />
+                </div>
+                <div className="w-4 h-4 rounded-full bg-purple-500/20 border border-purple-400 flex items-center justify-center relative z-10">
+                  <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping" />
+                </div>
+                <div className="w-5 h-5 rounded-full bg-purple-500/30 border border-purple-400 flex items-center justify-center relative z-10">
+                  <div className="w-2 h-2 rounded-full bg-purple-300" />
+                </div>
+                <div className="w-4 h-4 rounded-full bg-purple-500/20 border border-purple-400 flex items-center justify-center relative z-10">
+                  <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                </div>
+              </div>
+
+              <div>
+                <div className="text-3xl font-black text-white bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">
+                  {isVisible ? counters[1] : '0'}+
+                </div>
+                <div className="text-white/60 text-xs font-medium tracking-tight group-hover:text-white transition-colors">
+                  AI Ecosystems Documented
+                </div>
+              </div>
+            </motion.div>
+
+            {/* STAT 3: 8+ Docs-as-Code (Visual CI/CD Pipeline Workflow) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3, type: "spring", stiffness: 120 }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              className="glass-panel p-5 flex flex-col justify-between border-white/10 hover:border-emerald-500/50 transition-all duration-500 group relative overflow-hidden bg-[#070709] cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]"
+            >
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/25 transition-all duration-500 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono text-emerald-400 font-bold tracking-widest uppercase bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">CI/CD Pipeline</span>
+                <Code className="w-4 h-4 text-emerald-400" />
+              </div>
+
+              {/* Visual Object: Mini CI/CD Pipeline Workflow */}
+              <div className="my-3 h-10 bg-white/5 rounded-lg border border-white/5 flex items-center justify-between px-2 text-[9px] font-mono text-emerald-400">
+                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40">Git</span>
+                <span className="text-white/40">➔</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40">Lint</span>
+                <span className="text-white/40">➔</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-300 font-bold">Deploy ✓</span>
+              </div>
+
+              <div>
+                <div className="text-3xl font-black text-white bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+                  {isVisible ? counters[2] : '0'}+
+                </div>
+                <div className="text-white/60 text-xs font-medium tracking-tight group-hover:text-white transition-colors">
+                  Docs-as-Code Systems
+                </div>
+              </div>
+            </motion.div>
+
+            {/* STAT 4: 6+ Certifications (Visual Credential Donut Chart & Badge) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 120 }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              className="glass-panel p-5 flex flex-col justify-between border-white/10 hover:border-amber-500/50 transition-all duration-500 group relative overflow-hidden bg-[#070709] cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.25)]"
+            >
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/25 transition-all duration-500 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono text-amber-400 font-bold tracking-widest uppercase bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Credentials</span>
+                <Award className="w-4 h-4 text-amber-400" />
+              </div>
+
+              {/* Visual Object: Certification Donut Chart + Badges */}
+              <div className="my-3 h-10 bg-white/5 rounded-lg border border-white/5 flex items-center justify-between px-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full border-2 border-amber-400 border-t-transparent animate-spin-slow flex items-center justify-center text-[8px] font-mono font-bold text-amber-300">
+                    ✓
+                  </div>
+                  <span className="text-[10px] font-mono text-white/70">Verified</span>
+                </div>
+                <div className="flex gap-1">
+                  <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300">AWS</span>
+                  <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300">K8s</span>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-3xl font-black text-white bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
+                  {isVisible ? counters[3] : '0'}+
+                </div>
+                <div className="text-white/60 text-xs font-medium tracking-tight group-hover:text-white transition-colors">
+                  Certifications & Badges
+                </div>
+              </div>
+            </motion.div>
+
           </div>
 
           {/* TILE 3: Real-Time Visual Solution Architecture Builder (Spans 6 cols on LG) */}
