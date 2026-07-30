@@ -9,54 +9,60 @@ const GREETING = "STAY FOCUSED. I am your personal Focus Trainer. Let's cut the 
 
 // Shared Live2D init — embeds into a given canvas element
 const initLive2DOnCanvas = (canvas, onHit) => {
-  const poll = (resolve) => {
+  let attempts = 0;
+  const poll = (resolve, reject) => {
+    attempts++;
     if (window.PIXI && window.PIXI.live2d) resolve();
-    else setTimeout(() => poll(resolve), 100);
+    else if (attempts > 30) reject(new Error('Live2D script timeout'));
+    else setTimeout(() => poll(resolve, reject), 100);
   };
 
-  return new Promise((resolve) => poll(resolve)).then(async () => {
-    // Mute the Live2D model's built-in Japanese voice audio completely
-    if (window.PIXI.live2d.SoundManager) {
-      window.PIXI.live2d.SoundManager.volume = 0;
-    }
+  return new Promise((resolve, reject) => poll(resolve, reject))
+    .then(async () => {
+      try {
+        if (window.PIXI?.live2d?.SoundManager) {
+          window.PIXI.live2d.SoundManager.volume = 0;
+        }
 
-    const app = new window.PIXI.Application({
-      view: canvas,
-      backgroundAlpha: 0,
-      resolution: window.devicePixelRatio || 1,
-      autoDensity: true,
-      width: canvas.width || 240,
-      height: canvas.height || 600,
-    });
-
-    try {
-      const model = await window.PIXI.live2d.Live2DModel.from(MODEL_URL, { autoInteract: true });
-      app.stage.addChild(model);
-
-      const W = app.screen.width;
-      const H = app.screen.height;
-      const scale = Math.min(W / model.internalModel.width, H / model.internalModel.height) * 1.6;
-      model.scale.set(scale);
-      model.anchor.set(0.5, 0);
-      model.x = W / 2;
-      model.y = H * 0.05;
-
-      if (onHit) {
-        model.on('hit', (areas) => {
-          if (areas.includes('body') || areas.includes('head')) {
-            model.motion('tap_body');
-            onHit();
-          }
+        const app = new window.PIXI.Application({
+          view: canvas,
+          backgroundAlpha: 0,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          width: canvas.width || 240,
+          height: canvas.height || 600,
         });
-      }
 
-      return { app, model };
-    } catch (err) {
-      console.error('Live2D model load error:', err);
-      app.destroy();
+        const model = await window.PIXI.live2d.Live2DModel.from(MODEL_URL, { autoInteract: true });
+        app.stage.addChild(model);
+
+        const W = app.screen.width;
+        const H = app.screen.height;
+        const scale = Math.min(W / model.internalModel.width, H / model.internalModel.height) * 1.6;
+        model.scale.set(scale);
+        model.anchor.set(0.5, 0);
+        model.x = W / 2;
+        model.y = H * 0.05;
+
+        if (onHit) {
+          model.on('hit', (areas) => {
+            if (areas.includes('body') || areas.includes('head')) {
+              model.motion('tap_body');
+              onHit();
+            }
+          });
+        }
+
+        return { app, model };
+      } catch (err) {
+        console.warn('Live2D model init failed:', err);
+        return null;
+      }
+    })
+    .catch((err) => {
+      console.warn('Live2D script loading timed out:', err);
       return null;
-    }
-  });
+    });
 };
 
 // Small Live2D canvas for the floating button
