@@ -14,6 +14,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Toaster } from "./components/ui/toaster";
 
+import Chatbot from "./components/Chatbot";
+
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +34,7 @@ function App() {
         </main>
         <Footer />
         <Toaster />
+        <Chatbot />
       </div>
     </BrowserRouter>
   );

@@ -1,148 +1,175 @@
 import React, { useEffect, useState } from 'react';
 import { personalInfo, about } from '../data/mock';
-import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, ArrowDown, Terminal } from 'lucide-react';
 import { Button } from './ui/button';
+import { motion } from 'framer-motion';
+import AnimeBackground from './AnimeBackground';
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: 'spring', stiffness: 100, damping: 10 }
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
-      {/* Animated Mesh Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob" />
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-cyan-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-4000" />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505] pt-20 font-sans">
+      <AnimeBackground />
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 w-full">
-        <div className="grid md:grid-cols-5 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
+        <motion.div 
+          className="grid lg:grid-cols-5 gap-16 items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           
           {/* Content - Left Side */}
-          <div className="md:col-span-3 text-center md:text-left space-y-8 order-2 md:order-1">
-            <div className="animate-fade-in">
-              <div className="inline-block px-4 py-1.5 glass-pill mb-6">
-                <p className="text-sm font-medium tracking-tight text-white/80 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                  &lt;{personalInfo.tagline}/&gt;
+          <div className="lg:col-span-3 text-center lg:text-left space-y-8 order-2 lg:order-1">
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#00f0ff]/30 bg-[#00f0ff]/5 backdrop-blur-md rounded-sm mb-6 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+                <Terminal className="w-4 h-4 text-[#00f0ff]" />
+                <p className="text-xs font-mono font-bold tracking-widest text-[#00f0ff] uppercase">
+                  Sys.Init({personalInfo.tagline})
                 </p>
               </div>
-              <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter text-white mb-6 leading-tight text-glow">
-                {personalInfo.name}
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-6 leading-none">
+                {personalInfo.name.split(' ')[0]}<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f0ff] to-[#ff003c]">
+                  {personalInfo.name.split(' ')[1] || 'Engineered'}
+                </span>
               </h1>
               
-              <div className="space-y-3 mb-8">
-                <p className="text-xl md:text-3xl text-white/90 font-medium tracking-tight">
-                  {personalInfo.title}
-                </p>
+              <div className="flex flex-wrap items-center gap-2 mb-8 justify-center lg:justify-start">
+                <span className="px-4 py-1.5 rounded-lg bg-[#00f0ff]/10 border border-[#00f0ff]/40 text-[#00f0ff] font-mono text-xs sm:text-sm font-bold tracking-wider uppercase">
+                  Senior Technical Writer
+                </span>
+                <span className="px-4 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/40 text-purple-300 font-mono text-xs sm:text-sm font-bold tracking-wider uppercase">
+                  Docs Strategist
+                </span>
+                <span className="px-4 py-1.5 rounded-lg bg-[#ff003c]/10 border border-[#ff003c]/40 text-[#ff003c] font-mono text-xs sm:text-sm font-bold tracking-wider uppercase">
+                  Writer Who Codes
+                </span>
               </div>
 
-              <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl font-light">
-                Helping organizations build scalable, AI-driven documentation ecosystems.
+              <p className="text-lg text-white/50 leading-relaxed max-w-2xl font-light">
+                {about.description.split('.')[0]}. {about.description.split('.')[1]}.
               </p>
-            </div>
+            </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4 animate-fade-in-delay-1">
-              <Button 
-                size="lg" 
-                className="bg-white text-black hover:bg-white/90 font-medium tracking-tight px-8 py-6 rounded-full text-base shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all"
-                onClick={() => scrollToSection('projects')}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center lg:justify-start pt-6">
+              <a 
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-[#00f0ff] text-black hover:bg-[#00f0ff]/80 font-bold tracking-widest px-8 py-4 text-xs uppercase shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all relative overflow-hidden group font-mono"
               >
-                Explore AI Repositories
-              </Button>
+                <span className="relative z-10 flex items-center gap-2">
+                  <FileText className="w-4 h-4" /> Download Resume
+                </span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              </a>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="glass-pill text-white hover:bg-white/10 border-white/20 font-medium tracking-tight px-8 py-6 text-base"
+                className="bg-transparent text-white hover:bg-white/5 border border-white/20 font-mono tracking-widest px-8 py-6 rounded-none text-xs uppercase transition-all"
                 onClick={() => scrollToSection('contact')}
               >
-                Get In Touch
+                Contact
               </Button>
-            </div>
-
-            {/* Signature Showcases */}
-            <div className="pt-6 space-y-3 text-left max-w-xl mx-auto md:mx-0 animate-fade-in-delay-2">
-              <span className="text-[10px] font-bold tracking-widest text-cyan-400 uppercase">★ Active AI & Developer Showcases</span>
-              <div className="grid grid-cols-3 gap-3">
-                <a
-                  href="https://jaiswalwrites.github.io/docusaurus-portfolio-site/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 rounded-2xl glass-panel hover:bg-white/5 transition-all duration-300 border-cyan-500/20 group/item flex flex-col justify-between h-[105px]"
-                >
-                  <span className="text-xl">🦕</span>
-                  <div>
-                    <h4 className="text-xs font-semibold text-white group-hover/item:text-cyan-400 transition-colors">NeuralDocs</h4>
-                    <p className="text-[9px] text-white/50">Docusaurus Portal</p>
-                  </div>
-                </a>
-                <a
-                  href="https://jaiswalwrites.github.io/ai-doc-workflow/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 rounded-2xl glass-panel hover:bg-white/5 transition-all duration-300 border-purple-500/20 group/item flex flex-col justify-between h-[105px]"
-                >
-                  <span className="text-xl">⚡</span>
-                  <div>
-                    <h4 className="text-xs font-semibold text-white group-hover/item:text-purple-400 transition-colors">AI Workflow</h4>
-                    <p className="text-[9px] text-white/50">Interactive Process</p>
-                  </div>
-                </a>
-                <a
-                  href="https://jaiswalwrites.github.io/openapi-docs-generator/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 rounded-2xl glass-panel hover:bg-white/5 transition-all duration-300 border-indigo-500/20 group/item flex flex-col justify-between h-[105px]"
-                >
-                  <span className="text-xl">📄</span>
-                  <div>
-                    <h4 className="text-xs font-semibold text-white group-hover/item:text-indigo-400 transition-colors">OpenAPI Spec</h4>
-                    <p className="text-[9px] text-white/50">Redoc API Ref</p>
-                  </div>
-                </a>
-              </div>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="flex gap-4 justify-center md:justify-start pt-4 animate-fade-in-delay-2">
-              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href={`mailto:${personalInfo.email}`} className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
-                <Mail className="w-5 h-5" />
-              </a>
-              <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer" className="p-3 glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300">
-                <FileText className="w-5 h-5" />
-              </a>
-            </div>
+            <motion.div variants={itemVariants} className="flex gap-4 justify-center lg:justify-start pt-8">
+              {[
+                { icon: Github, link: personalInfo.github },
+                { icon: Linkedin, link: personalInfo.linkedin },
+                { icon: Mail, link: `mailto:${personalInfo.email}` },
+                { icon: FileText, link: personalInfo.resumeUrl }
+              ].map((social, i) => (
+                <a 
+                  key={i}
+                  href={social.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="p-3 border border-white/10 hover:border-[#00f0ff]/50 bg-black/50 hover:bg-[#00f0ff]/10 text-white/50 hover:text-[#00f0ff] transition-all duration-300"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Profile Image - Right Side */}
-          <div className="md:col-span-2 flex justify-center order-1 md:order-2 animate-fade-in-delay-1">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-[2rem] blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-blob"></div>
-              <div className="relative glass-panel p-2 w-72 h-96 md:w-80 md:h-[420px] rounded-[2rem] transform group-hover:-translate-y-2 transition-all duration-500">
+          {/* Profile Image - Larger Circular Avatar with Illumination Light & Rotating Fast JSON API Text Ring */}
+          <motion.div variants={itemVariants} className="lg:col-span-2 flex justify-center items-center order-1 lg:order-2">
+            <div className="relative group w-80 h-80 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center">
+              
+              {/* High-Impact Neon Illumination Background Glow */}
+              <div className="absolute -inset-6 bg-gradient-to-r from-[#00f0ff] via-purple-500 to-[#ff003c] rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 animate-pulse pointer-events-none" />
+              
+              {/* Rotating Neon Ring Accent */}
+              <div className="absolute -inset-2 rounded-full border border-[#00f0ff]/40 group-hover:border-[#00f0ff] transition-colors pointer-events-none" />
+
+              {/* Fast Rotating SVG JSON API Text Ring */}
+              <div className="absolute -inset-10 pointer-events-none z-20">
+                <svg viewBox="0 0 300 300" className="w-full h-full" style={{ animation: 'spin 10s linear infinite' }}>
+                  <path
+                    id="jsonTextPath"
+                    d="M 150, 150 m -138, 0 a 138,138 0 1,1 276,0 a 138,138 0 1,1 -276,0"
+                    fill="none"
+                  />
+                  <text className="text-[10px] font-mono fill-[#00f0ff] tracking-widest font-bold drop-shadow-[0_0_10px_rgba(0,240,255,0.9)] uppercase">
+                    <textPath href="#jsonTextPath" startOffset="0%">
+                      {"{\"architect\":\"Manish Jaiswal\",\"role\":\"Docs Strategist & Writer Who Codes\",\"skills\":[\"Git\",\"Kubernetes\",\"FastAPI\",\"PostgreSQL\"]} ✦ "}
+                    </textPath>
+                  </text>
+                </svg>
+              </div>
+
+              {/* Inner Larger Circular Avatar Image */}
+              <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[380px] md:h-[380px] rounded-full border-4 border-[#00f0ff]/50 group-hover:border-[#00f0ff] overflow-hidden shadow-[0_0_60px_rgba(0,240,255,0.4)] transition-all duration-500 transform group-hover:scale-[1.03]">
                 <img
                   src={personalInfo.image}
                   alt={personalInfo.name}
-                  className="w-full h-full object-cover rounded-[1.5rem] opacity-90 group-hover:opacity-100 transition-opacity"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 via-transparent to-transparent opacity-50" />
               </div>
-            </div>
-          </div>
 
-        </div>
+            </div>
+          </motion.div>
+
+        </motion.div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce animate-fade-in-delay-3">
-          <ArrowDown className="w-6 h-6 text-white/30" />
-        </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+        >
+          <ArrowDown className="w-6 h-6 text-[#00f0ff]/50" />
+        </motion.div>
       </div>
     </section>
   );

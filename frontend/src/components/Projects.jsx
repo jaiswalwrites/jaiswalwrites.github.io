@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ExternalLink, ChevronDown, ChevronUp, Cpu, Github, Layers, Play } from 'lucide-react';
-import { Button } from './ui/button';
+import { ExternalLink, ChevronDown, ChevronUp, Github, Layers, Play } from 'lucide-react';
 import ProjectPlayground from './ProjectPlayground';
+import useNetflixCarousel from '../hooks/useNetflixCarousel';
 
 const projectsData = [
   {
@@ -264,11 +264,27 @@ const ProjectCard = ({ project, isVisible, index, onPlaygroundClick }) => {
   );
 };
 
+const getLoopingItems = (items) => {
+  if (!items || items.length === 0) return [];
+  const repeatCount = items.length >= 8 ? 1 : Math.ceil(10 / items.length);
+  const result = [];
+  for (let r = 0; r < repeatCount; r++) {
+    items.forEach((item, idx) => {
+      result.push({
+        ...item,
+        _uniqueKey: `${item.id || idx}-${r}`,
+      });
+    });
+  }
+  return result;
+};
+
 const Projects = () => {
   const [filter, setFilter] = useState('All');
   const [isVisible, setIsVisible] = useState(false);
   const [playgroundProject, setPlaygroundProject] = useState(null);
   const sectionRef = useRef(null);
+  const { emblaRef, selectedIndex, pause, resume, scrollTo, reInit, getDistance } = useNetflixCarousel();
 
   const domains = ['All', 'AI & Tooling', 'Docs-as-Code', 'Content Strategy', 'Developer Experience'];
 
@@ -276,49 +292,46 @@ const Projects = () => {
     ? projectsData
     : projectsData.filter(project => project.domain === filter);
 
+  const loopingProjects = getLoopingItems(filteredProjects);
+
+  // Reset carousel when filter changes
+  useEffect(() => { reInit(); }, [filter, reInit]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.05 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 relative overflow-hidden bg-black border-t border-white/5">
-      {/* Background radial highlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-500/5 rounded-full blur-[160px] pointer-events-none" />
+    <section id="projects" ref={sectionRef} className="py-24 relative overflow-hidden bg-[#050505] border-t border-white/5 font-sans">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#ff003c]/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="mb-16 text-center md:text-left">
-          <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase">⚡ Documentation & AI Ecosystems</span>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mt-3 mb-4">Technical Writer Showcase</h2>
-          <div className="w-24 h-px bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto md:mx-0 mb-4" />
-          <p className="text-xl text-white/60 font-light max-w-2xl mx-auto md:mx-0">
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+        <div className="mb-16 text-center md:text-left max-w-7xl mx-auto">
+          <span className="text-xs font-bold tracking-widest text-[#00f0ff] uppercase font-mono">⚡ Documentation & AI Ecosystems</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mt-3 mb-4">Technical Writer Showcase</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#00f0ff] to-[#ff003c] mx-auto md:mx-0 mb-4" />
+          <p className="text-xl text-white/50 font-light max-w-2xl mx-auto md:mx-0">
             Real-world implementations demonstrating modern documentation workflows, AI-assisted content strategy, and docs-as-code automation.
           </p>
         </div>
 
-        {/* Filter buttons */}
-        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-12 max-w-7xl mx-auto">
           {domains.map((dom) => (
             <button
               key={dom}
               onClick={() => setFilter(dom)}
-              className={`px-5 py-2 rounded-full font-medium tracking-tight text-xs transition-all duration-300 ${
+              className={`px-5 py-2 rounded font-mono font-bold tracking-wider text-xs uppercase transition-all duration-300 border ${
                 filter === dom
-                  ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]'
-                  : 'glass-pill text-white/70 hover:bg-white/10 hover:text-white border-white/10'
+                  ? 'bg-[#00f0ff]/10 text-[#00f0ff] border-[#00f0ff]/50 shadow-[0_0_15px_rgba(0,240,255,0.2)]'
+                  : 'bg-transparent text-white/50 hover:bg-white/5 border-white/10 hover:text-white'
               }`}
             >
               {dom}
@@ -326,17 +339,50 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              isVisible={isVisible} 
-              index={index} 
-              onPlaygroundClick={() => setPlaygroundProject(project)}
-            />
-          ))}
+        {/* Netflix-style Center-Snapping Carousel */}
+        <div
+          className="overflow-hidden w-full cursor-grab active:cursor-grabbing relative"
+          style={{ isolation: 'isolate' }}
+          ref={emblaRef}
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+        >
+          <div className="flex touch-pan-y items-stretch py-10" style={{ backfaceVisibility: 'hidden' }}>
+            {loopingProjects.map((project, index) => {
+              const dist = getDistance(index, loopingProjects.length);
+              const isActive = dist === 0;
+              const isNeighbor = dist === 1;
+              return (
+                <div
+                  key={project._uniqueKey}
+                  className="flex-[0_0_85%] sm:flex-[0_0_70%] md:flex-[0_0_55%] lg:flex-[0_0_45%] min-w-0 px-3"
+                >
+                  <div
+                    onClick={() => !isActive && scrollTo(index)}
+                    className="relative w-full h-full"
+                    style={{
+                      transform: isActive ? 'scale(1)' : isNeighbor ? 'scale(0.88)' : 'scale(0.78)',
+                      opacity: isActive ? 1 : isNeighbor ? 0.55 : dist === 2 ? 0.2 : 0,
+                      transition: 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease, filter 0.5s ease',
+                      zIndex: 10 - Math.min(dist, 4) * 2,
+                      cursor: isActive ? 'default' : 'pointer',
+                      filter: isActive ? 'none' : 'grayscale(0.8)',
+                    }}
+                  >
+                    {isActive && (
+                      <div className="absolute -inset-4 bg-gradient-to-r from-[#00f0ff]/30 to-[#ff003c]/30 blur-2xl z-[-1]" />
+                    )}
+                    <ProjectCard
+                      project={project}
+                      isVisible={isVisible}
+                      index={index}
+                      onPlaygroundClick={() => setPlaygroundProject(project)}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       
@@ -348,6 +394,7 @@ const Projects = () => {
       )}
     </section>
   );
+
 };
 
 export default Projects;

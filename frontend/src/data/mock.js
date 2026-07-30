@@ -2,7 +2,7 @@
 
 export const personalInfo = {
   name: "Manish Kumar",
-  title: "Senior Technical Writer",
+  title: "Senior Technical Writer • Docs Strategist • Writer Who Codes",
   tagline: "Helping developers adopt cloud-native & AI platforms",
   email: "jaiswalmanish060@gmail.com",
   phone: "+91 8015973380",
@@ -10,7 +10,7 @@ export const personalInfo = {
   github: "https://github.com/jaiswalwrites",
   website: "https://jaiswalwrites.github.io/",
   image: "https://customer-assets.emergentagent.com/job_62aa6f42-eb1d-43a7-9fbe-6dc3252347a9/artifacts/ao0j8wiu_WhatsApp%20Image%202025-01-26%20at%203.00.01%20PM%20%281%29.jpeg",
-  resumeUrl: "https://customer-assets.emergentagent.com/job_62aa6f42-eb1d-43a7-9fbe-6dc3252347a9/artifacts/r8290els_Manish_Resume_Senior_Tech_Writer.pdf"
+  resumeUrl: "https://drive.google.com/file/d/1f9ZrT1hg0dM5yCNcdcbSq-xTPenGBLbo/view?usp=sharing"
 };
 
 export const about = {
@@ -220,16 +220,16 @@ export const skills = {
     "OpenAI GPT", "LangChain", "LlamaIndex", "RAG Systems", "Prompt Engineering", "TensorFlow", "PyTorch", "Scikit-learn", "Hugging Face Transformers", "Reinforcement Learning", "Agentic Systems", "Diffusion Models", "Fine-tuning", "Embeddings"
   ],
   programming_scripting: [
-    "Python", "Java", "GoLang", "SQL", "C", "Solidity", "Shell Scripting", "Curl"
+    "Python", "FastAPI", "PostgreSQL", "Java", "GoLang", "SQL", "C", "Solidity", "Shell Scripting", "cURL"
   ],
   cloud_devops: [
-    "AWS", "GCP", "Microsoft Azure", "Kubernetes", "Docker", "Helm", "Linux", "Jenkins", "GitHub Actions", "GitLab CI", "Docker Hub", "Artifactory (JFrog, GCR)"
+    "Git", "Kubernetes", "AWS", "GCP", "Microsoft Azure", "Docker", "Helm", "Linux", "Jenkins", "GitHub Actions", "GitLab CI", "Docker Hub", "Artifactory (JFrog, GCR)"
   ],
   finops_data: [
     "AWS Cost Explorer", "Azure Cost Management", "GCP Billing API", "Savings Plans Analysis", "Custom Dashboards", "Pendo", "Analytics", "Anomaly Detection", "Predictive Budgeting", "Resource Tagging"
   ],
   tech_docs_tools: [
-    "Docs-as-Code: Git, GitHub, GitLab, Docusaurus, MkDocs, Sphinx", "API Tools: Swagger/OpenAPI, Postman", "Traditional Authoring: Oxygen XML, MadCap Flare, Adobe RoboHelp, Confluence, JIRA"
+    "Docs-as-Code: Git, GitHub, GitLab, Docusaurus, MkDocs, Sphinx", "API Tools: Swagger/OpenAPI, Postman, FastAPI Specs", "Traditional Authoring: Oxygen XML, MadCap Flare, Adobe RoboHelp, Confluence, JIRA"
   ]
 };
 
