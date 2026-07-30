@@ -38,6 +38,7 @@ const About = () => {
       setTerminalLineIndex(prev => (prev + 1) % terminalCommands.length);
     }, 3500);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 
   const animateCounters = () => {

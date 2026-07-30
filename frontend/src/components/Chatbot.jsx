@@ -127,6 +127,7 @@ const Live2DPanel = ({ isTyping, onPoke }) => {
         instanceRef.current = null;
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Trigger typing motion on the model

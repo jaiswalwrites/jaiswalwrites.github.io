@@ -35,6 +35,8 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build
+        env:
+          CI: false
         run: |
           yarn build
           # Create 404.html to support React Router refresh and SPA fallback on GitHub Pages
