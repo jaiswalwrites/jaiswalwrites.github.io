@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { about } from '../data/mock';
-import { Terminal, Shield, Cpu, Code2, Zap, CheckCircle2, Award, ArrowUpRight } from 'lucide-react';
+import { Terminal, Shield, Cpu, Code, Code2, Zap, CheckCircle2, Award, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import VisualPipelineBuilder from './VisualPipelineBuilder';
 
