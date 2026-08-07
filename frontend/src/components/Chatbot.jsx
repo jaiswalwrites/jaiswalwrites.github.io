@@ -113,16 +113,23 @@ const Live2DButton = ({ onClick, color }) => {
   );
 };
 
-// Full Live2D canvas for the chatbox left panel
+// Full Live2D canvas for the chatbox left panel (STABLE — never destroyed on prop change)
 const Live2DPanel = ({ isTyping, onPoke }) => {
   const canvasRef = useRef(null);
   const instanceRef = useRef(null);
+  const onPokeRef = useRef(onPoke);
+
+  useEffect(() => {
+    onPokeRef.current = onPoke;
+  }, [onPoke]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
     let cancelled = false;
 
-    initLive2DOnCanvas(canvasRef.current, onPoke).then((instance) => {
+    initLive2DOnCanvas(canvasRef.current, () => {
+      onPokeRef.current?.();
+    }).then((instance) => {
       if (cancelled || !instance) return;
       instanceRef.current = instance;
     });
@@ -134,7 +141,7 @@ const Live2DPanel = ({ isTyping, onPoke }) => {
         instanceRef.current = null;
       }
     };
-  }, [onPoke]);
+  }, []); // Stable init — empty dependency array!
 
   useEffect(() => {
     if (!instanceRef.current?.model) return;
@@ -213,6 +220,7 @@ const Chatbot = () => {
       setIsTyping(false);
       const q = query.toLowerCase();
       let response = '';
+      let isCalendly = false;
 
       if (q.includes('dita') || q.includes('oxygen') || q.includes('ditamap') || q.includes('dtp') || q.includes('ixiasoft')) {
         response = "⚡ DITA XML & Oxygen XML Master:\n1. 10+ years structured XML authoring using Oxygen XML Editor, DITAMAPs, DITAVAL profiling & IXIASOFT DITA CMS.\n2. Built enterprise DTP & DITA-OT publishing pipelines for McAfee (Skyhigh Security CASB) & KanTime Healthcare.\n3. Automated PDF Chemistry, Schematron validation, and multi-channel single-sourcing.";
@@ -234,25 +242,18 @@ const Chatbot = () => {
         response = "🏢 Companies Manish Has Empowered:\n1. Kloudfuse — Observability & AI Docs\n2. Safe Security — Cybersecurity & OpenAPI Docs\n3. Harness.io — DevOps & CI/CD Pipelines\n4. McAfee (Skyhigh) — Cloud Security & DITA XML\n5. KanTime — Healthcare SaaS & DITA XML";
       } else if (q.includes('experience') || q.includes('work') || q.includes('job') || q.includes('career')) {
         response = "📊 Manish Jaiswal — Career Track Record:\n• 10+ years engineering scalable documentation ecosystems for enterprise leaders & AI startups.\n• Specialties: DITA XML (Oxygen XML), Docs-as-Code, AI/RAG Docs, OpenAPI 3.0, Kubernetes & Developer Experience (DX).\n• Proven track record reducing support queries by up to 50% and onboarding time by 50%.";
-      } else if (q.includes('project') || q.includes('showcase')) {
-        response = "Eyes on the screen! The Showcase proves his skills:\n1. Real-world documentation portals and interactive tools.\n2. Heavy use of OpenAPI, React, and intelligent chat flows.\n3. Try the interactive playground on any project card!";
-      } else if (q.includes('writing') || q.includes('portfolio') || q.includes('article')) {
-        response = "Stop drifting and read his work:\n1. High-impact technical guides and API references.\n2. Complex system architectures broken down perfectly.\n3. Scroll the horizontal coverflow to see the case studies.";
-      } else if (q.includes('skill') || q.includes('stack') || q.includes('tech')) {
-        response = "Memorize his stack:\n1. DITA XML, Oxygen XML Editor, IXIASOFT CMS.\n2. Docs-as-Code: Docusaurus, Antora, Git, Markdown, OpenAPI 3.0.\n3. AI & RAG: Prompt Engineering, Semantic Chunking, LLM Knowledge Graphs.";
-      } else if (q.includes('about') || q.includes('who') || q.includes('hero')) {
-        response = "Who is he? Listen closely:\n1. Senior Technical Writer, Docs Strategist & Writer Who Codes.\n2. 10+ years architecting documentation systems for cloud-native, DevOps, AI, and SaaS platforms.\n3. This entire site is proof of his engineering prowess.";
-      } else if (q.includes('schedule') || q.includes('call') || q.includes('meet') || q.includes('book')) {
-        response = "Don't procrastinate! Book a meeting right now:\n👉 https://calendly.com/jaiswalmanish060/book-a-call-with-manish";
+      } else if (q.includes('schedule') || q.includes('call') || q.includes('meet') || q.includes('book') || q.includes('calendly')) {
+        response = "📅 Select a convenient time slot below to schedule a meeting directly with Manish:";
+        isCalendly = true;
       } else if (q.includes('resume') || q.includes('cv')) {
         response = "Review the data. Here is his Google Drive resume:\n👉 https://drive.google.com/file/d/1f9ZrT1hg0dM5yCNcdcbSq-xTPenGBLbo/view?usp=sharing";
       } else if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach')) {
         response = "📫 Direct Contact Information:\n• Email: jaiswalmanish060@gmail.com\n• Phone: +91 9538466170\n• LinkedIn: https://www.linkedin.com/in/manish-jaiswal1993/";
       } else {
-        response = "Ask me about DITA XML, Oxygen XML, Docs-as-Code, AI-Ready Docs, Kloudfuse, Safe Security, McAfee, Harness, or Resume!";
+        response = "Ask me about DITA XML, Oxygen XML, Docs-as-Code, AI-Ready Docs, Kloudfuse, Safe Security, McAfee, Harness, or Book a Call!";
       }
 
-      setMessages(prev => [...prev, { type: 'bot', text: response }]);
+      setMessages(prev => [...prev, { type: 'bot', text: response, isCalendly }]);
       speakText(response);
     }, 1200);
   };
@@ -282,7 +283,7 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-6 right-6 w-[360px] sm:w-[600px] h-[600px] max-h-[85vh] max-w-[92vw] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.15)] rounded-xl z-50 flex overflow-hidden border border-[#00f0ff]/30 font-sans"
+            className="fixed bottom-6 right-6 w-[360px] sm:w-[620px] h-[640px] max-h-[88vh] max-w-[92vw] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.15)] rounded-xl z-50 flex overflow-hidden border border-[#00f0ff]/30 font-sans"
           >
             {/* Left: Live2D Character Panel */}
             <div className="w-[240px] relative bg-gradient-to-t from-black via-[#00f0ff]/5 to-transparent flex-shrink-0 overflow-hidden border-r border-[#00f0ff]/20 hidden sm:block">
@@ -331,7 +332,7 @@ const Chatbot = () => {
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9, x: msg.type === 'user' ? 20 : -20 }}
                       animate={{ opacity: 1, scale: 1, x: 0 }}
-                      className={`max-w-[85%] p-3 rounded text-sm leading-relaxed whitespace-pre-line ${
+                      className={`max-w-[90%] p-3 rounded text-sm leading-relaxed whitespace-pre-line ${
                         msg.type === 'user'
                           ? 'text-white rounded-br-none border bg-[#00f0ff]/20 border-[#00f0ff]/50'
                           : 'bg-white/5 border border-white/10 text-white/90 rounded-bl-none'
@@ -342,6 +343,28 @@ const Chatbot = () => {
                         part.match(/https?:\/\/[^\s]+/) ? (
                           <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="underline break-all text-[#00f0ff] hover:text-[#ff003c]">{part}</a>
                         ) : <span key={i}>{part}</span>
+                      )}
+
+                      {/* Embedded Live Calendly Widget inside Chat Space */}
+                      {msg.isCalendly && (
+                        <div className="mt-3 w-full rounded-lg overflow-hidden border border-[#00f0ff]/40 shadow-[0_0_20px_rgba(0,240,255,0.15)] bg-black/80">
+                          <div className="bg-[#00f0ff]/10 px-3 py-2 border-b border-[#00f0ff]/30 text-[11px] font-mono text-[#00f0ff] flex items-center justify-between">
+                            <span className="font-bold">📅 Calendly Interactive Booking</span>
+                            <a
+                              href="https://calendly.com/jaiswalmanish060/book-a-call-with-manish"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline hover:text-white transition-colors"
+                            >
+                              Open Full Window ↗
+                            </a>
+                          </div>
+                          <iframe
+                            src="https://calendly.com/jaiswalmanish060/book-a-call-with-manish?hide_gdpr_banner=1&background_color=050505&text_color=ffffff&primary_color=00f0ff"
+                            className="w-full h-80 border-0"
+                            title="Schedule Call with Manish Jaiswal"
+                          />
+                        </div>
                       )}
                     </motion.div>
                   </div>
