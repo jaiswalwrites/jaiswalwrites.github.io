@@ -187,7 +187,7 @@ jobs:
         with:
           files: 'docs/'
           styles: 'Microsoft, Google, CustomBrand'
-          fail_on_error: true
+          fail_on_error: true`
   },
   {
     id: '19',
