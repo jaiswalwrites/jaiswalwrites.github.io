@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { experience } from '../data/mock';
-import { MapPin, Calendar, Wrench } from 'lucide-react';
+import { MapPin, Calendar, Wrench, ExternalLink, Globe } from 'lucide-react';
 import useNetflixCarousel from '../hooks/useNetflixCarousel';
 import ToolBadges from './ToolBadges';
 
@@ -118,6 +118,37 @@ const Experience = () => {
                       <p className="text-white/80 mb-4 leading-relaxed font-light relative z-10">
                         {job.description}
                       </p>
+
+                      {/* Live Documentation Landing Page Link Box */}
+                      {job.docsUrl && (
+                        <div className="mb-6 relative z-10">
+                          <a
+                            href={job.docsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center justify-between p-3.5 rounded-xl border border-[#00f0ff]/30 bg-gradient-to-r from-[#00f0ff]/10 via-[#00f0ff]/5 to-transparent hover:border-[#00f0ff] hover:bg-[#00f0ff]/15 transition-all shadow-[0_0_20px_rgba(0,240,255,0.1)]"
+                          >
+                            <div className="flex items-center gap-3 min-w-0">
+                              <div className="w-8 h-8 rounded-lg bg-[#00f0ff]/20 flex items-center justify-center text-[#00f0ff] shrink-0">
+                                <Globe className="w-4 h-4" />
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <div className="text-xs font-mono font-bold text-[#00f0ff] uppercase tracking-wider flex items-center gap-1.5">
+                                  <span>Docs Landing Page</span>
+                                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                                </div>
+                                <div className="text-xs font-mono text-white/60 truncate">
+                                  {job.docsUrl}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-1 text-xs font-mono font-semibold text-[#00f0ff] group-hover:text-white transition-colors shrink-0 ml-2">
+                              <span>Visit</span>
+                              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </div>
+                          </a>
+                        </div>
+                      )}
 
                       {/* Tools Used Badge */}
                       {job.toolsUsed && (

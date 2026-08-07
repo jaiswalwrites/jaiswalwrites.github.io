@@ -32,6 +32,7 @@ export const experience = [
     duration: "March 2025 - April 2026",
     location: "Remote/Bangalore",
     domain: "Observability and monitoring",
+    docsUrl: "https://docs.kloudfuse.com/platform/latest/",
     toolsUsed: "Docs-as-Code: Antora, Markdown, Docusaurus, GitHub",
     description: "Built and owned the end-to-end documentation system for Kloudfuse — a cloud-native observability platform.",
     highlights: [
@@ -54,6 +55,7 @@ export const experience = [
     duration: "Aug 2023 - Sep 2024",
     location: "Bangalore",
     domain: "CRQM, CyberSecurity, AI, LLM",
+    docsUrl: "https://docs.safe.security/",
     toolsUsed: "Authoring: Document360, Analytics: Pendo, GitHub",
     description: "Developed API integration guides, authentication workflows, deployment documentation, and onboarding tutorials for enterprise customers.",
     highlights: [
@@ -75,6 +77,7 @@ export const experience = [
     duration: "March 2021 - July 2023",
     location: "Bangalore",
     domain: "DevOps, ML, AI",
+    docsUrl: "https://developer.harness.io/docs/continuous-integration/",
     toolsUsed: "HelpDocs, Video: Camtasia",
     description: "Owned documentation for the Continuous Integration product, partnering daily with engineering, product management, QA, and design throughout the feature lifecycle.",
     highlights: [
@@ -94,6 +97,7 @@ export const experience = [
     duration: "Nov 2018 - April 2021",
     location: "Bangalore",
     domain: "Cloud Security",
+    docsUrl: "https://success.skyhighsecurity.com/Skyhigh_CASB",
     toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
     description: "Authored and structured end-to-end documentation for Skyhigh Cloud Access Security Broker (CASB), covering cloud data protection, shadow IT analytics, DLP policies, and IaaS/PaaS security integrations.",
     highlights: [
@@ -110,6 +114,7 @@ export const experience = [
     duration: "Dec 2015 - Nov 2018",
     location: "Bangalore",
     domain: "Healthcare, SaaS",
+    docsUrl: "https://kantime.com/",
     toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
     description: "Created comprehensive user assistance and product documentation.",
     highlights: [
