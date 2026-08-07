@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { experience } from '../data/mock';
-import { MapPin, Calendar } from 'lucide-react';
+import { MapPin, Calendar, Wrench } from 'lucide-react';
 import useNetflixCarousel from '../hooks/useNetflixCarousel';
 
 const getLoopingItems = (items) => {
@@ -114,9 +114,22 @@ const Experience = () => {
                       </div>
 
                       {/* Description */}
-                      <p className="text-white/80 mb-6 leading-relaxed font-light flex-grow relative z-10">
+                      <p className="text-white/80 mb-4 leading-relaxed font-light relative z-10">
                         {job.description}
                       </p>
+
+                      {/* Tools Used Badge */}
+                      {job.toolsUsed && (
+                        <div className="mb-6 flex flex-col gap-1.5 relative z-10">
+                          <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-[#00f0ff]">
+                            <Wrench className="w-3.5 h-3.5" />
+                            <span>Tools Used:</span>
+                          </div>
+                          <div className="inline-block px-3 py-1 rounded bg-[#00f0ff]/10 border border-[#00f0ff]/30 text-cyan-200 font-mono text-xs shadow-[0_0_10px_rgba(0,240,255,0.1)]">
+                            {job.toolsUsed}
+                          </div>
+                        </div>
+                      )}
 
                       {/* Highlights */}
                       <div className="space-y-3 pt-6 border-t border-[#00f0ff]/20 mt-auto relative z-10">

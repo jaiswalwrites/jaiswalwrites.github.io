@@ -32,6 +32,7 @@ export const experience = [
     duration: "March 2025 - April 2026",
     location: "Remote/Bangalore",
     domain: "Observability and monitoring",
+    toolsUsed: "Docs-as-Code: Antora, Markdown, Docusaurus, GitHub",
     description: "Built and owned the end-to-end documentation system for Kloudfuse — a cloud-native observability platform.",
     highlights: [
       "Created deployment documentation for cloud-native observability infrastructure running on Kubernetes.",
@@ -53,6 +54,7 @@ export const experience = [
     duration: "Aug 2023 - Sep 2024",
     location: "Bangalore",
     domain: "CRQM, CyberSecurity, AI, LLM",
+    toolsUsed: "Authoring: Document360, Analytics: Pendo, GitHub",
     description: "Developed API integration guides, authentication workflows, deployment documentation, and onboarding tutorials for enterprise customers.",
     highlights: [
       "Revolutionized documentation strategy, resulting in a 40% increase in user engagement and a 30% reduction in support tickets.",
@@ -73,6 +75,7 @@ export const experience = [
     duration: "March 2021 - July 2023",
     location: "Bangalore",
     domain: "DevOps, ML, AI",
+    toolsUsed: "HelpDocs, Video: Camtasia",
     description: "Owned documentation for the Continuous Integration product, partnering daily with engineering, product management, QA, and design throughout the feature lifecycle.",
     highlights: [
       "Authored installation guides, deployment documentation, release notes, tutorials, troubleshooting guides, conceptual documentation, and API references for enterprise customers.",
@@ -91,10 +94,12 @@ export const experience = [
     duration: "Nov 2018 - April 2021",
     location: "Bangalore",
     domain: "Cloud Security",
-    description: "Documented McAfee's Cloud Security Access Broker.",
+    toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
+    description: "Authored and structured end-to-end documentation for Skyhigh Cloud Access Security Broker (CASB), covering cloud data protection, shadow IT analytics, DLP policies, and IaaS/PaaS security integrations.",
     highlights: [
-      "Documented McAfee's Cloud Security Access Broker, improving usability and accessibility.",
-      "Coordinated with engineers and product managers to align documentation with product releases, akin to the McAfee collaborative environment."
+      "Documented Skyhigh Cloud Access Security Broker (CASB), improving usability and accessibility across enterprise cloud security environments.",
+      "Coordinated with security engineers and product managers to align documentation releases with fast-paced CASB deployment cycles.",
+      "Streamlined release note delivery, replacing legacy 400-page documents with structured digital user assistance."
     ]
   },
   {
@@ -105,6 +110,7 @@ export const experience = [
     duration: "Dec 2015 - Nov 2018",
     location: "Bangalore",
     domain: "Healthcare, SaaS",
+    toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
     description: "Created comprehensive user assistance and product documentation.",
     highlights: [
       "Created User Guides and Release Notes, conducting in-depth functional testing to ensure the accuracy and reliability of documentation for the US Healthcare platform."
@@ -127,6 +133,7 @@ export const writingSamples = [
       architecture: "Modular and versioned architecture built for scale using Antora and AsciiDoc, integrating seamlessly with CI/CD for Docs-as-Code publishing.",
       philosophy: "AI-Ready Documentation Design. Structured content with semantic chunking and metadata tagging to ensure LLM-friendly formatting for RAG pipelines and copilots.",
       personas: "SREs, Platform Engineers, and DevOps Engineers integrating with complex observability infrastructure.",
+      toolsUsed: "Docs-as-Code: Antora, Markdown, Docusaurus, GitHub",
       achievements: [
         "Built an end-to-end customer feedback loop capturing signals for rapid content updates.",
         "Created LLM workflows to accelerate drafting and ensure consistency."
@@ -147,6 +154,7 @@ export const writingSamples = [
       architecture: "Git-based Markdown documentation workflow leveraging automated pull requests, continuous publishing, and tight coupling with product code releases.",
       philosophy: "Developer-First Enablement. Emphasized hands-on Quickstarts and real-world deployment scenarios (Kubernetes, Docker) over dry reference material.",
       personas: "DevOps Engineers, Software Developers, and Release Managers.",
+      toolsUsed: "HelpDocs, Video: Camtasia",
       achievements: [
         "Reduced customer ramp-up time significantly through outcome-based tutorials.",
         "Shipped documentation alongside every beta-to-GA feature release with zero delays."
@@ -167,6 +175,7 @@ export const writingSamples = [
       architecture: "Swagger/OpenAPI spec generation tightly coupled with product UI. Designed to feed directly into the in-house AI agent (Safex) for contextual answers.",
       philosophy: "Data-Driven Content Strategy. Utilized Pendo analytics, Session Replays, and NPS to identify friction points and redesign persona-based onboarding.",
       personas: "CISOs, Security Admins, and API Integrators.",
+      toolsUsed: "Authoring: Document360, Analytics: Pendo, GitHub",
       achievements: [
         "Optimized 400+ REST APIs, reducing API-related support queries by 50%.",
         "Trained AI support agent via prompt engineering, reducing response time by 75%."
@@ -175,21 +184,22 @@ export const writingSamples = [
   },
   {
     id: 4,
-    title: "McAfee (Skyhigh) Cloud Security Broker",
+    title: "Skyhigh Security CASB Platform Documentation",
     category: "Cloud Security",
-    description: "Documentation for McAfee's Cloud Security Access Broker, focusing on usability, accessibility, and high-stakes enterprise cloud security.",
+    description: "Documentation for McAfee (Skyhigh) Cloud Access Security Broker (CASB), providing real-time data protection, threat prevention, shadow IT analytics, DLP policies, and IaaS/PaaS security integrations.",
     link: "https://success.skyhighsecurity.com/Skyhigh_CASB",
     company: "McAfee (Skyhigh)",
     logo: "/logos/mcafee.png",
     image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=800&h=600&fit=crop",
     featured: false,
     caseStudy: {
-      architecture: "Enterprise Content Management System with strict compliance tracking and version control mirroring product releases.",
-      philosophy: "Clarity and Minimalism in Security. Prioritized unambiguous procedural instructions to prevent security misconfigurations.",
-      personas: "Cloud Security Architects and IT Administrators.",
+      architecture: "Enterprise Content Management System (IXIASOFT DITA CMS) with strict compliance tracking, version control, and multi-tenant security architecture mirroring enterprise product releases.",
+      philosophy: "Clarity and Minimalism in Enterprise Security. Focused on unambiguous procedural workflows, zero-drift policy configurations, and threat prevention guides.",
+      personas: "Cloud Security Architects, SecOps Teams, and Enterprise IT Administrators.",
+      toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
       achievements: [
-        "Significantly improved the usability and accessibility of core security documentation.",
-        "Streamlined release note delivery, replacing a massive 400-page legacy document."
+        "Significantly improved the usability and accessibility of core CASB security documentation.",
+        "Streamlined release note delivery, replacing a massive 400-page legacy document with structured digital user assistance."
       ]
     }
   },
@@ -207,6 +217,7 @@ export const writingSamples = [
       architecture: "In-app contextual help architecture. Documentation acts as an embedded companion directly within the secure user login portal.",
       philosophy: "Workflow-Driven Assistance. Healthcare professionals need answers without leaving their clinical workflows; docs are designed as tooltips and modal guides.",
       personas: "Healthcare Administrators, Clinicians, and Billing Specialists.",
+      toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
       achievements: [
         "Conducted in-depth functional testing to ensure zero-error reliability.",
         "Successfully transitioned off legacy offline guides to embedded digital adoption."

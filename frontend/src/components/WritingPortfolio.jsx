@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { writingSamples } from '../data/mock';
 import { Card } from './ui/card';
-import { ExternalLink, Filter, ChevronDown, ChevronUp } from 'lucide-react';
+import { ExternalLink, Filter, ChevronDown, ChevronUp, Wrench } from 'lucide-react';
 import { Button } from './ui/button';
 import useNetflixCarousel from '../hooks/useNetflixCarousel';
 
@@ -79,6 +79,17 @@ const PortfolioCard = ({ sample, isVisible, index, itemRef }) => {
                   <p><strong className="text-white">Architecture:</strong> {sample.caseStudy.architecture}</p>
                   <p><strong className="text-white">Philosophy:</strong> {sample.caseStudy.philosophy}</p>
                   <p><strong className="text-white">Personas:</strong> {sample.caseStudy.personas}</p>
+                  {sample.caseStudy.toolsUsed && (
+                    <div className="pt-1">
+                      <div className="flex items-center gap-1.5 text-cyan-300 font-medium mb-1">
+                        <Wrench className="w-3.5 h-3.5 text-cyan-400" />
+                        <strong className="text-white">Tools Used:</strong>
+                      </div>
+                      <div className="inline-block px-2.5 py-1 rounded bg-cyan-950/60 border border-cyan-500/40 text-cyan-200 font-mono text-[11px] shadow-[0_0_10px_rgba(6,182,212,0.15)]">
+                        {sample.caseStudy.toolsUsed}
+                      </div>
+                    </div>
+                  )}
                   <div className="mt-2">
                     <strong className="text-white">Key Achievements:</strong>
                     <ul className="list-disc pl-4 mt-1 space-y-1">
