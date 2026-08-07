@@ -161,6 +161,13 @@ const Live2DPanel = ({ isTyping, onPoke }) => {
   );
 };
 
+// Helper for GA4 Custom Event Tracking
+const trackGAEvent = (eventName, params = {}) => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+};
+
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -205,8 +212,14 @@ const Chatbot = () => {
   const handlePoke = () => {
     if (isPoked) return;
     setIsPoked(true);
+    trackGAEvent('chatbot_poked');
     speakText("Don't flick me. Focus on the profile.");
     setTimeout(() => setIsPoked(false), 1500);
+  };
+
+  const handleOpenChat = () => {
+    setIsOpen(true);
+    trackGAEvent('chatbot_opened');
   };
 
   const handleSend = (text) => {
@@ -215,6 +228,8 @@ const Chatbot = () => {
     setMessages(prev => [...prev, { type: 'user', text: query }]);
     setInputValue('');
     setIsTyping(true);
+
+    trackGAEvent('chatbot_interaction', { prompt: query });
 
     setTimeout(() => {
       setIsTyping(false);
@@ -245,6 +260,7 @@ const Chatbot = () => {
       } else if (q.includes('schedule') || q.includes('call') || q.includes('meet') || q.includes('book') || q.includes('calendly')) {
         response = "📅 Select a convenient time slot below to schedule a meeting directly with Manish:";
         isCalendly = true;
+        trackGAEvent('chatbot_calendly_triggered');
       } else if (q.includes('resume') || q.includes('cv')) {
         response = "Review the data. Here is his Google Drive resume:\n👉 https://drive.google.com/file/d/1f9ZrT1hg0dM5yCNcdcbSq-xTPenGBLbo/view?usp=sharing";
       } else if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach')) {
@@ -272,7 +288,7 @@ const Chatbot = () => {
     <>
       {/* Floating Live2D Button — bottom right, hidden when chat is open */}
       {!isOpen && (
-        <Live2DButton onClick={() => setIsOpen(true)} color={COLOR} />
+        <Live2DButton onClick={handleOpenChat} color={COLOR} />
       )}
 
       {/* Chat Window */}
