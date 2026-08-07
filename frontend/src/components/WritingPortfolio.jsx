@@ -5,6 +5,8 @@ import { ExternalLink, Filter, ChevronDown, ChevronUp, Wrench } from 'lucide-rea
 import { Button } from './ui/button';
 import useNetflixCarousel from '../hooks/useNetflixCarousel';
 
+import ToolBadges from './ToolBadges';
+
 const PortfolioCard = ({ sample, isVisible, index, itemRef }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -85,9 +87,7 @@ const PortfolioCard = ({ sample, isVisible, index, itemRef }) => {
                         <Wrench className="w-3.5 h-3.5 text-cyan-400" />
                         <strong className="text-white">Tools Used:</strong>
                       </div>
-                      <div className="inline-block px-2.5 py-1 rounded bg-cyan-950/60 border border-cyan-500/40 text-cyan-200 font-mono text-[11px] shadow-[0_0_10px_rgba(6,182,212,0.15)]">
-                        {sample.caseStudy.toolsUsed}
-                      </div>
+                      <ToolBadges toolsString={sample.caseStudy.toolsUsed} />
                     </div>
                   )}
                   <div className="mt-2">

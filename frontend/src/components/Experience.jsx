@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { experience } from '../data/mock';
 import { MapPin, Calendar, Wrench } from 'lucide-react';
 import useNetflixCarousel from '../hooks/useNetflixCarousel';
+import ToolBadges from './ToolBadges';
 
 const getLoopingItems = (items) => {
   if (!items || items.length === 0) return [];
@@ -125,9 +126,7 @@ const Experience = () => {
                             <Wrench className="w-3.5 h-3.5" />
                             <span>Tools Used:</span>
                           </div>
-                          <div className="inline-block px-3 py-1 rounded bg-[#00f0ff]/10 border border-[#00f0ff]/30 text-cyan-200 font-mono text-xs shadow-[0_0_10px_rgba(0,240,255,0.1)]">
-                            {job.toolsUsed}
-                          </div>
+                          <ToolBadges toolsString={job.toolsUsed} />
                         </div>
                       )}
 
