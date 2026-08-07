@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Terminal, Calendar, FileText, Code } from 'lucide-react';
+import { X, Send, Terminal, Calendar, FileText, Code, Wrench, Sparkles, Download, Building2 } from 'lucide-react';
 import avatarImg from '../assets/avatar.png';
 
 const MODEL_URL = 'https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/shizuku/shizuku.model.json';
@@ -28,131 +28,107 @@ const initLive2DOnCanvas = (canvas, onHit) => {
           view: canvas,
           backgroundAlpha: 0,
           resolution: window.devicePixelRatio || 1,
-          autoDensity: true,
-          width: canvas.width || 240,
-          height: canvas.height || 600,
+          autoStart: true,
+          resizeTo: canvas.parentElement,
         });
 
-        const model = await window.PIXI.live2d.Live2DModel.from(MODEL_URL, { autoInteract: true });
+        const model = await window.PIXI.live2d.Live2DModel.from(MODEL_URL);
         app.stage.addChild(model);
 
-        const W = app.screen.width;
-        const H = app.screen.height;
-        const scale = Math.min(W / model.internalModel.width, H / model.internalModel.height) * 1.6;
-        model.scale.set(scale);
-        model.anchor.set(0.5, 0);
-        model.x = W / 2;
-        model.y = H * 0.05;
+        const width = canvas.parentElement?.clientWidth || canvas.width;
+        const height = canvas.parentElement?.clientHeight || canvas.height;
+        const scaleX = width / model.width;
+        const scaleY = height / model.height;
+        const scale = Math.min(scaleX, scaleY) * 0.95;
 
-        if (onHit) {
-          model.on('hit', (areas) => {
-            if (areas.includes('body') || areas.includes('head')) {
-              model.motion('tap_body');
-              onHit();
-            }
-          });
-        }
+        model.scale.set(scale);
+        model.x = (width - model.width * scale) / 2;
+        model.y = (height - model.height * scale) / 2 + 10;
+
+        model.on('hit', (hitAreas) => {
+          if (hitAreas.includes('body') || hitAreas.includes('head')) {
+            model.motion('tap_body');
+            if (onHit) onHit();
+          }
+        });
 
         return { app, model };
-      } catch (err) {
-        console.warn('Live2D model init failed:', err);
+      } catch (e) {
+        console.warn('Live2D model render warning:', e);
         return null;
       }
     })
-    .catch((err) => {
-      console.warn('Live2D script loading timed out:', err);
-      return null;
-    });
+    .catch(() => null);
 };
 
-// Small Live2D canvas for the floating button
+// 1. Floating round button component (bottom-right)
 const Live2DButton = ({ onClick, color }) => {
   const canvasRef = useRef(null);
-  const instanceRef = useRef(null);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-    let cancelled = false;
-
-    initLive2DOnCanvas(canvasRef.current, null).then((instance) => {
-      if (cancelled || !instance) return;
-      instanceRef.current = instance;
-    });
-
+    let instance = null;
+    if (canvasRef.current) {
+      initLive2DOnCanvas(canvasRef.current).then((inst) => {
+        instance = inst;
+      });
+    }
     return () => {
-      cancelled = true;
-      if (instanceRef.current) {
-        try { instanceRef.current.app.destroy(true); } catch (e) {}
-        instanceRef.current = null;
+      if (instance?.app) {
+        try { instance.app.destroy(true, { children: true, texture: true, baseTexture: true }); } catch (e) {}
       }
     };
   }, []);
 
   return (
-    <motion.button
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.92 }}
+    <motion.div
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center cursor-pointer group"
       onClick={onClick}
-      className="fixed bottom-6 right-6 w-20 h-20 rounded-full border-2 bg-black z-50 overflow-hidden cursor-pointer shadow-[0_0_24px_rgba(0,240,255,0.5)]"
-      style={{ borderColor: color }}
     >
-      {/* Fallback static image behind canvas */}
-      <img src={avatarImg} alt="Chat" className="absolute inset-0 w-full h-full object-cover" />
-      <canvas
-        ref={canvasRef}
-        width={80}
-        height={80}
-        className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 2 }}
+      <div
+        className="absolute inset-0 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity animate-pulse"
+        style={{ backgroundColor: color }}
       />
-      <div className="absolute bottom-1 right-1 w-3 h-3 rounded-full border border-black animate-ping z-10" style={{ backgroundColor: color }} />
-    </motion.button>
+      <div
+        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 bg-black/80 backdrop-blur-md relative overflow-hidden flex items-center justify-center shadow-2xl transition-transform group-hover:scale-105"
+        style={{ borderColor: color }}
+      >
+        <canvas ref={canvasRef} className="w-full h-full pointer-events-none" />
+        <div className="absolute top-1 right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-black animate-ping" />
+        <div className="absolute top-1 right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-black" />
+      </div>
+    </motion.div>
   );
 };
 
-// Full Live2D canvas for the chatbox left panel
+// 2. Chat panel Live2D canvas component (inside left column of chat window)
 const Live2DPanel = ({ isTyping, onPoke }) => {
   const canvasRef = useRef(null);
-  const instanceRef = useRef(null);
+  const modelRef = useRef(null);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-    let cancelled = false;
-
-    initLive2DOnCanvas(canvasRef.current, onPoke).then((instance) => {
-      if (cancelled || !instance) return;
-      instanceRef.current = instance;
-    });
-
+    let instance = null;
+    if (canvasRef.current) {
+      initLive2DOnCanvas(canvasRef.current, onPoke).then((inst) => {
+        instance = inst;
+        if (inst) modelRef.current = inst.model;
+      });
+    }
     return () => {
-      cancelled = true;
-      if (instanceRef.current) {
-        try { instanceRef.current.app.destroy(true); } catch (e) {}
-        instanceRef.current = null;
+      if (instance?.app) {
+        try { instance.app.destroy(true, { children: true, texture: true, baseTexture: true }); } catch (e) {}
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [onPoke]);
 
-  // Trigger typing motion on the model
   useEffect(() => {
-    if (!instanceRef.current?.model) return;
-    const { model } = instanceRef.current;
-    if (isTyping) {
-      try { model.motion('flick_head'); } catch (e) {}
+    if (isTyping && modelRef.current) {
+      try { modelRef.current.motion('flick_head'); } catch (e) {}
     }
   }, [isTyping]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      width={240}
-      height={580}
-      className="absolute inset-0 w-full h-full cursor-pointer z-10"
-    />
-  );
+  return <canvas ref={canvasRef} className="w-full h-full cursor-pointer relative z-10" />;
 };
 
 const Chatbot = () => {
@@ -164,17 +140,21 @@ const Chatbot = () => {
   const messagesEndRef = useRef(null);
   const COLOR = '#00f0ff';
 
-  useEffect(() => {
+  const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
   }, [messages, isTyping]);
 
   const speakText = (text) => {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.pitch = 1.3;
-    utterance.rate = 1.05;
+    const cleanText = text.replace(/https?:\/\/[^\s]+/g, 'link').replace(/[*#]/g, '');
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 1.1;
+    utterance.pitch = 1.2;
 
     const speak = () => {
       const voices = window.speechSynthesis.getVoices();
@@ -213,22 +193,42 @@ const Chatbot = () => {
       const q = query.toLowerCase();
       let response = '';
 
-      if (q.includes('experience') || q.includes('work') || q.includes('job')) {
-        response = "Focus! Here is his track record:\n1. 10+ years architecting documentation for AI startups.\n2. Expert at turning chaotic data into streamlined Docs-as-Code.\n3. Master of Developer Experience (DX). Stay on task!";
+      if (q.includes('dita') || q.includes('oxygen') || q.includes('ditamap') || q.includes('dtp') || q.includes('ixiasoft')) {
+        response = "⚡ DITA XML & Oxygen XML Master:\n1. 10+ years structured XML authoring using Oxygen XML Editor, DITAMAPs, DITAVAL profiling & IXIASOFT DITA CMS.\n2. Built enterprise DTP & DITA-OT publishing pipelines for McAfee (Skyhigh Security CASB) & KanTime Healthcare.\n3. Automated PDF Chemistry, Schematron validation, and multi-channel single-sourcing.";
+      } else if (q.includes('docs-as-code') || q.includes('docs as code') || q.includes('pipeline') || q.includes('antora') || q.includes('docusaurus')) {
+        response = "🚀 Docs-as-Code Architect:\n1. Engineered production CI/CD documentation pipelines with GitHub Actions, Git, Markdown, MDX, Antora & Docusaurus.\n2. Integrated Spectral OpenAPI linting, Vale style enforcement, and automated link checkers.\n3. Zero doc-to-code drift with continuous publishing alongside product releases.";
+      } else if (q.includes('ai-ready') || q.includes('ai ready') || q.includes('rag') || q.includes('llm') || q.includes('safex') || q.includes('vector')) {
+        response = "🤖 AI-Ready Documentation Leader:\n1. Structures content for LLM & RAG ingestion using semantic chunking, metadata tagging, and LLM-friendly MDX.\n2. Ingested 400+ REST APIs & ML docs into Safe Security's in-house AI assistant (Safex), boosting answer accuracy by 60% and reducing response time by 75%.\n3. Created automated LLM workflows to accelerate drafting and ensure style consistency.";
+      } else if (q.includes('kloudfuse')) {
+        response = "💼 Kloudfuse (Lead Technical Writer | Mar 2025 - Apr 2026):\n1. Built end-to-end documentation system for cloud-native observability infrastructure running on Kubernetes.\n2. Architected Antora & AsciiDoc modular, versioned doc system.\n3. Created LLM-friendly semantic doc pipelines and customer feedback loops.";
+      } else if (q.includes('safe security') || q.includes('safe')) {
+        response = "🛡️ Safe Security (Lead Technical Writer | Aug 2023 - Sep 2024):\n1. Optimized & documented 400+ REST APIs on Swagger (reducing support queries by 50%).\n2. Trained Safex AI agent via prompt engineering (75% faster responses).\n3. Leveraged Pendo product analytics & session replays to cut onboarding time by 50%.";
+      } else if (q.includes('mcafee') || q.includes('skyhigh') || q.includes('casb')) {
+        response = "🔒 McAfee / Skyhigh Security (Technical Writer | Nov 2018 - Apr 2021):\n1. Authored Skyhigh Cloud Access Security Broker (CASB) docs covering DLP policies & threat protection.\n2. Utilized Oxygen XML Editor, DITAMAP, and IXIASOFT DITA CMS.\n3. Replaced a legacy 400-page document with structured digital user assistance.";
+      } else if (q.includes('harness')) {
+        response = "⚡ Harness.io (Senior Technical Writer | Mar 2021 - Jul 2023):\n1. Owned Harness Continuous Integration (CI) product docs.\n2. Built K8s, Docker, and AWS test pipelines to validate docs against real deployments.\n3. Created quickstarts & video tutorials using HelpDocs & Camtasia.";
+      } else if (q.includes('kantime')) {
+        response = "🏥 KanTime (Technical Writer | Dec 2015 - Nov 2018):\n1. Created user guides & release notes for US Healthcare SaaS portal using DITA XML & Oxygen XML Editor.\n2. Embedded contextual help directly into user login portals.";
+      } else if (q.includes('company') || q.includes('companies')) {
+        response = "🏢 Companies Manish Has Empowered:\n1. Kloudfuse — Observability & AI Docs\n2. Safe Security — Cybersecurity & OpenAPI Docs\n3. Harness.io — DevOps & CI/CD Pipelines\n4. McAfee (Skyhigh) — Cloud Security & DITA XML\n5. KanTime — Healthcare SaaS & DITA XML";
+      } else if (q.includes('experience') || q.includes('work') || q.includes('job') || q.includes('career')) {
+        response = "📊 Manish Jaiswal — Career Track Record:\n• 10+ years engineering scalable documentation ecosystems for enterprise leaders & AI startups.\n• Specialties: DITA XML (Oxygen XML), Docs-as-Code, AI/RAG Docs, OpenAPI 3.0, Kubernetes & Developer Experience (DX).\n• Proven track record reducing support queries by up to 50% and onboarding time by 50%.";
       } else if (q.includes('project') || q.includes('showcase')) {
         response = "Eyes on the screen! The Showcase proves his skills:\n1. Real-world documentation portals and interactive tools.\n2. Heavy use of OpenAPI, React, and intelligent chat flows.\n3. Try the interactive playground on any project card!";
       } else if (q.includes('writing') || q.includes('portfolio') || q.includes('article')) {
         response = "Stop drifting and read his work:\n1. High-impact technical guides and API references.\n2. Complex system architectures broken down perfectly.\n3. Scroll the horizontal coverflow to see the case studies.";
       } else if (q.includes('skill') || q.includes('stack') || q.includes('tech')) {
-        response = "Memorize his stack:\n1. React, Next.js, and modern frontend tools.\n2. Docusaurus, OpenAPI, Swagger, and MDX for docs.\n3. RAG and LLM integration to build actual AI ecosystems.";
+        response = "Memorize his stack:\n1. DITA XML, Oxygen XML Editor, IXIASOFT CMS.\n2. Docs-as-Code: Docusaurus, Antora, Git, Markdown, OpenAPI 3.0.\n3. AI & RAG: Prompt Engineering, Semantic Chunking, LLM Knowledge Graphs.";
       } else if (q.includes('about') || q.includes('who') || q.includes('hero')) {
-        response = "Who is he? Listen closely:\n1. A Lead AI Engineer and Technical Writer.\n2. He builds ecosystems that make complex AI usable.\n3. This entire site is proof of his engineering prowess.";
-      } else if (q.includes('schedule') || q.includes('call') || q.includes('meet')) {
-        response = "Don't procrastinate! Book a meeting right now: https://calendly.com/jaiswalmanish060/book-a-call-with-manish";
+        response = "Who is he? Listen closely:\n1. Senior Technical Writer, Docs Strategist & Writer Who Codes.\n2. 10+ years architecting documentation systems for cloud-native, DevOps, AI, and SaaS platforms.\n3. This entire site is proof of his engineering prowess.";
+      } else if (q.includes('schedule') || q.includes('call') || q.includes('meet') || q.includes('book')) {
+        response = "Don't procrastinate! Book a meeting right now:\n👉 https://calendly.com/jaiswalmanish060/book-a-call-with-manish";
       } else if (q.includes('resume') || q.includes('cv')) {
-        response = "Review the data. Here is the updated resume: https://drive.google.com/file/d/1f9ZrT1hg0dM5yCNcdcbSq-xTPenGBLbo/view?usp=sharing";
+        response = "Review the data. Here is his Google Drive resume:\n👉 https://drive.google.com/file/d/1f9ZrT1hg0dM5yCNcdcbSq-xTPenGBLbo/view?usp=sharing";
+      } else if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach')) {
+        response = "📫 Direct Contact Information:\n• Email: jaiswalmanish060@gmail.com\n• Phone: +91 9538466170\n• LinkedIn: https://www.linkedin.com/in/manish-jaiswal1993/";
       } else {
-        response = "Stop losing focus! Ask me about Manish's Experience, Projects, Writing, or Skills, and I will give you a direct 3-line breakdown.";
+        response = "Ask me about DITA XML, Oxygen XML, Docs-as-Code, AI-Ready Docs, Kloudfuse, Safe Security, McAfee, Harness, or Resume!";
       }
 
       setMessages(prev => [...prev, { type: 'bot', text: response }]);
@@ -237,9 +237,13 @@ const Chatbot = () => {
   };
 
   const presets = [
-    { label: 'Experience', query: 'Tell me about his experience', icon: FileText },
-    { label: 'Projects', query: 'What is in the projects showcase?', icon: Code },
-    { label: 'Book Call', query: 'I want to schedule a call', icon: Calendar },
+    { label: '⚡ DITA & Oxygen', query: 'Tell me about his DITA XML and Oxygen XML experience', icon: Wrench },
+    { label: '🚀 Docs-as-Code', query: 'How does Manish build Docs-as-Code pipelines?', icon: Code },
+    { label: '🤖 AI-Ready Docs', query: 'What are AI-Ready docs and RAG pipelines?', icon: Sparkles },
+    { label: '💼 Experience', query: 'Overview of Manish Jaiswal\'s career experience', icon: FileText },
+    { label: '🏢 Companies', query: 'What companies has Manish worked for?', icon: Building2 },
+    { label: '📄 Resume', query: 'Can I download his resume?', icon: Download },
+    { label: '📅 Book Call', query: 'I want to schedule a call with Manish', icon: Calendar },
   ];
 
   return (
@@ -334,16 +338,16 @@ const Chatbot = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Preset Questions */}
-              {!isTyping && messages.length < 5 && (
-                <div className="px-3 pb-2 flex flex-wrap gap-2 z-10">
+              {/* Preset Questions / Quick Shortcuts */}
+              {!isTyping && (
+                <div className="px-3 pb-2 flex items-center gap-1.5 overflow-x-auto scrollbar-none z-10 py-1 border-t border-white/5">
                   {presets.map((p, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleSend(p.query)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] transition-colors bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/20"
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-mono whitespace-nowrap transition-all duration-300 bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/25 hover:border-[#00f0ff]/60 hover:scale-105"
                     >
-                      <p.icon className="w-3 h-3" /> {p.label}
+                      <p.icon className="w-3 h-3 text-[#00f0ff]" /> {p.label}
                     </button>
                   ))}
                 </div>
