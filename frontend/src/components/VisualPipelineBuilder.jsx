@@ -187,11 +187,58 @@ jobs:
         with:
           files: 'docs/'
           styles: 'Microsoft, Google, CustomBrand'
-          fail_on_error: true`
+          fail_on_error: true
+  },
+  {
+    id: '19',
+    title: 'Structured DITA XML & Oxygen DTP Publishing Pipeline',
+    category: 'DITA & DTP',
+    problem: 'Enterprise multi-channel documentation requires strict XML validation, conditional profiling (DITAVAL), and pixel-perfect DTP PDF/HTML publishing without manual formatting errors.',
+    impact: '100% Schema Compliance, automated DITAMAP validation & 400-page legacy document converted into modular DITA-OT outputs.',
+    pipeline: [
+      { label: 'Oxygen DITAMAP', desc: 'Hierarchy & Topic Structuring' },
+      { label: 'DITAVAL Profiling', desc: 'Conditional Audience/Platform Filtering' },
+      { label: 'Schematron Linter', desc: 'Oxygen XML Validation Rules' },
+      { label: 'DITA-OT / DTP Build', desc: 'Custom XSL-FO PDF & HTML5 Publishing' }
+    ],
+    architecture: 'Oxygen XML Editor (.ditamap & .xml) → DITAVAL Conditional Filtering → Schematron Rule Engine → IXIASOFT DITA CMS / DITA-OT Pipeline → PDF & Web Portal DTP Publishing',
+    philosophy: 'Single-source authoring with DITA XML ensures absolute consistency, zero content duplication, and automated multi-format Desktop Publishing (DTP) for complex enterprise platforms.',
+    rawInput: `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map title="Skyhigh CASB Security Guide">
+  <topicref href="concepts/casb_overview.dita" navtitle="Overview"/>
+  <topicref href="tasks/configure_dlp_policy.dita" navtitle="DLP Configuration" audience="admin"/>
+  <topicref href="references/api_endpoints.dita" navtitle="API References" platform="cloud"/>
+</map>`,
+    rawOutput: `<!-- DITAVAL Filtered Output (Audience: Admin, Platform: Cloud) -->
+<pdf-dtp-output-manifest>
+  <book-title>Skyhigh CASB Security Guide</book-title>
+  <chapter-count>3</chapter-count>
+  <compiled-topics>
+    <topic status="validated">concepts/casb_overview.dita</topic>
+    <topic status="filtered_pass">tasks/configure_dlp_policy.dita</topic>
+    <topic status="filtered_pass">references/api_endpoints.dita</topic>
+  </compiled-topics>
+  <dtp-target>Oxygen PDF Chemistry / DITA-OT 4.1</dtp-target>
+</pdf-dtp-output-manifest>`,
+    codebase: `# dita_ot_publish.sh
+#!/bin/bash
+# DITA-OT Automated DTP Build Script for Oxygen XML Editor Projects
+
+DITA_MAP="maps/skyhigh_casb_master.ditamap"
+DITAVAL_FILTER="filters/enterprise_admin.ditaval"
+OUTPUT_DIR="dist/pdf"
+
+echo "[BUILD] Validating DITA XML map with Oxygen Schematron rules..."
+dita --input="$DITA_MAP" --filter="$DITAVAL_FILTER" --format=pdf --output="$OUTPUT_DIR" \\
+     -Dpdf.formatter=fop \\
+     -Dargs.css=styles/custom_dtp_theme.css
+
+echo "[SUCCESS] PDF DTP Published cleanly to $OUTPUT_DIR"`
   }
 ];
 
-const categories = ['All', 'AI & RAG', 'Docs-as-Code', 'Automation', 'Dev Experience'];
+const categories = ['All', 'AI & RAG', 'Docs-as-Code', 'DITA & DTP', 'Automation', 'Dev Experience'];
 
 const VisualPipelineBuilder = () => {
   const [selectedStrategy, setSelectedStrategy] = useState(pipelineStrategies[0]);
