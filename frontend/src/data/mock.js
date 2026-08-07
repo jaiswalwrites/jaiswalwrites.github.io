@@ -33,6 +33,7 @@ export const experience = [
     location: "Remote/Bangalore",
     domain: "Observability and monitoring",
     docsUrl: "https://docs.kloudfuse.com/platform/latest/",
+    previewImage: "/previews/kloudfuse.png",
     toolsUsed: "Docs-as-Code: Antora, Markdown, Docusaurus, GitHub",
     description: "Built and owned the end-to-end documentation system for Kloudfuse — a cloud-native observability platform.",
     highlights: [
@@ -56,6 +57,7 @@ export const experience = [
     location: "Bangalore",
     domain: "CRQM, CyberSecurity, AI, LLM",
     docsUrl: "https://docs.safe.security/",
+    previewImage: "/previews/safe.png",
     toolsUsed: "Authoring: Document360, Analytics: Pendo, GitHub",
     description: "Developed API integration guides, authentication workflows, deployment documentation, and onboarding tutorials for enterprise customers.",
     highlights: [
@@ -78,6 +80,7 @@ export const experience = [
     location: "Bangalore",
     domain: "DevOps, ML, AI",
     docsUrl: "https://developer.harness.io/docs/continuous-integration/",
+    previewImage: "/previews/harness.png",
     toolsUsed: "HelpDocs, Video: Camtasia",
     description: "Owned documentation for the Continuous Integration product, partnering daily with engineering, product management, QA, and design throughout the feature lifecycle.",
     highlights: [
@@ -98,6 +101,7 @@ export const experience = [
     location: "Bangalore",
     domain: "Cloud Security",
     docsUrl: "https://success.skyhighsecurity.com/Skyhigh_CASB",
+    previewImage: "/previews/mcafee.png",
     toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
     description: "Authored and structured end-to-end documentation for Skyhigh Cloud Access Security Broker (CASB), covering cloud data protection, shadow IT analytics, DLP policies, and IaaS/PaaS security integrations.",
     highlights: [
@@ -115,6 +119,7 @@ export const experience = [
     location: "Bangalore",
     domain: "Healthcare, SaaS",
     docsUrl: "https://kantime.com/",
+    previewImage: "/previews/kantime.png",
     toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
     description: "Created comprehensive user assistance and product documentation.",
     highlights: [
@@ -132,7 +137,7 @@ export const writingSamples = [
     link: "https://docs.kloudfuse.com/platform/latest/",
     company: "Kloudfuse",
     logo: "/logos/kloudfuse.png",
-    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&h=600&fit=crop",
+    image: "/previews/kloudfuse.png",
     featured: true,
     caseStudy: {
       architecture: "Modular and versioned architecture built for scale using Antora and AsciiDoc, integrating seamlessly with CI/CD for Docs-as-Code publishing.",
@@ -153,7 +158,7 @@ export const writingSamples = [
     link: "https://developer.harness.io/docs/continuous-integration/",
     company: "Harness.io",
     logo: "/logos/harness.png",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop",
+    image: "/previews/harness.png",
     featured: true,
     caseStudy: {
       architecture: "Git-based Markdown documentation workflow leveraging automated pull requests, continuous publishing, and tight coupling with product code releases.",
@@ -174,7 +179,7 @@ export const writingSamples = [
     link: "https://docs.safe.security/",
     company: "Safe Security",
     logo: "/logos/safe.png",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop",
+    image: "/previews/safe.png",
     featured: true,
     caseStudy: {
       architecture: "Swagger/OpenAPI spec generation tightly coupled with product UI. Designed to feed directly into the in-house AI agent (Safex) for contextual answers.",
@@ -195,7 +200,7 @@ export const writingSamples = [
     link: "https://success.skyhighsecurity.com/Skyhigh_CASB",
     company: "McAfee (Skyhigh)",
     logo: "/logos/mcafee.png",
-    image: "https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=800&h=600&fit=crop",
+    image: "/previews/mcafee.png",
     featured: false,
     caseStudy: {
       architecture: "Enterprise Content Management System (IXIASOFT DITA CMS) with strict compliance tracking, version control, and multi-tenant security architecture mirroring enterprise product releases.",
@@ -216,7 +221,7 @@ export const writingSamples = [
     link: "https://kantime.com/",
     company: "KanTime",
     logo: "/logos/kantime.png",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop",
+    image: "/previews/kantime.png",
     featured: false,
     caseStudy: {
       architecture: "In-app contextual help architecture. Documentation acts as an embedded companion directly within the secure user login portal.",
