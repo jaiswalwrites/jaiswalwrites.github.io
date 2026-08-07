@@ -34,18 +34,17 @@ export const experience = [
     domain: "Observability and monitoring",
     docsUrl: "https://docs.kloudfuse.com/platform/latest/",
     previewImage: "/previews/kloudfuse.png",
+    architecture: "Modular and versioned architecture built for scale using Antora and AsciiDoc, integrating seamlessly with CI/CD for Docs-as-Code publishing.",
+    philosophy: "AI-Ready Documentation Design. Structured content with semantic chunking and metadata tagging to ensure LLM-friendly formatting for RAG pipelines.",
+    personas: "SREs, Platform Engineers, and DevOps Engineers integrating with observability infrastructure.",
     toolsUsed: "Docs-as-Code: Antora, Markdown, Docusaurus, GitHub",
     description: "Built and owned the end-to-end documentation system for Kloudfuse — a cloud-native observability platform.",
     highlights: [
       "Created deployment documentation for cloud-native observability infrastructure running on Kubernetes.",
       "Authored installation and configuration guides for customer-managed deployments.",
-      "Worked directly with engineering teams to validate documentation using real product deployments.",
-      "Designed reusable documentation architecture supporting versioned releases.",
-      "Designed the full doc system architecture using Antora and AsciiDoc — modular, versioned, and built for scale across a fast-moving product team.",
-      "Built an end-to-end customer feedback loop for documentation — capturing signal from users, triaging gaps, and closing the loop with content updates tied directly to support and product cycles.",
-      "Authored and maintained API documentation, release notes, and logging/monitoring developer guides — written for SREs, platform engineers, and developers integrating with observability infrastructure.",
-      "Made documentation AI-ready — structured content following emerging AI-consumption standards (semantic chunking, metadata tagging, LLM-friendly formatting) so docs surface accurately in AI assistants, RAG pipelines, and copilot tools.",
-      "Integrated AI into the documentation workflow — used LLM tooling to accelerate content drafting, maintain consistency at scale, and reduce time-to-publish for new feature releases."
+      "Designed the full doc system architecture using Antora and AsciiDoc — modular, versioned, and built for scale.",
+      "Built an end-to-end customer feedback loop for documentation capturing signals for content updates.",
+      "Made documentation AI-ready following emerging AI-consumption standards (semantic chunking, metadata tagging)."
     ]
   },
   {
@@ -58,17 +57,17 @@ export const experience = [
     domain: "CRQM, CyberSecurity, AI, LLM",
     docsUrl: "https://docs.safe.security/",
     previewImage: "/previews/safe.png",
+    architecture: "Swagger/OpenAPI spec generation tightly coupled with product UI, feeding directly into in-house AI assistant (Safex).",
+    philosophy: "Data-Driven Content Strategy. Utilized Pendo analytics, Session Replays, and NPS to redesign persona-based onboarding.",
+    personas: "CISOs, Security Admins, and API Integrators.",
     toolsUsed: "Authoring: Document360, Analytics: Pendo, GitHub",
     description: "Developed API integration guides, authentication workflows, deployment documentation, and onboarding tutorials for enterprise customers.",
     highlights: [
       "Revolutionized documentation strategy, resulting in a 40% increase in user engagement and a 30% reduction in support tickets.",
-      "Optimized and maintained 400+ SAFE APIs on Swagger, reducing API-related queries by 50% for both internal teams and external customers.",
-      "Spearheaded the ingestion and training of the in-house AI agent (Safex), enabling it to provide accurate and contextually relevant answers based on ML and product documentation (prompt engineering), improving query resolution accuracy by 60% and reducing response time by 75%.",
-      "Leveraged Pendo for documentation analytics and product announcements, driving data-informed decisions to improve user engagement and product experience using Session Replays and NPS.",
-      "Redesigned user onboarding with a persona-based approach, reducing time-to-value by 50% and increasing product adoption rates by 30%.",
-      "Created product demo videos that increased feature utilization by 55% and reduced onboarding support requests by 40%.",
-      "Implemented an outcome-based and guided example documentation style, improving topic comprehension by 65% and user task completion rates by 50%.",
-      "Collaborated cross-functionally with founders, PMs, developers, UI/UX teams, customer support, and sales engineers to ensure comprehensive and accurate documentation."
+      "Optimized and maintained 400+ SAFE APIs on Swagger, reducing API-related queries by 50%.",
+      "Spearheaded ingestion and training of the in-house AI agent (Safex), improving query accuracy by 60% and reducing response time by 75%.",
+      "Leveraged Pendo for documentation analytics and product announcements using Session Replays and NPS.",
+      "Redesigned user onboarding with a persona-based approach, reducing time-to-value by 50%."
     ]
   },
   {
@@ -81,15 +80,16 @@ export const experience = [
     domain: "DevOps, ML, AI",
     docsUrl: "https://developer.harness.io/docs/continuous-integration/",
     previewImage: "/previews/harness.png",
+    architecture: "Git-based Markdown documentation workflow leveraging automated pull requests, continuous publishing, and product release coupling.",
+    philosophy: "Developer-First Enablement. Emphasized hands-on Quickstarts and real-world deployment scenarios (Kubernetes, Docker).",
+    personas: "DevOps Engineers, Software Developers, and Release Managers.",
     toolsUsed: "HelpDocs, Video: Camtasia",
     description: "Owned documentation for the Continuous Integration product, partnering daily with engineering, product management, QA, and design throughout the feature lifecycle.",
     highlights: [
-      "Authored installation guides, deployment documentation, release notes, tutorials, troubleshooting guides, conceptual documentation, and API references for enterprise customers.",
-      "Built production-ready CI/CD pipelines using Harness, Kubernetes, Docker, AWS, GCP, and artifact repositories to validate documentation against real-world deployment scenarios.",
-      "Documented Kubernetes-based container build and deployment workflows, including pipeline configuration, secrets management, image registries, and infrastructure integrations.",
-      "Collaborated directly with engineering during beta-to-GA releases, ensuring documentation shipped alongside every feature release.",
-      "Improved developer onboarding through hands-on tutorials and Quickstarts that reduced customer ramp-up time.",
-      "Maintained documentation using Docs-as-Code workflows with Git, Markdown, pull requests, and continuous publishing."
+      "Authored installation guides, deployment documentation, release notes, tutorials, and API references for enterprise customers.",
+      "Built production-ready CI/CD pipelines using Harness, Kubernetes, Docker, AWS, GCP to validate documentation against real deployments.",
+      "Collaborated directly with engineering during beta-to-GA releases, ensuring documentation shipped alongside every release.",
+      "Improved developer onboarding through hands-on tutorials and Quickstarts that reduced customer ramp-up time."
     ]
   },
   {
@@ -102,12 +102,15 @@ export const experience = [
     domain: "Cloud Security",
     docsUrl: "https://success.skyhighsecurity.com/Skyhigh_CASB",
     previewImage: "/previews/mcafee.png",
+    architecture: "Enterprise Content Management System with strict compliance tracking and version control mirroring product releases.",
+    philosophy: "Clarity and Minimalism in Security. Prioritized unambiguous procedural instructions to prevent security misconfigurations.",
+    personas: "Cloud Security Architects and IT Administrators.",
     toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
     description: "Authored and structured end-to-end documentation for Skyhigh Cloud Access Security Broker (CASB), covering cloud data protection, shadow IT analytics, DLP policies, and IaaS/PaaS security integrations.",
     highlights: [
+      "Significantly improved the usability and accessibility of core security documentation.",
       "Documented Skyhigh Cloud Access Security Broker (CASB), improving usability and accessibility across enterprise cloud security environments.",
-      "Coordinated with security engineers and product managers to align documentation releases with fast-paced CASB deployment cycles.",
-      "Streamlined release note delivery, replacing legacy 400-page documents with structured digital user assistance."
+      "Streamlined release note delivery, replacing a massive 400-page legacy document with structured digital user assistance."
     ]
   },
   {
@@ -120,10 +123,14 @@ export const experience = [
     domain: "Healthcare, SaaS",
     docsUrl: "https://kantime.com/",
     previewImage: "/previews/kantime.png",
+    architecture: "In-app contextual help architecture embedded directly into the user login portal.",
+    philosophy: "Workflow-Driven Assistance. Healthcare professionals need answers without leaving clinical workflows.",
+    personas: "Healthcare Administrators, Clinicians, and Billing Specialists.",
     toolsUsed: "DITA XML (Authoring tool: Oxygen XML, CMS: Ixiasoft)",
-    description: "Created comprehensive user assistance and product documentation.",
+    description: "Created comprehensive user assistance and product documentation embedded directly into the user login portal for the US Healthcare platform.",
     highlights: [
-      "Created User Guides and Release Notes, conducting in-depth functional testing to ensure the accuracy and reliability of documentation for the US Healthcare platform."
+      "Created User Guides and Release Notes, conducting in-depth functional testing to ensure the accuracy and reliability of documentation.",
+      "Embedded contextual help directly into user login portals to streamline clinical adoption."
     ]
   }
 ];

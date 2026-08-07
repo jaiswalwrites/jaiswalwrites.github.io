@@ -119,14 +119,14 @@ const Experience = () => {
                         {job.description}
                       </p>
 
-                      {/* Real Documentation Landing Page Image Preview with Border Vignette */}
+                      {/* Real Documentation Landing Page Image Preview with Border Vignette (NO OVERLAY BUTTON) */}
                       {job.previewImage && (
-                        <div className="mb-6 relative z-10 group rounded-xl overflow-hidden border border-[#00f0ff]/30 shadow-[0_0_30px_rgba(0,240,255,0.15)] bg-black">
+                        <div className="mb-4 relative z-10 group rounded-xl overflow-hidden border border-[#00f0ff]/30 shadow-[0_0_30px_rgba(0,240,255,0.15)] bg-black">
                           <div className="relative h-44 sm:h-52 overflow-hidden">
                             <img
                               src={job.previewImage}
                               alt={`${job.company} Documentation Landing Page`}
-                              className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 opacity-90"
+                              className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 opacity-95"
                             />
                             {/* 4-Way Vignette Border Gradients */}
                             <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_35px_rgba(0,0,0,0.9)] z-10" />
@@ -137,23 +137,65 @@ const Experience = () => {
                             <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
                               <span className="px-2.5 py-1 rounded-md bg-black/80 border border-[#00f0ff]/40 text-[#00f0ff] font-mono text-[10px] font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 shadow-lg">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                                <span>Live Docs Portal</span>
+                                <span>Landing Page Preview</span>
                               </span>
                             </div>
-
-                            {/* Bottom Visit Overlay Link */}
-                            {job.docsUrl && (
-                              <a
-                                href={job.docsUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00f0ff]/50 bg-black/85 text-[#00f0ff] font-mono text-xs font-bold hover:bg-[#00f0ff] hover:text-black transition-all shadow-[0_0_15px_rgba(0,240,255,0.3)] backdrop-blur-md"
-                              >
-                                <span>Visit Landing Page</span>
-                                <ExternalLink className="w-3.5 h-3.5" />
-                              </a>
-                            )}
                           </div>
+                        </div>
+                      )}
+
+                      {/* Live Documentation Landing Page Link Box */}
+                      {job.docsUrl && (
+                        <div className="mb-6 relative z-10">
+                          <a
+                            href={job.docsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center justify-between p-3.5 rounded-xl border border-[#00f0ff]/30 bg-gradient-to-r from-[#00f0ff]/10 via-[#00f0ff]/5 to-transparent hover:border-[#00f0ff] hover:bg-[#00f0ff]/15 transition-all shadow-[0_0_20px_rgba(0,240,255,0.1)]"
+                          >
+                            <div className="flex items-center gap-3 min-w-0">
+                              <div className="w-8 h-8 rounded-lg bg-[#00f0ff]/20 flex items-center justify-center text-[#00f0ff] shrink-0">
+                                <Globe className="w-4 h-4" />
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <div className="text-xs font-mono font-bold text-[#00f0ff] uppercase tracking-wider flex items-center gap-1.5">
+                                  <span>Docs Landing Page</span>
+                                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                                </div>
+                                <div className="text-xs font-mono text-white/60 truncate">
+                                  {job.docsUrl}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-1 text-xs font-mono font-semibold text-[#00f0ff] group-hover:text-white transition-colors shrink-0 ml-2">
+                              <span>View Live Docs</span>
+                              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </div>
+                          </a>
+                        </div>
+                      )}
+
+                      {/* Case Study Details: Architecture, Philosophy, Personas */}
+                      {(job.architecture || job.philosophy || job.personas) && (
+                        <div className="mb-6 p-4 rounded-xl bg-white/5 border border-white/10 space-y-2.5 text-xs font-mono text-white/80 relative z-10 leading-relaxed">
+                          {job.architecture && (
+                            <div>
+                              <span className="text-[#00f0ff] font-bold uppercase tracking-wider">Architecture: </span>
+                              <span className="font-light text-white/70">{job.architecture}</span>
+                            </div>
+                          )}
+                          {job.philosophy && (
+                            <div>
+                              <span className="text-[#00f0ff] font-bold uppercase tracking-wider">Philosophy: </span>
+                              <span className="font-light text-white/70">{job.philosophy}</span>
+                            </div>
+                          )}
+                          {job.personas && (
+                            <div>
+                              <span className="text-[#00f0ff] font-bold uppercase tracking-wider">Personas: </span>
+                              <span className="font-light text-white/70">{job.personas}</span>
+                            </div>
+                          )}
                         </div>
                       )}
 
