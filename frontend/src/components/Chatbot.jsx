@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Terminal, Calendar, FileText, Code, Wrench, Sparkles, Download, Building2 } from 'lucide-react';
+import { X, Send, Terminal, Calendar, FileText, Code, Wrench, Sparkles, Download, Building2, Volume2, VolumeX } from 'lucide-react';
 import avatarImg from '../assets/avatar.png';
 
 const MODEL_URL = 'https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/shizuku/shizuku.model.json';
@@ -95,7 +95,8 @@ const Live2DButton = ({ onClick, color }) => {
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
       onClick={onClick}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 bg-black z-50 overflow-hidden cursor-pointer shadow-[0_0_24px_rgba(0,240,255,0.5)] flex items-center justify-center group"
+      aria-label="Open Chat"
+      className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 bg-black z-[9999] overflow-hidden cursor-pointer shadow-[0_0_24px_rgba(0,240,255,0.5)] flex items-center justify-center group touch-manipulation"
       style={{ borderColor: color }}
     >
       {/* Fallback static avatar image behind canvas */}
@@ -176,8 +177,21 @@ const Chatbot = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isPoked, setIsPoked] = useState(false);
+  // Mute state — persisted to localStorage
+  const [isMuted, setIsMuted] = useState(() => {
+    try { return localStorage.getItem('chatbot_muted') === 'true'; } catch { return false; }
+  });
   const messagesEndRef = useRef(null);
   const COLOR = '#00f0ff';
+
+  // Persist mute preference
+  useEffect(() => {
+    try { localStorage.setItem('chatbot_muted', isMuted); } catch {}
+    // Stop any active speech immediately when muted
+    if (isMuted && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  }, [isMuted]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -188,7 +202,7 @@ const Chatbot = () => {
   }, [messages, isTyping]);
 
   const speakText = (text) => {
-    if (!('speechSynthesis' in window)) return;
+    if (isMuted || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const cleanText = text.replace(/https?:\/\/[^\s]+/g, 'link').replace(/[*#]/g, '');
     const utterance = new SpeechSynthesisUtterance(cleanText);
@@ -284,9 +298,24 @@ const Chatbot = () => {
     { label: '📅 Book Call', query: 'I want to schedule a call with Manish', icon: Calendar },
   ];
 
+  // Mute toggle button — reused in both desktop & mobile headers
+  const MuteButton = () => (
+    <button
+      onClick={() => setIsMuted(m => !m)}
+      aria-label={isMuted ? 'Unmute voice' : 'Mute voice'}
+      title={isMuted ? 'Unmute voice' : 'Mute voice'}
+      className="p-1.5 rounded-full border border-white/10 bg-white/5 text-white/60 hover:text-[#00f0ff] hover:border-[#00f0ff]/40 transition-all"
+    >
+      {isMuted
+        ? <VolumeX className="w-4 h-4 text-[#ff003c]" />
+        : <Volume2 className="w-4 h-4" />
+      }
+    </button>
+  );
+
   return (
     <>
-      {/* Floating Live2D Button — bottom right, hidden when chat is open */}
+      {/* Floating Live2D Button — hidden when chat is open */}
       {!isOpen && (
         <Live2DButton onClick={handleOpenChat} color={COLOR} />
       )}
@@ -299,9 +328,9 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-2 right-2 left-2 sm:left-auto sm:bottom-6 sm:right-6 w-auto sm:w-[620px] h-[85vh] sm:h-[640px] max-h-[92vh] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.2)] rounded-2xl z-50 flex overflow-hidden border border-[#00f0ff]/40 font-sans backdrop-blur-xl"
+            className="fixed inset-x-2 bottom-2 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[620px] h-[88vh] sm:h-[640px] max-h-[92vh] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.2)] rounded-2xl z-[9999] flex overflow-hidden border border-[#00f0ff]/40 font-sans backdrop-blur-xl"
           >
-            {/* Left: Live2D Character Panel (Desktop) */}
+            {/* Left: Live2D Character Panel (Desktop only) */}
             <div className="w-[240px] relative bg-gradient-to-t from-black via-[#00f0ff]/5 to-transparent flex-shrink-0 overflow-hidden border-r border-[#00f0ff]/20 hidden sm:block">
               {/* Name Tag */}
               <div className="absolute top-4 left-4 z-20">
@@ -309,6 +338,17 @@ const Chatbot = () => {
                   S.E.N.S.E.I
                 </div>
                 <div className="text-[10px] text-white/50 tracking-widest uppercase mt-1 ml-1 font-mono">Focus Trainer</div>
+              </div>
+
+              {/* Desktop controls: mute + close — top right of left panel */}
+              <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+                <MuteButton />
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 text-white/50 hover:text-[#ff003c] transition-colors bg-black/50 rounded-full border border-white/10"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
 
               {/* Live2D WebGL Canvas */}
@@ -334,16 +374,8 @@ const Chatbot = () => {
             <div className="flex-1 flex flex-col relative bg-black/90 backdrop-blur-md min-w-0">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '4px 4px' }} />
 
-              {/* Desktop Close Button */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="hidden sm:flex absolute top-4 right-4 p-2 text-white/50 hover:text-[#ff003c] transition-colors z-20 bg-black/50 rounded-full border border-white/10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
               {/* Mobile Chat Header Bar */}
-              <div className="flex sm:hidden items-center justify-between px-4 py-3 border-b border-[#00f0ff]/20 bg-black/80 backdrop-blur-md z-20">
+              <div className="flex sm:hidden items-center justify-between px-4 py-3 border-b border-[#00f0ff]/20 bg-black/80 backdrop-blur-md z-20 shrink-0">
                 <div className="flex items-center gap-2.5">
                   <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#00f0ff]/50 bg-black shrink-0">
                     <img src={avatarImg} alt="S.E.N.S.E.I" className="w-full h-full object-cover" />
@@ -354,16 +386,20 @@ const Chatbot = () => {
                     <div className="text-[10px] font-mono text-white/50">Focus Trainer • AI Assistant</div>
                   </div>
                 </div>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-1.5 text-white/60 hover:text-[#ff003c] transition-colors rounded-full border border-white/10 bg-white/5"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+                {/* Mobile: mute + close */}
+                <div className="flex items-center gap-2">
+                  <MuteButton />
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-1.5 text-white/60 hover:text-[#ff003c] transition-colors rounded-full border border-white/10 bg-white/5"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 pt-14 space-y-4 font-mono scrollbar-none z-10">
+              <div className="flex-1 overflow-y-auto p-4 pt-4 sm:pt-14 space-y-4 font-mono scrollbar-none z-10">
                 {messages.map((msg, idx) => (
                   <div key={idx} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <motion.div
@@ -419,14 +455,14 @@ const Chatbot = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Preset Questions / Quick Shortcuts stacked top-to-bottom */}
+              {/* Preset Questions */}
               {!isTyping && (
-                <div className="px-4 py-2 flex flex-wrap gap-2 z-10 border-t border-white/10 bg-black/60 backdrop-blur-md max-h-36 overflow-y-auto scrollbar-none">
+                <div className="px-3 py-2 flex flex-wrap gap-1.5 z-10 border-t border-white/10 bg-black/60 backdrop-blur-md max-h-32 overflow-y-auto scrollbar-none shrink-0">
                   {presets.map((p, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleSend(p.query)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all duration-300 bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/25 hover:border-[#00f0ff]/60 hover:scale-102 shadow-[0_0_8px_rgba(0,240,255,0.1)]"
+                      className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-mono transition-all duration-300 bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/25 hover:border-[#00f0ff]/60 shadow-[0_0_8px_rgba(0,240,255,0.1)] touch-manipulation"
                     >
                       <p.icon className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
                       <span>{p.label}</span>
@@ -436,7 +472,7 @@ const Chatbot = () => {
               )}
 
               {/* Input */}
-              <div className="p-3 border-t border-[#00f0ff]/20 bg-black z-10">
+              <div className="p-3 border-t border-[#00f0ff]/20 bg-black z-10 shrink-0">
                 <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex items-center gap-2">
                   <input
                     type="text"
