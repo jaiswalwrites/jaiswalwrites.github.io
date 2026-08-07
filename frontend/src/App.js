@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { HashRouter } from "react-router-dom";
+import { HashRouter, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Toaster } from "./components/ui/toaster";
 import Chatbot from "./components/Chatbot";
+import { useEffect } from "react";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -37,9 +38,40 @@ class ErrorBoundary extends Component {
   }
 }
 
+// Automatically handles deep linking to sections on initial page load and hash change
+function HashScrollHandler() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const scrollToSection = () => {
+      let hash = window.location.hash;
+      let path = location.pathname.replace(/^\//, '');
+
+      let targetId = hash.replace(/^#\/?/, '').replace(/^#/, '') || path;
+      if (!targetId) return;
+
+      let element = document.getElementById(targetId);
+      if (!element && (targetId === 'work' || targetId === 'writing')) {
+        element = document.getElementById('work') || document.getElementById('writing');
+      }
+
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    scrollToSection();
+    const timeout = setTimeout(scrollToSection, 300);
+    return () => clearTimeout(timeout);
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   return (
     <HashRouter>
+      <HashScrollHandler />
       <div className="App bg-black text-white min-h-screen">
         <Header />
         <main>

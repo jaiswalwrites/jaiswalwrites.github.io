@@ -95,7 +95,7 @@ const Live2DButton = ({ onClick, color }) => {
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
       onClick={onClick}
-      className="fixed bottom-6 right-6 w-20 h-20 rounded-full border-2 bg-black z-50 overflow-hidden cursor-pointer shadow-[0_0_24px_rgba(0,240,255,0.5)] flex items-center justify-center group"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 bg-black z-50 overflow-hidden cursor-pointer shadow-[0_0_24px_rgba(0,240,255,0.5)] flex items-center justify-center group"
       style={{ borderColor: color }}
     >
       {/* Fallback static avatar image behind canvas */}
@@ -107,8 +107,8 @@ const Live2DButton = ({ onClick, color }) => {
         className="absolute inset-0 w-full h-full"
         style={{ zIndex: 2 }}
       />
-      <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-black animate-ping z-10" style={{ backgroundColor: color }} />
-      <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-black z-10" style={{ backgroundColor: color }} />
+      <div className="absolute bottom-1 right-1 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-black animate-ping z-10" style={{ backgroundColor: color }} />
+      <div className="absolute bottom-1 right-1 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-black z-10" style={{ backgroundColor: color }} />
     </motion.button>
   );
 };
@@ -299,9 +299,9 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-6 right-6 w-[360px] sm:w-[620px] h-[640px] max-h-[88vh] max-w-[92vw] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.15)] rounded-xl z-50 flex overflow-hidden border border-[#00f0ff]/30 font-sans"
+            className="fixed bottom-2 right-2 left-2 sm:left-auto sm:bottom-6 sm:right-6 w-auto sm:w-[620px] h-[85vh] sm:h-[640px] max-h-[92vh] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.2)] rounded-2xl z-50 flex overflow-hidden border border-[#00f0ff]/40 font-sans backdrop-blur-xl"
           >
-            {/* Left: Live2D Character Panel */}
+            {/* Left: Live2D Character Panel (Desktop) */}
             <div className="w-[240px] relative bg-gradient-to-t from-black via-[#00f0ff]/5 to-transparent flex-shrink-0 overflow-hidden border-r border-[#00f0ff]/20 hidden sm:block">
               {/* Name Tag */}
               <div className="absolute top-4 left-4 z-20">
@@ -334,12 +334,33 @@ const Chatbot = () => {
             <div className="flex-1 flex flex-col relative bg-black/90 backdrop-blur-md min-w-0">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '4px 4px' }} />
 
+              {/* Desktop Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 p-2 text-white/50 hover:text-[#ff003c] transition-colors z-20 bg-black/50 rounded-full border border-white/10"
+                className="hidden sm:flex absolute top-4 right-4 p-2 text-white/50 hover:text-[#ff003c] transition-colors z-20 bg-black/50 rounded-full border border-white/10"
               >
                 <X className="w-5 h-5" />
               </button>
+
+              {/* Mobile Chat Header Bar */}
+              <div className="flex sm:hidden items-center justify-between px-4 py-3 border-b border-[#00f0ff]/20 bg-black/80 backdrop-blur-md z-20">
+                <div className="flex items-center gap-2.5">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#00f0ff]/50 bg-black shrink-0">
+                    <img src={avatarImg} alt="S.E.N.S.E.I" className="w-full h-full object-cover" />
+                    <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-black animate-ping" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold font-mono text-[#00f0ff]">S.E.N.S.E.I</div>
+                    <div className="text-[10px] font-mono text-white/50">Focus Trainer • AI Assistant</div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 text-white/60 hover:text-[#ff003c] transition-colors rounded-full border border-white/10 bg-white/5"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
 
               {/* Messages */}
               <div className="flex-1 overflow-y-auto p-4 pt-14 space-y-4 font-mono scrollbar-none z-10">
