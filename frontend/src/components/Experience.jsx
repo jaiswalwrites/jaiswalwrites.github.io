@@ -128,10 +128,6 @@ const Experience = () => {
                               alt={`${job.company} Documentation Landing Page`}
                               className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 opacity-95"
                             />
-                            {/* 4-Way Vignette Border Gradients */}
-                            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_35px_rgba(0,0,0,0.9)] z-10" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 pointer-events-none z-10" />
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50 pointer-events-none z-10" />
 
                             {/* Top Status Tag */}
                             <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
