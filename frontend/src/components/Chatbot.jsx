@@ -28,112 +28,137 @@ const initLive2DOnCanvas = (canvas, onHit) => {
           view: canvas,
           backgroundAlpha: 0,
           resolution: window.devicePixelRatio || 1,
-          autoStart: true,
-          resizeTo: canvas.parentElement,
+          autoDensity: true,
+          width: canvas.width || 240,
+          height: canvas.height || 600,
         });
 
-        const model = await window.PIXI.live2d.Live2DModel.from(MODEL_URL);
+        const model = await window.PIXI.live2d.Live2DModel.from(MODEL_URL, { autoInteract: true });
         app.stage.addChild(model);
 
-        const width = canvas.parentElement?.clientWidth || canvas.width;
-        const height = canvas.parentElement?.clientHeight || canvas.height;
-        const scaleX = width / model.width;
-        const scaleY = height / model.height;
-        const scale = Math.min(scaleX, scaleY) * 0.95;
-
+        const W = app.screen.width;
+        const H = app.screen.height;
+        const scale = Math.min(W / model.internalModel.width, H / model.internalModel.height) * 1.6;
         model.scale.set(scale);
-        model.x = (width - model.width * scale) / 2;
-        model.y = (height - model.height * scale) / 2 + 10;
+        model.anchor.set(0.5, 0);
+        model.x = W / 2;
+        model.y = H * 0.05;
 
-        model.on('hit', (hitAreas) => {
-          if (hitAreas.includes('body') || hitAreas.includes('head')) {
-            model.motion('tap_body');
-            if (onHit) onHit();
-          }
-        });
+        if (onHit) {
+          model.on('hit', (areas) => {
+            if (areas.includes('body') || areas.includes('head')) {
+              model.motion('tap_body');
+              onHit();
+            }
+          });
+        }
 
         return { app, model };
-      } catch (e) {
-        console.warn('Live2D model render warning:', e);
+      } catch (err) {
+        console.warn('Live2D model init failed:', err);
         return null;
       }
     })
-    .catch(() => null);
+    .catch((err) => {
+      console.warn('Live2D script loading timed out:', err);
+      return null;
+    });
 };
 
-// 1. Floating round button component (bottom-right)
+// Small Live2D canvas for the floating button
 const Live2DButton = ({ onClick, color }) => {
   const canvasRef = useRef(null);
+  const instanceRef = useRef(null);
 
   useEffect(() => {
-    let instance = null;
-    if (canvasRef.current) {
-      initLive2DOnCanvas(canvasRef.current).then((inst) => {
-        instance = inst;
-      });
-    }
+    if (!canvasRef.current) return;
+    let cancelled = false;
+
+    initLive2DOnCanvas(canvasRef.current, null).then((instance) => {
+      if (cancelled || !instance) return;
+      instanceRef.current = instance;
+    });
+
     return () => {
-      if (instance?.app) {
-        try { instance.app.destroy(true, { children: true, texture: true, baseTexture: true }); } catch (e) {}
+      cancelled = true;
+      if (instanceRef.current) {
+        try { instanceRef.current.app.destroy(true); } catch (e) {}
+        instanceRef.current = null;
       }
     };
   }, []);
 
   return (
-    <motion.div
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center cursor-pointer group"
+    <motion.button
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.92 }}
       onClick={onClick}
+      className="fixed bottom-6 right-6 w-20 h-20 rounded-full border-2 bg-black z-50 overflow-hidden cursor-pointer shadow-[0_0_24px_rgba(0,240,255,0.5)] flex items-center justify-center group"
+      style={{ borderColor: color }}
     >
-      <div
-        className="absolute inset-0 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity animate-pulse"
-        style={{ backgroundColor: color }}
+      {/* Fallback static avatar image behind canvas */}
+      <img src={avatarImg} alt="Chat" className="absolute inset-0 w-full h-full object-cover" />
+      <canvas
+        ref={canvasRef}
+        width={80}
+        height={80}
+        className="absolute inset-0 w-full h-full"
+        style={{ zIndex: 2 }}
       />
-      <div
-        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 bg-black/80 backdrop-blur-md relative overflow-hidden flex items-center justify-center shadow-2xl transition-transform group-hover:scale-105"
-        style={{ borderColor: color }}
-      >
-        <canvas ref={canvasRef} className="w-full h-full pointer-events-none" />
-        <div className="absolute top-1 right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-black animate-ping" />
-        <div className="absolute top-1 right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-black" />
-      </div>
-    </motion.div>
+      <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-black animate-ping z-10" style={{ backgroundColor: color }} />
+      <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-black z-10" style={{ backgroundColor: color }} />
+    </motion.button>
   );
 };
 
-// 2. Chat panel Live2D canvas component (inside left column of chat window)
+// Full Live2D canvas for the chatbox left panel
 const Live2DPanel = ({ isTyping, onPoke }) => {
   const canvasRef = useRef(null);
-  const modelRef = useRef(null);
+  const instanceRef = useRef(null);
 
   useEffect(() => {
-    let instance = null;
-    if (canvasRef.current) {
-      initLive2DOnCanvas(canvasRef.current, onPoke).then((inst) => {
-        instance = inst;
-        if (inst) modelRef.current = inst.model;
-      });
-    }
+    if (!canvasRef.current) return;
+    let cancelled = false;
+
+    initLive2DOnCanvas(canvasRef.current, onPoke).then((instance) => {
+      if (cancelled || !instance) return;
+      instanceRef.current = instance;
+    });
+
     return () => {
-      if (instance?.app) {
-        try { instance.app.destroy(true, { children: true, texture: true, baseTexture: true }); } catch (e) {}
+      cancelled = true;
+      if (instanceRef.current) {
+        try { instanceRef.current.app.destroy(true); } catch (e) {}
+        instanceRef.current = null;
       }
     };
   }, [onPoke]);
 
   useEffect(() => {
-    if (isTyping && modelRef.current) {
-      try { modelRef.current.motion('flick_head'); } catch (e) {}
+    if (!instanceRef.current?.model) return;
+    const { model } = instanceRef.current;
+    if (isTyping) {
+      try { model.motion('flick_head'); } catch (e) {}
     }
   }, [isTyping]);
 
-  return <canvas ref={canvasRef} className="w-full h-full cursor-pointer relative z-10" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      width={240}
+      height={600}
+      className="absolute inset-0 w-full h-full cursor-pointer z-10"
+    />
+  );
 };
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([{ type: 'bot', text: GREETING }]);
+  const [messages, setMessages] = useState([
+    { type: 'bot', text: GREETING }
+  ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isPoked, setIsPoked] = useState(false);
@@ -158,12 +183,8 @@ const Chatbot = () => {
 
     const speak = () => {
       const voices = window.speechSynthesis.getVoices();
-      const female = voices.find(v =>
-        (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') ||
-         v.name.includes('Google UK English Female') || v.name.includes('Victoria')) &&
-        !v.name.includes('Male') && !v.name.includes('David') && !v.name.includes('Mark')
-      );
-      if (female) utterance.voice = female;
+      const femaleVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Google') || v.name.includes('Zira') || v.name.includes('Samantha')));
+      if (femaleVoice) utterance.voice = femaleVoice;
       window.speechSynthesis.speak(utterance);
     };
 
@@ -202,7 +223,7 @@ const Chatbot = () => {
       } else if (q.includes('kloudfuse')) {
         response = "💼 Kloudfuse (Lead Technical Writer | Mar 2025 - Apr 2026):\n1. Built end-to-end documentation system for cloud-native observability infrastructure running on Kubernetes.\n2. Architected Antora & AsciiDoc modular, versioned doc system.\n3. Created LLM-friendly semantic doc pipelines and customer feedback loops.";
       } else if (q.includes('safe security') || q.includes('safe')) {
-        response = "🛡️ Safe Security (Lead Technical Writer | Aug 2023 - Sep 2024):\n1. Optimized & documented 400+ REST APIs on Swagger (reducing support queries by 50%).\n2. Trained Safex AI agent via prompt engineering (75% faster responses).\n3. Leveraged Pendo product analytics & session replays to cut onboarding time by 50%.";
+        response = "🛡️ Safe Security (Lead Technical Writer | Aug 2023 - Sep 2024):\n1. Optimized & documented 400+ REST APIs on Swagger (reducing support tickets by 50%).\n2. Trained Safex AI agent via prompt engineering (75% faster responses).\n3. Leveraged Pendo product analytics & session replays to cut onboarding time by 50%.";
       } else if (q.includes('mcafee') || q.includes('skyhigh') || q.includes('casb')) {
         response = "🔒 McAfee / Skyhigh Security (Technical Writer | Nov 2018 - Apr 2021):\n1. Authored Skyhigh Cloud Access Security Broker (CASB) docs covering DLP policies & threat protection.\n2. Utilized Oxygen XML Editor, DITAMAP, and IXIASOFT DITA CMS.\n3. Replaced a legacy 400-page document with structured digital user assistance.";
       } else if (q.includes('harness')) {
@@ -261,10 +282,10 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-6 right-6 w-[360px] sm:w-[600px] h-[600px] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.15)] rounded-xl z-50 flex overflow-hidden border border-[#00f0ff]/30 font-sans"
+            className="fixed bottom-6 right-6 w-[360px] sm:w-[600px] h-[600px] max-h-[85vh] max-w-[92vw] bg-[#050505] shadow-[0_0_40px_rgba(0,240,255,0.15)] rounded-xl z-50 flex overflow-hidden border border-[#00f0ff]/30 font-sans"
           >
             {/* Left: Live2D Character Panel */}
-            <div className="w-[240px] relative bg-gradient-to-t from-black via-[#00f0ff]/5 to-transparent flex-shrink-0 overflow-hidden border-r border-[#00f0ff]/20">
+            <div className="w-[240px] relative bg-gradient-to-t from-black via-[#00f0ff]/5 to-transparent flex-shrink-0 overflow-hidden border-r border-[#00f0ff]/20 hidden sm:block">
               {/* Name Tag */}
               <div className="absolute top-4 left-4 z-20">
                 <div className="inline-block px-3 py-1 bg-[#00f0ff]/10 border border-[#00f0ff]/30 text-[#00f0ff] text-xs font-bold tracking-widest font-mono uppercase rounded backdrop-blur-md">
@@ -338,16 +359,17 @@ const Chatbot = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Preset Questions / Quick Shortcuts */}
+              {/* Preset Questions / Quick Shortcuts stacked top-to-bottom */}
               {!isTyping && (
-                <div className="px-3 pb-2 flex items-center gap-1.5 overflow-x-auto scrollbar-none z-10 py-1 border-t border-white/5">
+                <div className="px-4 py-2 flex flex-wrap gap-2 z-10 border-t border-white/10 bg-black/60 backdrop-blur-md max-h-36 overflow-y-auto scrollbar-none">
                   {presets.map((p, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleSend(p.query)}
-                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-mono whitespace-nowrap transition-all duration-300 bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/25 hover:border-[#00f0ff]/60 hover:scale-105"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all duration-300 bg-[#00f0ff]/10 border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/25 hover:border-[#00f0ff]/60 hover:scale-102 shadow-[0_0_8px_rgba(0,240,255,0.1)]"
                     >
-                      <p.icon className="w-3 h-3 text-[#00f0ff]" /> {p.label}
+                      <p.icon className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+                      <span>{p.label}</span>
                     </button>
                   ))}
                 </div>
