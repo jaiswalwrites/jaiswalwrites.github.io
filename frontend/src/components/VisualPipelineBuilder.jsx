@@ -203,8 +203,7 @@ jobs:
     ],
     architecture: 'Oxygen XML Editor (.ditamap & .xml) → DITAVAL Conditional Filtering → Schematron Rule Engine → IXIASOFT DITA CMS / DITA-OT Pipeline → PDF & Web Portal DTP Publishing',
     philosophy: 'Single-source authoring with DITA XML ensures absolute consistency, zero content duplication, and automated multi-format Desktop Publishing (DTP) for complex enterprise platforms.',
-    rawInput: `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+    rawInput: `<!-- DITA XML Map Structure -->
 <map title="Skyhigh CASB Security Guide">
   <topicref href="concepts/casb_overview.dita" navtitle="Overview"/>
   <topicref href="tasks/configure_dlp_policy.dita" navtitle="DLP Configuration" audience="admin"/>
