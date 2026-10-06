@@ -172,7 +172,7 @@ const projectsData = [
     domain: 'AI & Tooling',
     tags: ['MCP', 'Python', 'APIs', 'Agentic Workflows', 'LLM Routing'],
     architecture: 'External Tool Call → MCP Intent Router → Context Resolver → LLM Reasoning Layer → Tool Execution → Deterministic Fallback Loop',
-    github: 'https://github.com/jaiswalwrites'
+    github: 'https://github.com/jaiswalbuilds/global-context-mcp-gateway'
   },
   {
     id: '18',
@@ -182,7 +182,7 @@ const projectsData = [
     domain: 'AI & Tooling',
     tags: ['Python', 'Vector Stores', 'Watchdog', 'RAG', 'Embeddings', 'Auto-Indexing'],
     architecture: 'File Save / Git Commit → Watchdog Daemon → Change Detection → Recursive Chunker → Embedding Generator → Vector Store Re-index',
-    github: 'https://github.com/jaiswalwrites'
+    github: 'https://github.com/jaiswalbuilds/semantic-rag-sync-engine'
   },
   {
     id: '19',
@@ -192,7 +192,7 @@ const projectsData = [
     domain: 'AI & Tooling',
     tags: ['Python', 'Jupyter', 'JSON Schema', 'LLM-as-a-Judge', 'Guardrails', 'Evaluation'],
     architecture: 'LLM Output → JSON Schema Validator → LLM-as-a-Judge Scorer → Accuracy / Completeness / Style Metrics → Pass / Fail Report',
-    github: 'https://github.com/jaiswalwrites'
+    github: 'https://github.com/jaiswalbuilds/agentic-eval-guardrails'
   }
 ];
 
