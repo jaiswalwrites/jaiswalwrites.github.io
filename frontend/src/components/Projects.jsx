@@ -193,6 +193,16 @@ const projectsData = [
     tags: ['Python', 'Jupyter', 'JSON Schema', 'LLM-as-a-Judge', 'Guardrails', 'Evaluation'],
     architecture: 'LLM Output → JSON Schema Validator → LLM-as-a-Judge Scorer → Accuracy / Completeness / Style Metrics → Pass / Fail Report',
     github: 'https://github.com/jaiswalwrites/agentic-eval-guardrails'
+  },
+  {
+    id: '20',
+    title: 'End-to-End LLM Fine-Tuning & MLOps Toolkit',
+    emoji: '🧬',
+    description: 'Designed a complete end-to-end LLM fine-tuning pipeline using 4-bit NF4 QLoRA, ChatML instruction templates, and Hugging Face SFTTrainer. Features automated LLM-as-a-Judge benchmarking, LoRA weight merging & GGUF quantization (Q4_K_M) for edge/Ollama deployment, and a low-latency FastAPI inference server.',
+    domain: 'AI & Tooling',
+    tags: ['PyTorch', 'QLoRA', 'HuggingFace', 'FastAPI', 'GGUF', 'LLM-as-a-Judge', 'MLOps'],
+    architecture: 'Raw Data → ChatML Curation & Quality Filter → QLoRA Fine-Tuning (PEFT) → LLM-as-a-Judge Eval → GGUF Quantization → FastAPI Server',
+    github: 'https://github.com/jaiswalbuilds/llm-fine-tuning-pipeline'
   }
 ];
 
