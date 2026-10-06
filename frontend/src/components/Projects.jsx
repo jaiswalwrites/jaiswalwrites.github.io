@@ -163,6 +163,36 @@ const projectsData = [
     tags: ['Husky', 'Git Hooks', 'Prettier', 'MarkdownLint'],
     architecture: 'git commit → Husky Pre-commit → Prettier Formatting → MarkdownLint Check → Commit Acceptance/Rejection',
     github: 'https://github.com/jaiswalwrites/jaiswalwrites.github.io/tree/main/showcase-codebases/16-content-linter-hooks'
+  },
+  {
+    id: '17',
+    title: 'Global Context MCP Gateway',
+    emoji: '🌐',
+    description: 'Architected an intent-routing gateway leveraging the Model Context Protocol (MCP) to dynamically route context and documentation assets between external tools and AI agents. Designed modular agentic workflows integrating LLM reasoning, structured product context, and tool execution with deterministic fallback loops.',
+    domain: 'AI & Tooling',
+    tags: ['MCP', 'Python', 'APIs', 'Agentic Workflows', 'LLM Routing'],
+    architecture: 'External Tool Call → MCP Intent Router → Context Resolver → LLM Reasoning Layer → Tool Execution → Deterministic Fallback Loop',
+    github: 'https://github.com/jaiswalwrites'
+  },
+  {
+    id: '18',
+    title: 'Semantic Ingestion Pipeline & Dynamic RAG Sync Engine',
+    emoji: '⚙️',
+    description: 'Built an automated document ingestion engine using recursive chunking and vector embeddings, backed by a background file-watcher daemon (watchdog). Implemented automatic change detection that re-indexes modified files on commit/save to prevent doc drift and keep AI retrieval fresh.',
+    domain: 'AI & Tooling',
+    tags: ['Python', 'Vector Stores', 'Watchdog', 'RAG', 'Embeddings', 'Auto-Indexing'],
+    architecture: 'File Save / Git Commit → Watchdog Daemon → Change Detection → Recursive Chunker → Embedding Generator → Vector Store Re-index',
+    github: 'https://github.com/jaiswalwrites'
+  },
+  {
+    id: '19',
+    title: 'Agentic Evaluation & Guardrails Suite',
+    emoji: '🧪',
+    description: 'Developed an automated evaluation harness implementing LLM-as-a-Judge pipelines to programmatically score model-generated technical content against accuracy, completeness, and style criteria. Enforced strict output validation via structured JSON schemas to prevent hallucinations and establish reliable guardrails for automated documentation tasks.',
+    domain: 'AI & Tooling',
+    tags: ['Python', 'Jupyter', 'JSON Schema', 'LLM-as-a-Judge', 'Guardrails', 'Evaluation'],
+    architecture: 'LLM Output → JSON Schema Validator → LLM-as-a-Judge Scorer → Accuracy / Completeness / Style Metrics → Pass / Fail Report',
+    github: 'https://github.com/jaiswalwrites'
   }
 ];
 
