@@ -1,0 +1,38 @@
+[
+  {
+    "id": "doc-001",
+    "title": "Installing Kloudfuse on Kubernetes",
+    "type": "guide",
+    "content": "To install Kloudfuse on Kubernetes, use the Helm chart provided in the official repository. Run: helm install kloudfuse kloudfuse/kloudfuse --namespace kloudfuse --create-namespace. Ensure your cluster has at least 4 CPU cores and 16GB RAM. Configure your values.yaml before deployment to set storage class and ingress settings."
+  },
+  {
+    "id": "doc-002",
+    "title": "Kloudfuse API Reference — /metrics endpoint",
+    "type": "api",
+    "content": "POST /api/v1/metrics — Submit raw metrics data. Request body: {\"metric_name\": \"string\", \"value\": \"float\", \"timestamp\": \"int\", \"labels\": {\"key\": \"value\"}}. Returns 200 OK with ingestion ID on success. Rate limit: 10,000 requests/minute per tenant."
+  },
+  {
+    "id": "doc-003",
+    "title": "Changelog — Kloudfuse v4.2",
+    "type": "changelog",
+    "content": "Version 4.2 (March 2025): Added support for PromQL federated queries across multi-cluster setups. Fixed memory leak in the telemetry ingestion pipeline. Improved dashboard rendering performance by 40%. Deprecated the legacy /v0/metrics endpoint — migrate to /api/v1/metrics by June 2025."
+  },
+  {
+    "id": "doc-004",
+    "title": "Safe Security — SAFE CRQ API Authentication",
+    "type": "api",
+    "content": "All SAFE API requests require Bearer token authentication. Obtain a token via POST /auth/token with your client_id and client_secret. Tokens expire after 3600 seconds. Include the token in the Authorization header: Authorization: Bearer <token>. Scopes: read:risks, write:controls, read:reports."
+  },
+  {
+    "id": "doc-005",
+    "title": "Harness CI — Configure a Kubernetes Build Farm",
+    "type": "guide",
+    "content": "To configure a Kubernetes build farm in Harness CI, navigate to Project Settings > Connectors and add your Kubernetes cluster connector. Set the namespace to harness-builds. In your pipeline YAML, set infrastructure.type to KubernetesDirect and reference your connector. Ensure the harness-delegate is deployed in the target cluster."
+  },
+  {
+    "id": "doc-006",
+    "title": "Changelog — Safe Security v3.1",
+    "type": "changelog",
+    "content": "Version 3.1 (August 2023): Launched Safex AI assistant with 400+ API endpoints ingested. Reduced onboarding time by 50% with redesigned persona-based documentation. Added Pendo analytics integration for content performance tracking. Fixed authentication token refresh edge case for long-lived sessions."
+  }
+]
